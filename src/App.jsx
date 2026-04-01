@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, createContext, useContext } f
 
 /* ══════════ Fonts ══════════ */
 const fl = document.createElement("link");
-fl.href = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Shippori+Mincho:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap";
+fl.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Shippori+Mincho:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap";
 fl.rel = "stylesheet";
 document.head.appendChild(fl);
 
@@ -16,7 +16,7 @@ css.textContent = `
   --tx:#0C1A2E; --tx2:#4A4236; --txd:#8A7C66;
   --blue:#6CBEEB; --blued:#3A8BBF;
   --brd:rgba(200,168,78,0.2);
-  --fd:'Cormorant Garamond','Noto Serif KR','Shippori Mincho',serif;
+  --fd:'Playfair Display','Noto Serif KR','Shippori Mincho',serif;
   --fb:'Noto Sans KR','Noto Sans JP',sans-serif;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -275,20 +275,18 @@ function STitle({ sub, main }) {
 
 /* 타이틀 SVG */
 function TitleSVG({ dark = false }) {
-  const l = useLang();
-  const titles = { ko:"흑요석의 신부", en:"The Obsidian Bride", ja:"黒曜石の花嫁" };
-  const sizes = { ko:64, en:42, ja:56 };
-  const spacing = { ko:8, en:3, ja:6 };
-  const fonts = { ko:"'Noto Serif KR',serif", en:"'Cormorant Garamond',serif", ja:"'Shippori Mincho',serif" };
   return (
-    <svg viewBox="0 0 600 100" style={{ width:"min(540px,80vw)", height:"auto" }}>
+    <svg viewBox="0 0 600 130" style={{ width:"min(540px,80vw)", height:"auto" }}>
       <defs>
         <linearGradient id="jtg" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#C8A84E"/><stop offset="50%" stopColor="#E8D892"/><stop offset="100%" stopColor="#8B6914"/>
         </linearGradient>
       </defs>
-      <text x="300" y="70" textAnchor="middle" fontFamily={fonts[l]} fontSize={sizes[l]} fontWeight="700" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing={spacing[l]} style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
-        {titles[l]}
+      <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="52" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
+        OBSIDIAN BRIDE
+      </text>
+      <text x="300" y="100" textAnchor="middle" fontFamily="'Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
+        흑요석의 신부
       </text>
     </svg>
   );
