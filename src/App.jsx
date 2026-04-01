@@ -394,9 +394,27 @@ function JewelBoxIntro({ onEnd }) {
    ═══════════════════════════════════════════ */
 function BGMPlayer() {
   const [p, setP] = useState(false);
+  const [v, setV] = useState(0.3);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/bgm.mp3");
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.3;
+    return () => { if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; } };
+  }, []);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+    audioRef.current.volume = v;
+    if (p) audioRef.current.play().catch(() => {});
+    else audioRef.current.pause();
+  }, [p, v]);
+
   return (
     <div style={{ position:"fixed", bottom:"clamp(12px,2vw,20px)", left:"clamp(12px,2vw,20px)", zIndex:900, display:"flex", alignItems:"center", gap:"8px", padding:"8px clamp(10px,1.5vw,14px)", background:"rgba(232,224,208,0.9)", backdropFilter:"blur(12px)", border:"1px solid var(--brd)", borderRadius:"24px" }}>
       <button onClick={() => setP(!p)} style={{ background:"none", border:"none", color:"var(--gold)", cursor:"pointer", fontSize:"14px", padding:"2px" }}>{p ? "⏸" : "▶"}</button>
+      <input type="range" min="0" max="1" step="0.05" value={v} onChange={e => setV(+e.target.value)} style={{ width:"48px", accentColor:"var(--gold)", cursor:"pointer", opacity:0.7 }}/>
       <span style={{ fontSize:"10px", color:"var(--txd)", letterSpacing:"1px" }}>BGM</span>
     </div>
   );
@@ -448,37 +466,46 @@ function Hero() {
 function CharModal({ c, onClose }) {
   const t = useT();
   if (!c) return null;
+  const imgSrc = c.modalImg || c.img;
   return (
-    <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(12,26,46,0.8)", backdropFilter:"blur(12px)", display:"flex", alignItems:"center", justifyContent:"center", animation:"fadeIn 0.3s ease", padding:"clamp(12px,3vw,20px)" }}>
-      <div onClick={e => e.stopPropagation()} style={{ display:"flex", gap:"clamp(16px,3vw,32px)", maxWidth:"720px", width:"100%", maxHeight:"85vh", animation:"fadeUp 0.4s ease", flexWrap:"wrap", justifyContent:"center", alignItems:"center" }}>
-        {/* 누끼 이미지 (왼쪽) */}
-        <div style={{ flex:"0 0 auto", width:"clamp(160px,35vw,260px)", aspectRatio:"3/4", display:"flex", alignItems:"flex-end", justifyContent:"center", position:"relative" }}>
-          {c.modalImg
-            ? <img src={c.modalImg} alt={c.gem} style={{ maxWidth:"100%", maxHeight:"100%", objectFit:"contain", filter:`drop-shadow(0 4px 12px rgba(0,0,0,0.3)) drop-shadow(0 0 20px ${c.color}30)` }}/>
-            : <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center", background:c.gemBg, borderRadius:"16px" }}>
-                <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(48px,10vw,72px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>{c.gem[0]}</span>
-              </div>
-          }
-          <div style={{ position:"absolute", bottom:"8px", left:"50%", transform:"translateX(-50%)", textAlign:"center" }}>
-            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(20px,4vw,28px)", fontWeight:700, color:"var(--goldl)", textShadow:"0 2px 8px rgba(0,0,0,0.5)" }}>{c.gem}</div>
-          </div>
+    <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
+      {/* 배경: 캐릭터 이미지 흐릿하게 */}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:0.35, filter:"blur(20px) saturate(0.6)", transform:"scale(1.1)" }}/>}
+      <div style={{ position:"absolute", inset:0, background:"linear-gradient(180deg,rgba(12,26,46,0.3) 0%,rgba(12,26,46,0.1) 40%,rgba(12,26,46,0.6) 75%,rgba(12,26,46,0.95) 100%)" }}/>
+
+      {/* 닫기 버튼 */}
+      <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
+
+      {/* 메인 캐릭터 이미지 */}
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(180px,30vh,260px)", left:"50%", transform:"translateX(-50%)", height:"clamp(300px,55vh,500px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+        {imgSrc
+          ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
+          : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ fontFamily:"var(--fd)", fontSize:"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
+            </div>
+        }
+      </div>
+
+      {/* 대사창 스타일 정보 패널 */}
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 clamp(16px,4vw,40px) clamp(20px,3vw,32px)" }}>
+        {/* 캐릭터 이름 태그 */}
+        <div style={{ display:"inline-block", background:`${c.color}cc`, padding:"6px 20px", borderRadius:"8px 8px 0 0", marginBottom:"-1px", position:"relative", zIndex:2 }}>
+          <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(16px,2.5vw,22px)", fontWeight:700, color:"#fff", letterSpacing:"2px" }}>{c.gem}</span>
         </div>
-        {/* 상세 정보 (오른쪽) */}
-        <div style={{ flex:"1 1 240px", background:"var(--bgc)", borderRadius:"16px", padding:"clamp(20px,3vw,28px)", maxHeight:"80vh", overflowY:"auto", position:"relative" }} className="iscroll">
-          <button onClick={onClose} style={{ position:"absolute", top:"10px", right:"12px", background:"none", border:"none", color:"var(--tx2)", fontSize:"20px", cursor:"pointer" }}>✕</button>
+        {/* 대사창 본체 */}
+        <div style={{ background:"rgba(12,26,46,0.85)", backdropFilter:"blur(16px)", border:`1px solid ${c.color}33`, borderRadius:"0 12px 12px 12px", padding:"clamp(16px,3vw,24px)", maxHeight:"clamp(140px,25vh,200px)", overflowY:"auto" }} className="iscroll">
           {c.mystery
-            ? <div style={{ textAlign:"center", color:"var(--txd)", fontSize:"16px", letterSpacing:"4px", padding:"40px 0" }}>■■■■■■<br/><br/>■■■ ■■■■<br/>■■■■■■■■</div>
+            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■ ■■■■■■■■</div>
             : <>
-                <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,4vw,28px)", fontWeight:700, color:"var(--midnight)", marginBottom:"16px" }}>{c.gem}</h3>
-                {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
-                  <div key={i} style={{ marginBottom:"14px" }}>
-                    <span style={{ fontSize:"11px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                    <p style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300, marginTop:"3px" }}>{x.v}</p>
-                  </div>
-                ))}
-                <div style={{ padding:"14px", borderLeft:`2px solid ${c.color}33`, background:`${c.color}08`, borderRadius:"0 8px 8px 0", marginTop:"8px" }}>
-                  <p style={{ fontSize:"clamp(13px,1.6vw,15px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"var(--tx)" }}>{c.intro}</p>
+                <div style={{ display:"flex", gap:"clamp(12px,3vw,24px)", flexWrap:"wrap", marginBottom:"12px" }}>
+                  {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
+                    <div key={i} style={{ flex:"1 1 140px" }}>
+                      <span style={{ fontSize:"10px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
+                    </div>
+                  ))}
                 </div>
+                <p style={{ fontSize:"clamp(13px,1.6vw,15px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:"1px solid rgba(200,168,78,0.15)", paddingTop:"10px" }}>{c.intro}</p>
               </>
           }
         </div>
@@ -504,7 +531,7 @@ function Chars({ onOpen }) {
         <STitle sub={t.charS} main={t.charT}/>
         <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-20px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
-      <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"0 clamp(12px,3vw,16px) 44px", gap:"clamp(20px,4vw,36px)" }}>
+      <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(12px,2vw,20px) clamp(12px,3vw,16px) 60px", gap:"clamp(28px,5vw,44px)" }} className="iscroll">
         {/* 메인 캐릭터 — 수평 겹친 실루엣 */}
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
           {mainChars.map((c, i) => {
@@ -515,9 +542,9 @@ function Chars({ onOpen }) {
                 onMouseEnter={() => handleHover(i)} onMouseLeave={() => setHv(-1)}
                 onClick={() => onOpen(c)}
                 style={{
-                  width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
+                  width:"clamp(220px,38vw,320px)", aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : "clamp(-65px,-13vw,-90px)",
+                  marginLeft: i === 0 ? 0 : "clamp(-90px,-18vw,-130px)",
                   filter: isHovered
                     ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
                     : isRevealed
@@ -550,9 +577,9 @@ function Chars({ onOpen }) {
                 onMouseEnter={() => setHv(mIdx)} onMouseLeave={() => setHv(-1)}
                 onClick={() => onOpen(c)}
                 style={{
-                  width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
+                  width:"clamp(220px,38vw,320px)", aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : "clamp(-65px,-13vw,-90px)",
+                  marginLeft: i === 0 ? 0 : "clamp(-90px,-18vw,-130px)",
                   filter: isHovered
                     ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25))"
                     : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
@@ -577,9 +604,9 @@ function Chars({ onOpen }) {
             onMouseEnter={() => setHv(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/blueowl.webp", modalImg:"/images/chars/blueowl.webp" })}
             style={{
-              width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
+              width:"clamp(220px,38vw,320px)", aspectRatio:"2/3",
               cursor:"pointer", flexShrink:0, position:"relative",
-              marginLeft:"clamp(-65px,-13vw,-90px)",
+              marginLeft:"clamp(-90px,-18vw,-130px)",
               filter: hv===99
                 ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
                 : "drop-shadow(0 4px 8px rgba(108,190,235,0.2))",
