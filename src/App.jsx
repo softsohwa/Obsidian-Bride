@@ -342,17 +342,21 @@ function JewelBoxIntro({ onEnd }) {
   const [hovered, setHovered] = useState(false);
   const [opening, setOpening] = useState(false);
   const [burst, setBurst] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const done = useRef(false);
 
   const open = () => {
     if (done.current) return; done.current = true;
     setOpening(true);
-    setTimeout(() => setBurst(true), 500);
+    setTimeout(() => setBurst(true), 400);
+    setTimeout(() => setHidden(true), 1200);
     setTimeout(() => onEnd(), 1400);
   };
 
+  if (hidden) return null;
+
   return (
-    <div style={{ position:"fixed", inset:0, zIndex:1000, background:"var(--midnight)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", opacity:burst?0:1, transition:"opacity 1s ease 0.6s", cursor:"pointer" }} onClick={open}>
+    <div style={{ position:"fixed", inset:0, zIndex:1000, background:"var(--midnight)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", opacity:burst?0:1, transition:"opacity 0.8s ease", cursor:"pointer" }} onClick={open}>
       <GoldDust count={20} dark/>
       <div style={{ position:"relative", zIndex:10, display:"flex", flexDirection:"column", alignItems:"center", gap:"16px" }}>
         <div style={{ fontFamily:"var(--fd)", fontSize:"12px", letterSpacing:"6px", color:"var(--gold)", opacity:0.6 }}>THE JEWEL BOX</div>
