@@ -392,24 +392,16 @@ function JewelBoxIntro({ onEnd }) {
 /* ═══════════════════════════════════════════
    BGM 플레이어
    ═══════════════════════════════════════════ */
-function BGMPlayer() {
-  const [p, setP] = useState(false);
+function BGMPlayer({ audioRef }) {
+  const [p, setP] = useState(true);
   const [v, setV] = useState(0.3);
-  const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/bgm.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
-    return () => { if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; } };
-  }, []);
-
-  useEffect(() => {
-    if (!audioRef.current) return;
+    if (!audioRef?.current) return;
     audioRef.current.volume = v;
     if (p) audioRef.current.play().catch(() => {});
     else audioRef.current.pause();
-  }, [p, v]);
+  }, [p, v, audioRef]);
 
   return (
     <div style={{ position:"fixed", bottom:"clamp(12px,2vw,20px)", left:"clamp(12px,2vw,20px)", zIndex:900, display:"flex", alignItems:"center", gap:"8px", padding:"8px clamp(10px,1.5vw,14px)", background:"rgba(232,224,208,0.9)", backdropFilter:"blur(12px)", border:"1px solid var(--brd)", borderRadius:"24px" }}>
@@ -469,15 +461,15 @@ function CharModal({ c, onClose }) {
   const imgSrc = c.modalImg || c.img;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
-      {/* 배경: 캐릭터 이미지 크게 (블러 없이, 축소 배치) */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", height:"130%", objectFit:"contain", opacity:0.3, pointerEvents:"none" }}/>}
+      {/* 배경: 캐릭터 이미지 왼쪽에 크게 (블러 없이) */}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", top:"50%", left:"25%", transform:"translate(-50%,-50%)", height:"140%", objectFit:"contain", opacity:0.25, pointerEvents:"none" }}/>}
       <div style={{ position:"absolute", inset:0, background:"linear-gradient(180deg,rgba(12,26,46,0.4) 0%,rgba(12,26,46,0.15) 30%,rgba(12,26,46,0.5) 70%,rgba(12,26,46,0.95) 100%)" }}/>
 
       {/* 닫기 버튼 */}
       <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
-      {/* 메인 캐릭터 이미지 — 좌측, 크게, 하단이 대사창에 살짝 가림 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(60px,10vh,100px)", left:"clamp(20px,8vw,120px)", height:"clamp(450px,80vh,750px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+      {/* 메인 캐릭터 이미지 — 우측, 크게, 하단이 대사창에 살짝 가림 */}
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(60px,10vh,100px)", right:"clamp(20px,10vw,160px)", height:"clamp(450px,80vh,750px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
         {imgSrc
           ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
           : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -842,6 +834,15 @@ export default function App() {
   const [modal, setModal] = useState(null);
   const [kModal, setKModal] = useState(null);
   const tr = useRef(false);
+  const audioRef = useRef(null);
+
+  const pickLang = (l) => {
+    setLang(l);
+    const a = new Audio("/bgm.mp3");
+    a.loop = true; a.volume = 0.3;
+    a.play().catch(() => {});
+    audioRef.current = a;
+  };
 
   const anyModal = modal || kModal;
   const done = () => { setShowIntro(false); setEntered(true); document.body.style.background = "var(--bg)"; };
@@ -887,7 +888,7 @@ export default function App() {
     return () => { window.removeEventListener("wheel", onW); window.removeEventListener("touchstart", tS); window.removeEventListener("touchmove", tM); window.removeEventListener("touchend", tE); window.removeEventListener("keydown", kD); };
   }, [entered, cur, goTo, anyModal]);
 
-  if (!lang) return <LangSelect onPick={setLang}/>;
+  if (!lang) return <LangSelect onPick={pickLang}/>;
 
   const secProps = (S, i) => {
     if (S === Chars) return { onOpen: setModal };
@@ -900,7 +901,7 @@ export default function App() {
       <div style={{ width:"100vw", height:"var(--vh)", overflow:"hidden", background:"var(--bg)", position:"relative" }}>
         {showIntro && <JewelBoxIntro onEnd={done}/>}
         {entered && <>
-          <BGMPlayer/>
+          <BGMPlayer audioRef={audioRef}/>
           <GemChain cur={cur} total={TOTAL} onGo={goTo}/>
           <div style={{ transform:`translateY(calc(-${cur} * var(--vh)))`, transition:"transform 0.8s cubic-bezier(0.65,0,0.35,1)", height:`calc(${TOTAL} * var(--vh))` }}>
             {SECS.map((S, i) => (
