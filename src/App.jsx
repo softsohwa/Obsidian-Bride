@@ -469,15 +469,15 @@ function CharModal({ c, onClose }) {
   const imgSrc = c.modalImg || c.img;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
-      {/* 배경: 캐릭터 이미지 흐릿하게 */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:0.35, filter:"blur(20px) saturate(0.6)", transform:"scale(1.1)" }}/>}
-      <div style={{ position:"absolute", inset:0, background:"linear-gradient(180deg,rgba(12,26,46,0.3) 0%,rgba(12,26,46,0.1) 40%,rgba(12,26,46,0.6) 75%,rgba(12,26,46,0.95) 100%)" }}/>
+      {/* 배경: 캐릭터 이미지 크게 (블러 없이, 축소 배치) */}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", height:"130%", objectFit:"contain", opacity:0.3, pointerEvents:"none" }}/>}
+      <div style={{ position:"absolute", inset:0, background:"linear-gradient(180deg,rgba(12,26,46,0.4) 0%,rgba(12,26,46,0.15) 30%,rgba(12,26,46,0.5) 70%,rgba(12,26,46,0.95) 100%)" }}/>
 
       {/* 닫기 버튼 */}
       <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
-      {/* 메인 캐릭터 이미지 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(180px,30vh,260px)", left:"50%", transform:"translateX(-50%)", height:"clamp(300px,55vh,500px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+      {/* 메인 캐릭터 이미지 — 좌측, 크게, 하단이 대사창에 살짝 가림 */}
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(60px,10vh,100px)", left:"clamp(20px,8vw,120px)", height:"clamp(450px,80vh,750px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
         {imgSrc
           ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
           : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
