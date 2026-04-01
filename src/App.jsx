@@ -321,6 +321,7 @@ function LangSelect({ onPick, onStartBGM }) {
   const [opening, setOpening] = useState(false);
   const [burst, setBurst] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [langHover, setLangHover] = useState(false);
 
   useEffect(() => { setTimeout(() => setShow(true), 300); }, []);
 
@@ -353,13 +354,15 @@ function LangSelect({ onPick, onStartBGM }) {
           {/* Lid */}
           <div style={{
             position:"absolute", top:0, left:"-10px", width:"300px", height:"90px", zIndex:2,
+            transform: langHover && !opening ? "translateY(-12px)" : "translateY(0)",
+            transition: opening ? "none" : "transform 0.5s cubic-bezier(.34,1.56,.64,1)",
             animation: opening ? "lidFloat 0.8s cubic-bezier(.22,1,.36,1) forwards" : "none",
           }}>
             <img src="/images/jb_lid.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
               onError={e => { e.target.style.display="none"; e.target.parentElement.style.background="linear-gradient(135deg,#353060,#1a1a3e)"; e.target.parentElement.style.border="2px solid var(--gold)"; e.target.parentElement.style.borderRadius="6px 6px 0 0"; }}/>
           </div>
           {/* Glow */}
-          <div style={{ position:"absolute", top:"68px", left:"50%", transform:"translateX(-50%)", width:"160px", height:"20px", background:"radial-gradient(ellipse,rgba(200,168,78,0.5),transparent)", borderRadius:"50%", opacity:opening?1:0, transition:"opacity 0.4s", zIndex:1 }}/>
+          <div style={{ position:"absolute", top:"68px", left:"50%", transform:"translateX(-50%)", width:"160px", height:"20px", background:"radial-gradient(ellipse,rgba(200,168,78,0.5),transparent)", borderRadius:"50%", opacity:langHover||opening?1:0, transition:"opacity 0.4s", zIndex:1 }}/>
           {/* Body */}
           <div style={{ position:"absolute", bottom:0, left:"0", width:"280px", height:"162px" }}>
             <img src="/images/jb_body.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
@@ -368,7 +371,8 @@ function LangSelect({ onPick, onStartBGM }) {
         </div>
 
         {/* 언어 선택 버튼 — 선택 후 아래로 내려가며 페이드 */}
-        <div style={{ opacity:picked?0:show?1:0, transform:picked?"translateY(20px)":"translateY(0)", transition:"all 0.5s ease" }}>
+        <div onMouseEnter={() => setLangHover(true)} onMouseLeave={() => setLangHover(false)}
+          style={{ opacity:picked?0:show?1:0, transform:picked?"translateY(20px)":"translateY(0)", transition:"all 0.5s ease" }}>
           <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.3vw,12px)", color:"var(--gold)", marginBottom:"clamp(16px,3vw,24px)", fontWeight:600, letterSpacing:"5px", textAlign:"center" }}>SELECT LANGUAGE</p>
           <div style={{ display:"flex", gap:"clamp(8px,2vw,16px)", animation:show?"langFade 0.6s ease 0.4s both":"none" }}>
             {items.map((x,i) => (
