@@ -516,9 +516,9 @@ function Chars({ onOpen }) {
                 onMouseEnter={() => handleHover(i)} onMouseLeave={() => setHv(-1)}
                 onClick={() => onOpen(c)}
                 style={{
-                  width:"clamp(100px,20vw,150px)", aspectRatio:"2/3",
+                  width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : "clamp(-44px,-9vw,-60px)",
+                  marginLeft: i === 0 ? 0 : "clamp(-65px,-13vw,-90px)",
                   filter: isHovered
                     ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
                     : isRevealed
@@ -544,44 +544,56 @@ function Chars({ onOpen }) {
             );
           })}
         </div>
-        {/* 하단 — 미스터리 캐릭터 + 블루 아울 (동일 스타일) */}
+        {/* 하단 — 미스터리 캐릭터 + 블루 아울 */}
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-          {mysteryChars.map((c, i) => (
-            <div key={i} onClick={() => onOpen(c)}
-              style={{
-                width:"clamp(80px,16vw,110px)", aspectRatio:"2/3",
-                cursor:"pointer", flexShrink:0, position:"relative",
-                marginLeft: i === 0 ? 0 : "clamp(-30px,-6vw,-40px)",
-                filter:"drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
-                transition:"all 0.4s cubic-bezier(.34,1.56,.64,1)",
-                zIndex: i,
-              }}>
-              <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-                <svg viewBox="0 0 120 180" style={{ width:"100%", height:"100%", filter:"grayscale(1) brightness(0.08) blur(1.5px)", opacity:0.5 }}>
-                  <ellipse cx="60" cy="42" rx="22" ry="26" fill="#888"/>
-                  <path d="M28 180 Q28 90 60 75 Q92 90 92 180 Z" fill="#888"/>
-                </svg>
+          {mysteryChars.map((c, i) => {
+            const mIdx = mainChars.length + i;
+            const isHovered = hv === mIdx;
+            return (
+              <div key={i}
+                onMouseEnter={() => setHv(mIdx)} onMouseLeave={() => setHv(-1)}
+                onClick={() => onOpen(c)}
+                style={{
+                  width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
+                  cursor:"pointer", flexShrink:0, position:"relative",
+                  marginLeft: i === 0 ? 0 : "clamp(-65px,-13vw,-90px)",
+                  filter: isHovered
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25))"
+                    : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
+                  transform: isHovered ? "translateY(-24px) scale(1.06)" : "translateY(0) scale(1)",
+                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+                  zIndex: isHovered ? 20 : i,
+                }}>
+                {imgOk(c.img)
+                  ? <img src={c.img} alt="???" onError={() => onImgErr(c.img)} style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1) brightness(0.08) blur(2px)", transition:"filter 0.6s ease" }}/>
+                  : <div style={{ width:"100%", height:"100%", background:"#1a1a1a", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1) brightness(0.15) blur(2px)" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.2)" }}>?</span>
+                    </div>
+                }
+                <div style={{ position:"absolute", bottom:"-28px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
+                  <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.8vw,16px)", fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
+                </div>
               </div>
-              <div style={{ position:"absolute", bottom:"-24px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
-                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.4vw,13px)", fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
           {/* 블루 아울 */}
-          <div onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)" })}
+          <div
+            onMouseEnter={() => setHv(99)} onMouseLeave={() => setHv(-1)}
+            onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/blueowl.webp", modalImg:"/images/chars/blueowl.webp" })}
             style={{
-              width:"clamp(80px,16vw,110px)", aspectRatio:"2/3",
+              width:"clamp(160px,28vw,220px)", aspectRatio:"2/3",
               cursor:"pointer", flexShrink:0, position:"relative",
-              marginLeft:"clamp(-30px,-6vw,-40px)",
-              filter:"drop-shadow(0 4px 10px rgba(108,190,235,0.3))",
-              transition:"all 0.4s cubic-bezier(.34,1.56,.64,1)",
-              zIndex: mysteryChars.length,
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform="translateY(-24px) scale(1.06)"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform="translateY(0) scale(1)"; }}>
-            <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(48px,10vw,72px)" }}>🦉</div>
-            <div style={{ position:"absolute", bottom:"-24px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
-              <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.4vw,13px)", fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
+              marginLeft:"clamp(-65px,-13vw,-90px)",
+              filter: hv===99
+                ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
+                : "drop-shadow(0 4px 8px rgba(108,190,235,0.2))",
+              transform: hv===99 ? "translateY(-24px) scale(1.06)" : "translateY(0) scale(1)",
+              transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+              zIndex: hv===99 ? 20 : mysteryChars.length,
+            }}>
+            <div style={{ width:"100%", height:"100%", background:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(56px,12vw,80px)" }}>🦉</div>
+            <div style={{ position:"absolute", bottom:"-28px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
+              <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.8vw,16px)", fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
             </div>
           </div>
         </div>
