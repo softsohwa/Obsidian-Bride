@@ -461,15 +461,16 @@ function CharModal({ c, onClose }) {
   const imgSrc = c.modalImg || c.img;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
-      {/* 배경: 캐릭터 이미지 오른쪽에 크게 (반투명, 겹침) */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", top:"50%", right:"-10%", transform:"translateY(-50%)", height:"150%", objectFit:"contain", opacity:0.2, pointerEvents:"none" }}/>}
-      <div style={{ position:"absolute", inset:0, background:"linear-gradient(90deg,rgba(12,26,46,0.7) 0%,rgba(12,26,46,0.2) 40%,rgba(12,26,46,0.3) 100%), linear-gradient(180deg,rgba(12,26,46,0.3) 0%,rgba(12,26,46,0.1) 30%,rgba(12,26,46,0.5) 70%,rgba(12,26,46,0.95) 100%)" }}/>
+      {/* 고스트 이미지 — 메인보다 살짝 오른쪽, 더 크게, 겹침 */}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:"-5%", left:"clamp(80px,18vw,240px)", height:"115%", objectFit:"contain", opacity:0.15, pointerEvents:"none" }}/>}
+      {/* 그라데이션 오버레이 */}
+      <div style={{ position:"absolute", inset:0, background:"linear-gradient(90deg,rgba(12,26,46,0.5) 0%,rgba(12,26,46,0.1) 35%,rgba(12,26,46,0.4) 65%,rgba(12,26,46,0.7) 100%), linear-gradient(180deg,rgba(12,26,46,0.4) 0%,transparent 30%,rgba(12,26,46,0.3) 70%,rgba(12,26,46,0.95) 100%)" }}/>
 
       {/* 닫기 버튼 */}
       <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
-      {/* 메인 캐릭터 이미지 — 왼쪽, 크게, 하단이 대사창에 살짝 가림 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(60px,10vh,100px)", left:"clamp(20px,6vw,80px)", height:"clamp(450px,80vh,750px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+      {/* 메인 캐릭터 이미지 — 왼쪽~중앙, 크게 */}
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(10px,3vw,40px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
         {imgSrc
           ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
           : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -478,14 +479,15 @@ function CharModal({ c, onClose }) {
         }
       </div>
 
-      {/* 대사창 스타일 정보 패널 */}
+      {/* 오른쪽 — 캐릭터 이름 크게 */}
+      <div style={{ position:"absolute", right:"clamp(24px,5vw,80px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }}>
+        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(48px,10vw,96px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.5), 0 0 60px ${c.color}20`, opacity:0.95 }}>{c.gem}</div>
+        <div style={{ width:"clamp(40px,8vw,80px)", height:"2px", background:c.color, marginLeft:"auto", marginTop:"12px", opacity:0.6 }}/>
+      </div>
+
+      {/* 대사창 — 이름 태그 없이 정보만 */}
       <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 clamp(16px,4vw,40px) clamp(20px,3vw,32px)" }}>
-        {/* 캐릭터 이름 태그 */}
-        <div style={{ display:"inline-block", background:`${c.color}cc`, padding:"6px 20px", borderRadius:"8px 8px 0 0", marginBottom:"-1px", position:"relative", zIndex:2 }}>
-          <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(16px,2.5vw,22px)", fontWeight:700, color:"#fff", letterSpacing:"2px" }}>{c.gem}</span>
-        </div>
-        {/* 대사창 본체 */}
-        <div style={{ background:"rgba(12,26,46,0.85)", backdropFilter:"blur(16px)", border:`1px solid ${c.color}33`, borderRadius:"0 12px 12px 12px", padding:"clamp(16px,3vw,24px)", maxHeight:"clamp(140px,25vh,200px)", overflowY:"auto" }} className="iscroll">
+        <div style={{ background:"rgba(12,26,46,0.85)", backdropFilter:"blur(16px)", border:`1px solid ${c.color}22`, borderRadius:"12px", padding:"clamp(16px,3vw,24px)", maxHeight:"clamp(130px,22vh,180px)", overflowY:"auto" }} className="iscroll">
           {c.mystery
             ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■ ■■■■■■■■</div>
             : <>
