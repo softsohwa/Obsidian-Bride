@@ -17,7 +17,7 @@ css.textContent = `
 }
 @font-face {
   font-family: 'Playlist Script';
-  src: url('/fonts/PlaylistScript.woff2') format('woff2');
+  src: url('/fonts/PlaylistScript.otf') format('opentype');
   font-weight: normal;
   font-display: swap;
 }
