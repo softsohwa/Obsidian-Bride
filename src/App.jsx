@@ -9,6 +9,12 @@ document.head.appendChild(fl);
 /* ══════════ CSS ══════════ */
 const css = document.createElement("style");
 css.textContent = `
+@font-face {
+  font-family: 'KotraDoYak';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRALEAP.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}
 :root {
   --bg:#E8E0D0; --bg2:#DDD5C4; --bgc:#F2ECE0;
   --midnight:#0C1A2E; --mid2:#1E3A5C; --mid3:#152840;
@@ -17,6 +23,7 @@ css.textContent = `
   --blue:#6CBEEB; --blued:#3A8BBF;
   --brd:rgba(200,168,78,0.2);
   --fd:'Playfair Display','Noto Serif KR','Shippori Mincho',serif;
+  --fk:'KotraDoYak','Noto Serif KR',serif;
   --fb:'Noto Sans KR','Noto Sans JP',sans-serif;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -46,9 +53,9 @@ document.head.appendChild(css);
 const T = {
   ko:{
     nav:["인트로","보석들","세계관","시스템","입장"],
-    charT:"보석 진열장", charS:"JEWELS", charTap:"보석에 빛을 비추어 인물을 확인하세요",
-    worldT:"보석함의 섬", worldS:"ISLAND", worldDesc:"보석함 파티가 열리는 마법의 섬입니다. 장소를 눌러 자세히 알아보세요.",
-    evtT:"보석함의 이벤트", evtS:"EVENTS", evtTap:"블루 아울을 눌러 룰렛을 돌리거나, 이벤트를 직접 선택하세요",
+    charT:"보석 쇼케이스", charS:"JEWELS", charTap:"보석에 빛을 비추어 인물을 확인하세요",
+    worldT:"보석함 안내", worldS:"ISLAND", worldDesc:"보석함 파티가 열리는 마법의 섬입니다. 장소를 눌러 자세히 알아보세요.",
+    evtT:"보석함 이벤트", evtS:"EVENTS", evtTap:"블루 아울을 눌러 룰렛을 돌리거나, 이벤트를 직접 선택하세요",
     sysT:"시스템 가이드", sysS:"SYSTEM", cmdL:"COMMANDS",
     sm:"스토리 모드", smd:"보석함 파티의 시작부터 최종선택까지 순차 진행.",
     fm:"자유 모드", fmd:"챕터 제약 없이 자유롭게 보석함을 탐험한다.",
@@ -56,7 +63,7 @@ const T = {
     c2:"!챕터", c2d:"현재 챕터 진행도와 다음 챕터 조건을 확인",
     c3:"!지도", c3d:"보석함 섬 지역과 9왕국 정보를 출력",
     c4:"!디버그", c4d:"이미지 출력 오류를 점검하고 수정·재출력",
-    ctaT:"보석함에 참가하시겠습니까?", ctaB:"보석함에 입장하기", ctaN:"URL 추후 연결 예정",
+    ctaT:"보석함에 참가하시겠습니까?", ctaB:"입장하기", ctaN:"URL 추후 연결 예정",
     credit:"흑요석의 신부",
     per:"성격", tone:"말투", goal:"목표",
     scroll:"아래로 스크롤",
@@ -65,7 +72,7 @@ const T = {
   en:{
     nav:["Intro","Jewels","World","System","Enter"],
     charT:"Gem Showcase", charS:"JEWELS", charTap:"Hover over a gem to reveal the character",
-    worldT:"The Jewel Box Island", worldS:"ISLAND", worldDesc:"A magical island where the Jewel Box party takes place. Tap a location to learn more.",
+    worldT:"Jewel Box Guide", worldS:"ISLAND", worldDesc:"A magical island where the Jewel Box party takes place. Tap a location to learn more.",
     evtT:"Jewel Box Events", evtS:"EVENTS", evtTap:"Click Blue Owl to spin, or select an event directly",
     sysT:"System Guide", sysS:"SYSTEM", cmdL:"COMMANDS",
     sm:"Story Mode", smd:"Follow the Jewel Box party from start to the Final Choice.",
@@ -74,7 +81,7 @@ const T = {
     c2:"!chapter", c2d:"Check current chapter progress and next chapter conditions",
     c3:"!map", c3d:"Display Jewel Box island locations and Nine Kingdoms info",
     c4:"!debug", c4d:"Fix image output errors",
-    ctaT:"Will you enter the Jewel Box?", ctaB:"Enter the Jewel Box", ctaN:"URL coming soon",
+    ctaT:"Will you enter the Jewel Box?", ctaB:"Enter", ctaN:"URL coming soon",
     credit:"The Obsidian Bride",
     per:"Personality", tone:"Tone", goal:"Goal",
     scroll:"Scroll Down",
@@ -82,9 +89,9 @@ const T = {
   },
   ja:{
     nav:["イントロ","宝石","世界観","システム","開始"],
-    charT:"宝石の陳列棚", charS:"JEWELS", charTap:"宝石に光を当てて人物を確認してください",
-    worldT:"宝石箱の島", worldS:"ISLAND", worldDesc:"宝石箱パーティーが開催される魔法の島です。場所をタップして詳しく見てください。",
-    evtT:"宝石箱のイベント", evtS:"EVENTS", evtTap:"ブルーアウルをクリックしてルーレットを回すか、イベントを直接選択してください",
+    charT:"宝石ショーケース", charS:"JEWELS", charTap:"宝石に光を当てて人物を確認してください",
+    worldT:"宝石箱案内", worldS:"ISLAND", worldDesc:"宝石箱パーティーが開催される魔法の島です。場所をタップして詳しく見てください。",
+    evtT:"宝石箱イベント", evtS:"EVENTS", evtTap:"ブルーアウルをクリックしてルーレットを回すか、イベントを直接選択してください",
     sysT:"システムガイド", sysS:"SYSTEM", cmdL:"COMMANDS",
     sm:"ストーリーモード", smd:"宝石箱パーティーの開始から最終選択まで順次進行。",
     fm:"フリーモード", fmd:"チャプター制限なく自由に宝石箱を探索する。",
@@ -92,7 +99,7 @@ const T = {
     c2:"!チャプター", c2d:"現在のチャプター進行度と次の条件を確認",
     c3:"!マップ", c3d:"宝石箱の島の施設と九王国の情報を表示",
     c4:"!デバッグ", c4d:"画像出力エラーの修正",
-    ctaT:"宝石箱に参加しますか？", ctaB:"宝石箱に入場する", ctaN:"URLは後日追加予定",
+    ctaT:"宝石箱に参加しますか？", ctaB:"入場する", ctaN:"URLは後日追加予定",
     credit:"黒曜石の花嫁",
     per:"性格", tone:"口調", goal:"目標",
     scroll:"下にスクロール",
@@ -269,10 +276,12 @@ function GoldDust({ count = 10, dark = false }) {
 
 /* 섹션 타이틀 */
 function STitle({ sub, main }) {
+  const l = useLang();
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   return (
     <div style={{ textAlign:"center", marginBottom:"clamp(24px,4vw,40px)" }}>
       <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"12px", fontWeight:600 }}>{sub}</div>
-      <h2 style={{ fontFamily:"var(--fd)", fontSize:"clamp(24px,5vw,44px)", fontWeight:700, lineHeight:1.3, color:"var(--midnight)" }}>{main}</h2>
+      <h2 style={{ fontFamily:hf, fontSize:"clamp(24px,5vw,44px)", fontWeight:700, lineHeight:1.3, color:"var(--midnight)" }}>{main}</h2>
       <div style={{ width:"36px", height:"1px", margin:"18px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
     </div>
   );
@@ -290,7 +299,7 @@ function TitleSVG({ dark = false }) {
       <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="52" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
         OBSIDIAN BRIDE
       </text>
-      <text x="300" y="100" textAnchor="middle" fontFamily="'Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
+      <text x="300" y="100" textAnchor="middle" fontFamily="'KotraDoYak','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
         흑요석의 신부
       </text>
     </svg>
@@ -301,7 +310,7 @@ function TitleSVG({ dark = false }) {
 function ScrollDown() {
   const t = useT();
   return (
-    <div style={{ position:"absolute", bottom:"clamp(16px,3vw,28px)", left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"4px", zIndex:10 }}>
+    <div style={{ position:"absolute", bottom:"clamp(8px,1.5vw,14px)", left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"4px", zIndex:50, pointerEvents:"none" }}>
       <span style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"var(--txd)", letterSpacing:"3px", fontFamily:"var(--fd)", fontWeight:600 }}>{t.scroll}</span>
       <svg width="16" height="24" viewBox="0 0 16 24" fill="none" style={{ animation:"scrollBounce 2s ease-in-out infinite" }}>
         <path d="M8 4 L8 18" stroke="var(--gold)" strokeWidth="1.2" strokeLinecap="round" opacity="0.5"/>
@@ -438,7 +447,8 @@ function Hero() {
   const [show, setShow] = useState(false);
   useEffect(() => { setTimeout(() => setShow(true), 200); }, []);
   const l = useLang();
-  const copy = { ko:"정략결혼의 시대는 끝났다. 진정한 사랑의 시대가 시작된다.", en:"The age of political marriage is over. The age of true love begins.", ja:"政略結婚の時代は終わった。真の愛の時代が始まる。" };
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
+  const copy = { ko:["정략결혼의 시대는 끝났다.","진정한 사랑의 시대가 시작된다."], en:["The age of political marriage is over.","The age of true love begins."], ja:["政略結婚の時代は終わった。","真の愛の時代が始まる。"] };
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", position:"relative", overflow:"hidden", background:"var(--bg)" }}>
       <GoldDust count={15}/>
@@ -446,7 +456,7 @@ function Hero() {
         <div style={{ width:"1px", height:"44px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 28px" }}/>
         <TitleSVG/>
         <div style={{ width:"clamp(60px,20vw,120px)", height:"1px", margin:"20px auto", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
-        <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2.5vw,20px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l]}</p>
+        <p style={{ fontFamily:hf, fontSize:"clamp(14px,2.5vw,20px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l][0]}<br/>{copy[l][1]}</p>
       </div>
     </div>
   );
@@ -457,7 +467,9 @@ function Hero() {
    ═══════════════════════════════════════════ */
 function CharModal({ c, onClose }) {
   const t = useT();
+  const l = useLang();
   const mob = useIsMobile();
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   if (!c) return null;
   const imgSrc = c.modalImg || c.img;
   return (
@@ -490,7 +502,7 @@ function CharModal({ c, onClose }) {
         ? { position:"absolute", left:"50%", transform:"translateX(-50%)", bottom:"clamp(150px,28vh,210px)", zIndex:8, textAlign:"center", animation:"fadeUp 0.6s ease 0.1s both" }
         : { position:"absolute", right:"clamp(80px,18vw,240px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }
       }>
-        <div style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(32px,10vw,48px)":"clamp(48px,10vw,96px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:mob?"1px":"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.7), 0 0 60px ${c.color}20`, opacity:0.95 }}>{c.gem}</div>
+        <div style={{ fontFamily:hf, fontSize:mob?"clamp(32px,10vw,48px)":"clamp(48px,10vw,96px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:mob?"1px":"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.7), 0 0 60px ${c.color}20`, opacity:0.95 }}>{c.gem}</div>
         <div style={{ width:mob?"40px":"clamp(40px,8vw,80px)", height:"2px", background:c.color, margin:mob?"8px auto 0":"12px 0 0 auto", opacity:0.6 }}/>
       </div>
 
@@ -622,6 +634,8 @@ function Chars({ onOpen }) {
    ═══════════════════════════════════════════ */
 /* 왕국 모달 */
 function KingdomModal({ k, onClose }) {
+  const l = useLang();
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   if (!k) return null;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(12,26,46,0.75)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", animation:"fadeIn 0.3s ease", padding:"clamp(12px,3vw,20px)" }}>
@@ -639,7 +653,7 @@ function KingdomModal({ k, onClose }) {
         <div style={{ padding:"clamp(20px,4vw,28px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"12px" }}>
             <div style={{ width:"6px", height:"6px", borderRadius:"50%", background:k.color, boxShadow:`0 0 8px ${k.color}60` }}/>
-            <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(20px,3.5vw,26px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
+            <h3 style={{ fontFamily:hf, fontSize:"clamp(20px,3.5vw,26px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
           </div>
           <div style={{ fontSize:"clamp(11px,1.4vw,13px)", color:k.color, letterSpacing:"1px", fontWeight:600, marginBottom:"12px" }}>{k.d}</div>
           <p style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{k.detail}</p>
@@ -654,6 +668,7 @@ function KingdomModal({ k, onClose }) {
    ═══════════════════════════════════════════ */
 function World({ onKingdom }) {
   const t = useT(), l = useLang();
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   const locs = LOCATIONS[l], kings = KINGDOMS[l], events = EVENTS[l];
   const [selLoc, setSelLoc] = useState(null);
   const [hvLoc, setHvLoc] = useState(-1);
@@ -713,7 +728,7 @@ function World({ onKingdom }) {
 
         {/* ── 9왕국: 3×3 그리드 ── */}
         <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", textAlign:"center", marginBottom:"12px", fontWeight:600 }}>{t.kingdomsS}</div>
-        <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.kingdoms}</h3>
+        <h3 style={{ fontFamily:hf, fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.kingdoms}</h3>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"clamp(8px,1.5vw,14px)" }}>
           {kings.map((k, i) => (
             <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
@@ -728,7 +743,7 @@ function World({ onKingdom }) {
                 <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
               </div>
               <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
-                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
+                <div style={{ fontFamily:hf, fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
                 <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.4 }}>{k.d}</p>
               </div>
             </div>
@@ -740,7 +755,7 @@ function World({ onKingdom }) {
 
         {/* ── 이벤트: 카드형 아코디언 ── */}
         <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", textAlign:"center", marginBottom:"12px", fontWeight:600 }}>{t.evtS}</div>
-        <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.evtT}</h3>
+        <h3 style={{ fontFamily:hf, fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.evtT}</h3>
         <div style={{ display:"flex", flexDirection:"column", gap:"clamp(8px,1.5vw,12px)", maxWidth:"520px", margin:"0 auto" }}>
           {events.map((ev, i) => {
             const isOpen = selEvt === i;
@@ -750,7 +765,7 @@ function World({ onKingdom }) {
                 <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
                   <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
                   <div style={{ flex:1 }}>
-                    <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
+                    <h4 style={{ fontFamily:hf, fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
                     {isOpen && (
                       <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
                     )}
@@ -804,13 +819,15 @@ function System() {
    ═══════════════════════════════════════════ */
 function CTA() {
   const t = useT();
+  const l = useLang();
+  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   const [hv, setHv] = useState(false);
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", position:"relative", padding:"0 clamp(12px,3vw,16px)", background:"var(--bg)" }}>
       <div style={{ position:"absolute", bottom:0, left:"50%", transform:"translateX(-50%)", width:"min(450px,90vw)", height:"250px", background:"radial-gradient(ellipse at center bottom,rgba(200,168,78,0.08) 0%,transparent 70%)", pointerEvents:"none" }}/>
       <div style={{ position:"relative", zIndex:2, textAlign:"center" }}>
         <div style={{ width:"1px", height:"40px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 28px" }}/>
-        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,4vw,38px)", fontWeight:700, color:"var(--midnight)", marginBottom:"clamp(28px,5vw,44px)" }}>{t.ctaT}</div>
+        <div style={{ fontFamily:hf, fontSize:"clamp(22px,4vw,38px)", fontWeight:700, color:"var(--midnight)", marginBottom:"clamp(28px,5vw,44px)" }}>{t.ctaT}</div>
         <button onMouseEnter={() => setHv(true)} onMouseLeave={() => setHv(false)} onClick={() => alert("URL 추후 삽입")}
           style={{ padding:"clamp(14px,2vw,18px) clamp(40px,8vw,64px)", background:hv?"var(--gold)":"transparent", border:"2px solid var(--gold)", color:hv?"var(--midnight)":"var(--gold)", fontFamily:"var(--fd)", fontSize:"clamp(15px,2vw,18px)", fontWeight:600, letterSpacing:"clamp(2px,0.5vw,4px)", cursor:"pointer", transition:"all 0.4s", borderRadius:"40px" }}>{t.ctaB}</button>
         <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--txd)", marginTop:"20px", letterSpacing:"1px" }}>{t.ctaN}</p>
@@ -905,8 +922,8 @@ export default function App() {
         <GemChain cur={cur} total={TOTAL} onGo={goTo}/>
         <div style={{ transform:`translateY(calc(-${cur} * var(--vh)))`, transition:"transform 0.8s cubic-bezier(0.65,0,0.35,1)", height:`calc(${TOTAL} * var(--vh))` }}>
           {SECS.map((S, i) => (
-            <div key={i} style={{ height:"var(--vh)", width:"100vw", position:"relative" }}>
-              <S {...secProps(S, i)}/>
+            <div key={i} style={{ height:"var(--vh)", width:"100vw", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"relative", zIndex:1, height:"100%" }}><S {...secProps(S, i)}/></div>
               {i < TOTAL - 1 && <ScrollDown/>}
             </div>
           ))}
