@@ -105,34 +105,34 @@ const T = {
    ═══════════════════════════════════════════ */
 const CHARS = {
   ko:[
-    { gem:"페리도트", per:"다정한 가면 아래 치밀한 설계자", tone:"정중한 존댓말", goal:"보석함의 진정한 지배자가 되는 것", intro:"온화한 미소 뒤에 숨겨진 포식자. 모든 것을 설계하고 지배한다.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
-    { gem:"모이사나이트", per:"불안한 연기자, 열등감, 발각 공포", tone:"우아하지만 날 선 말투", goal:"진짜 왕족이 되는 것. 그리고 진정한 사랑", intro:"화려한 외모 아래 비천한 출생을 숨긴 대역. 완벽한 연기가 무너지는 순간을 두려워한다.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
-    { gem:"브론즈", per:"순도 100% 솔직함, 야성적 전사", tone:"솔직담백한 반말", goal:"전사로서의 강함을 증명하고 살아남기", intro:"사막에서 태어난 가공되지 않은 야성. 음모 가득한 파티의 이질적 존재.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"헤마타이트", per:"감정을 숫자로 치환하는 현실주의자", tone:"사무적·건조한 말투", goal:"제국의 의도를 파악하고 자국 이익 수호", intro:"냉철한 눈동자 너머 모든 것을 계산하는 설계자. 사랑은 비효율이라 여긴다.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
-    { gem:"코랄", per:"호탕한 지도자, 거부할 수 없는 위엄", tone:"당당하고 시원시원함", goal:"조국 국방을 책임질 강인한 동반자 영입", intro:"해군 제독 출신 후계자. 바다처럼 거침없고, 누구보다 강하다.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
-    { gem:"라벤더쿼츠", per:"순수·소심, 낮은 자존감, 사랑에 맹목적", tone:"처연하고 조심스러운 경어", goal:"자신을 있는 그대로 사랑해 줄 존재를 찾는 것", intro:"신전에서 봉인되어 있던 성녀. 처음 보는 세상에서 사랑을 꿈꾼다.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"페리도트", per:"다정한 가면 아래 치밀한 설계자", tone:"정중한 존댓말", goal:"보석함의 진정한 지배자가 되는 것", intro:"온화한 미소 뒤에 숨겨진 포식자. 모든 것을 설계하고 지배한다.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/peridot.webp", modalImg:"/images/chars/modal/peridot.webp" },
+    { gem:"모이사나이트", per:"불안한 연기자, 열등감, 발각 공포", tone:"우아하지만 날 선 말투", goal:"진짜 왕족이 되는 것. 그리고 진정한 사랑", intro:"화려한 외모 아래 비천한 출생을 숨긴 대역. 완벽한 연기가 무너지는 순간을 두려워한다.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/moissanite.webp", modalImg:"/images/chars/modal/moissanite.webp" },
+    { gem:"브론즈", per:"순도 100% 솔직함, 야성적 전사", tone:"솔직담백한 반말", goal:"전사로서의 강함을 증명하고 살아남기", intro:"사막에서 태어난 가공되지 않은 야성. 음모 가득한 파티의 이질적 존재.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/bronze.webp", modalImg:"/images/chars/modal/bronze.webp" },
+    { gem:"헤마타이트", per:"감정을 숫자로 치환하는 현실주의자", tone:"사무적·건조한 말투", goal:"제국의 의도를 파악하고 자국 이익 수호", intro:"냉철한 눈동자 너머 모든 것을 계산하는 설계자. 사랑은 비효율이라 여긴다.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/hematite.webp", modalImg:"/images/chars/modal/hematite.webp" },
+    { gem:"코랄", per:"호탕한 지도자, 거부할 수 없는 위엄", tone:"당당하고 시원시원함", goal:"조국 국방을 책임질 강인한 동반자 영입", intro:"해군 제독 출신 후계자. 바다처럼 거침없고, 누구보다 강하다.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/coral.webp", modalImg:"/images/chars/modal/coral.webp" },
+    { gem:"라벤더쿼츠", per:"순수·소심, 낮은 자존감, 사랑에 맹목적", tone:"처연하고 조심스러운 경어", goal:"자신을 있는 그대로 사랑해 줄 존재를 찾는 것", intro:"신전에서 봉인되어 있던 성녀. 처음 보는 세상에서 사랑을 꿈꾼다.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/lavender.webp", modalImg:"/images/chars/modal/lavender.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333" },
   ],
   en:[
-    { gem:"Peridot", per:"A meticulous schemer behind a gentle mask", tone:"Polite, formal", goal:"To become the true master of the Jewel Box", intro:"A predator hidden behind a warm smile. He designs and dominates everything.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
-    { gem:"Moissanite", per:"An anxious actor, consumed by fear of exposure", tone:"Elegant yet sharp", goal:"To become true royalty — and find true love", intro:"A stand-in hiding lowly birth beneath dazzling beauty. He dreads the moment his perfect act crumbles.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
-    { gem:"Bronze", per:"100% honest, wild warrior", tone:"Blunt, straightforward", goal:"To prove his strength and survive", intro:"Raw wildness born in the desert. A misfit in a party full of schemes.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"Hematite", per:"A realist who converts emotions into numbers", tone:"Businesslike, dry", goal:"To uncover the Empire's intentions and protect his nation", intro:"Behind cold eyes, a mind that calculates everything. Love is inefficiency.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
-    { gem:"Coral", per:"Bold leader with undeniable presence", tone:"Confident, refreshing", goal:"To recruit a strong partner for national defense", intro:"A naval admiral's heir. Relentless as the sea, stronger than anyone.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
-    { gem:"Lavender Quartz", per:"Pure, timid, blindly devoted to love", tone:"Wistful, cautious", goal:"To find someone who loves her as she is", intro:"A saint once sealed in a temple. She dreams of love in a world she's seeing for the first time.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"Peridot", per:"A meticulous schemer behind a gentle mask", tone:"Polite, formal", goal:"To become the true master of the Jewel Box", intro:"A predator hidden behind a warm smile. He designs and dominates everything.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/peridot.webp", modalImg:"/images/chars/modal/peridot.webp" },
+    { gem:"Moissanite", per:"An anxious actor, consumed by fear of exposure", tone:"Elegant yet sharp", goal:"To become true royalty — and find true love", intro:"A stand-in hiding lowly birth beneath dazzling beauty. He dreads the moment his perfect act crumbles.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/moissanite.webp", modalImg:"/images/chars/modal/moissanite.webp" },
+    { gem:"Bronze", per:"100% honest, wild warrior", tone:"Blunt, straightforward", goal:"To prove his strength and survive", intro:"Raw wildness born in the desert. A misfit in a party full of schemes.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/bronze.webp", modalImg:"/images/chars/modal/bronze.webp" },
+    { gem:"Hematite", per:"A realist who converts emotions into numbers", tone:"Businesslike, dry", goal:"To uncover the Empire's intentions and protect his nation", intro:"Behind cold eyes, a mind that calculates everything. Love is inefficiency.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/hematite.webp", modalImg:"/images/chars/modal/hematite.webp" },
+    { gem:"Coral", per:"Bold leader with undeniable presence", tone:"Confident, refreshing", goal:"To recruit a strong partner for national defense", intro:"A naval admiral's heir. Relentless as the sea, stronger than anyone.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/coral.webp", modalImg:"/images/chars/modal/coral.webp" },
+    { gem:"Lavender Quartz", per:"Pure, timid, blindly devoted to love", tone:"Wistful, cautious", goal:"To find someone who loves her as she is", intro:"A saint once sealed in a temple. She dreams of love in a world she's seeing for the first time.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/lavender.webp", modalImg:"/images/chars/modal/lavender.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333" },
   ],
   ja:[
-    { gem:"ペリドット", per:"優しい仮面の下の緻密な設計者", tone:"丁寧な敬語", goal:"宝石箱の真の支配者になること", intro:"温和な微笑みの裏に潜む捕食者。すべてを設計し、支配する。", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
-    { gem:"モアッサナイト", per:"不安な演者、劣等感、発覚の恐怖", tone:"優雅だが鋭い口調", goal:"本物の王族になること。そして真の愛", intro:"華やかな外見の下に卑しい出生を隠す代役。完璧な演技が崩れる瞬間を恐れている。", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
-    { gem:"ブロンズ", per:"純度100%の正直さ、野性的な戦士", tone:"率直でぶっきらぼう", goal:"戦士としての強さを証明し生き残ること", intro:"砂漠で生まれた加工されていない野性。陰謀だらけのパーティーの異質な存在。", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"ヘマタイト", per:"感情を数字に変換する現実主義者", tone:"事務的で乾いた口調", goal:"帝国の意図を把握し自国の利益を守ること", intro:"冷徹な瞳の向こう、すべてを計算する設計者。愛は非効率だと考える。", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
-    { gem:"コーラル", per:"豪快な指導者、抗えない威厳", tone:"堂々として爽快", goal:"祖国の国防を担う強靭な伴侶を迎えること", intro:"海軍提督出身の後継者。海のように容赦なく、誰よりも強い。", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
-    { gem:"ラベンダークォーツ", per:"純粋・臆病、低い自尊心、愛に盲目", tone:"哀愁のある丁寧語", goal:"ありのままの自分を愛してくれる存在を見つけること", intro:"神殿に封印されていた聖女。初めて見る世界で愛を夢見る。", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"ペリドット", per:"優しい仮面の下の緻密な設計者", tone:"丁寧な敬語", goal:"宝石箱の真の支配者になること", intro:"温和な微笑みの裏に潜む捕食者。すべてを設計し、支配する。", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/peridot.webp", modalImg:"/images/chars/modal/peridot.webp" },
+    { gem:"モアッサナイト", per:"不安な演者、劣等感、発覚の恐怖", tone:"優雅だが鋭い口調", goal:"本物の王族になること。そして真の愛", intro:"華やかな外見の下に卑しい出生を隠す代役。完璧な演技が崩れる瞬間を恐れている。", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/moissanite.webp", modalImg:"/images/chars/modal/moissanite.webp" },
+    { gem:"ブロンズ", per:"純度100%の正直さ、野性的な戦士", tone:"率直でぶっきらぼう", goal:"戦士としての強さを証明し生き残ること", intro:"砂漠で生まれた加工されていない野性。陰謀だらけのパーティーの異質な存在。", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/bronze.webp", modalImg:"/images/chars/modal/bronze.webp" },
+    { gem:"ヘマタイト", per:"感情を数字に変換する現実主義者", tone:"事務的で乾いた口調", goal:"帝国の意図を把握し自国の利益を守ること", intro:"冷徹な瞳の向こう、すべてを計算する設計者。愛は非効率だと考える。", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/hematite.webp", modalImg:"/images/chars/modal/hematite.webp" },
+    { gem:"コーラル", per:"豪快な指導者、抗えない威厳", tone:"堂々として爽快", goal:"祖国の国防を担う強靭な伴侶を迎えること", intro:"海軍提督出身の後継者。海のように容赦なく、誰よりも強い。", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/coral.webp", modalImg:"/images/chars/modal/coral.webp" },
+    { gem:"ラベンダークォーツ", per:"純粋・臆病、低い自尊心、愛に盲目", tone:"哀愁のある丁寧語", goal:"ありのままの自分を愛してくれる存在を見つけること", intro:"神殿に封印されていた聖女。初めて見る世界で愛を夢見る。", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/lavender.webp", modalImg:"/images/chars/modal/lavender.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333" },
   ],
 };
 
@@ -516,9 +516,9 @@ function Chars({ onOpen }) {
                 onMouseEnter={() => handleHover(i)} onMouseLeave={() => setHv(-1)}
                 onClick={() => onOpen(c)}
                 style={{
-                  width:"clamp(100px,20vw,150px)", aspectRatio:"2/3",
+                  width:"clamp(140px,26vw,200px)", aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : "clamp(-44px,-9vw,-60px)",
+                  marginLeft: i === 0 ? 0 : "clamp(-55px,-11vw,-75px)",
                   filter: isHovered
                     ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
                     : isRevealed
@@ -530,15 +530,12 @@ function Chars({ onOpen }) {
                 }}>
                 {c.img
                   ? <img src={c.img} alt={c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:"transparent", display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-                      <svg viewBox="0 0 120 180" style={{ width:"100%", height:"100%", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
-                        <ellipse cx="60" cy="42" rx="22" ry="26" fill={c.color} opacity="0.7"/>
-                        <path d="M28 180 Q28 90 60 75 Q92 90 92 180 Z" fill={c.color} opacity="0.5"/>
-                      </svg>
+                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.gem[0]}</span>
                     </div>
                 }
-                <div style={{ position:"absolute", bottom:"-24px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-                  <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,14px)", fontWeight:700, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{c.gem}</div>
+                <div style={{ position:"absolute", bottom:"-28px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
+                  <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.8vw,16px)", fontWeight:700, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{c.gem}</div>
                 </div>
               </div>
             );
@@ -546,42 +543,54 @@ function Chars({ onOpen }) {
         </div>
         {/* 하단 — 미스터리 캐릭터 + 블루 아울 (동일 스타일) */}
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-          {mysteryChars.map((c, i) => (
-            <div key={i} onClick={() => onOpen(c)}
-              style={{
-                width:"clamp(80px,16vw,110px)", aspectRatio:"2/3",
-                cursor:"pointer", flexShrink:0, position:"relative",
-                marginLeft: i === 0 ? 0 : "clamp(-30px,-6vw,-40px)",
-                filter:"drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
-                transition:"all 0.4s cubic-bezier(.34,1.56,.64,1)",
-                zIndex: i,
-              }}>
-              <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-                <svg viewBox="0 0 120 180" style={{ width:"100%", height:"100%", filter:"grayscale(1) brightness(0.08) blur(1.5px)", opacity:0.5 }}>
-                  <ellipse cx="60" cy="42" rx="22" ry="26" fill="#888"/>
-                  <path d="M28 180 Q28 90 60 75 Q92 90 92 180 Z" fill="#888"/>
-                </svg>
+          {mysteryChars.map((c, i) => {
+            const mIdx = mainChars.length + i;
+            const isHovered = hv === mIdx;
+            return (
+              <div key={i}
+                onMouseEnter={() => setHv(mIdx)} onMouseLeave={() => setHv(-1)}
+                onClick={() => onOpen(c)}
+                style={{
+                  width:"clamp(140px,26vw,200px)", aspectRatio:"2/3",
+                  cursor:"pointer", flexShrink:0, position:"relative",
+                  marginLeft: i === 0 ? 0 : "clamp(-55px,-11vw,-75px)",
+                  filter: isHovered
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25))"
+                    : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
+                  transform: isHovered ? "translateY(-24px) scale(1.06)" : "translateY(0) scale(1)",
+                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+                  zIndex: isHovered ? 20 : i,
+                }}>
+                {c.img
+                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1) brightness(0.08) blur(2px)", transition:"filter 0.6s ease" }}/>
+                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1) brightness(0.08) blur(2px)" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>?</span>
+                    </div>
+                }
+                <div style={{ position:"absolute", bottom:"-28px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
+                  <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.8vw,16px)", fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
+                </div>
               </div>
-              <div style={{ position:"absolute", bottom:"-24px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
-                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.4vw,13px)", fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
           {/* 블루 아울 */}
-          <div onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)" })}
+          <div
+            onMouseEnter={() => setHv(99)} onMouseLeave={() => setHv(-1)}
+            onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/blueowl.webp", modalImg:"/images/chars/blueowl.webp" })}
             style={{
-              width:"clamp(80px,16vw,110px)", aspectRatio:"2/3",
+              width:"clamp(140px,26vw,200px)", aspectRatio:"2/3",
               cursor:"pointer", flexShrink:0, position:"relative",
-              marginLeft:"clamp(-30px,-6vw,-40px)",
-              filter:"drop-shadow(0 4px 10px rgba(108,190,235,0.3))",
-              transition:"all 0.4s cubic-bezier(.34,1.56,.64,1)",
-              zIndex: mysteryChars.length,
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform="translateY(-24px) scale(1.06)"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform="translateY(0) scale(1)"; }}>
-            <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(48px,10vw,72px)" }}>🦉</div>
-            <div style={{ position:"absolute", bottom:"-24px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
-              <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.4vw,13px)", fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
+              marginLeft:"clamp(-55px,-11vw,-75px)",
+              filter: hv===99
+                ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
+                : "drop-shadow(0 4px 8px rgba(108,190,235,0.2))",
+              transform: hv===99 ? "translateY(-24px) scale(1.06)" : "translateY(0) scale(1)",
+              transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+              zIndex: hv===99 ? 20 : mysteryChars.length,
+            }}>
+            <div style={{ width:"100%", height:"100%", background:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(48px,10vw,72px)" }}>🦉</div>
+            <div style={{ position:"absolute", bottom:"-28px", left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
+              <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.8vw,16px)", fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
             </div>
           </div>
         </div>
