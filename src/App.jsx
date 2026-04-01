@@ -462,7 +462,7 @@ function CharModal({ c, onClose }) {
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
       {/* 고스트 이미지 — 메인보다 살짝 오른쪽, 더 크게, 겹침 */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:"-5%", left:"clamp(80px,18vw,240px)", height:"115%", objectFit:"contain", opacity:0.15, pointerEvents:"none" }}/>}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:"-5%", left:"clamp(120px,25vw,300px)", height:"115%", objectFit:"contain", opacity:0.15, pointerEvents:"none" }}/>}
       {/* 그라데이션 오버레이 */}
       <div style={{ position:"absolute", inset:0, background:"linear-gradient(90deg,rgba(12,26,46,0.5) 0%,rgba(12,26,46,0.1) 35%,rgba(12,26,46,0.4) 65%,rgba(12,26,46,0.7) 100%), linear-gradient(180deg,rgba(12,26,46,0.4) 0%,transparent 30%,rgba(12,26,46,0.3) 70%,rgba(12,26,46,0.95) 100%)" }}/>
 
@@ -470,7 +470,7 @@ function CharModal({ c, onClose }) {
       <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
       {/* 메인 캐릭터 이미지 — 왼쪽~중앙, 크게 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(60px,18vw,200px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(100px,25vw,260px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
         {imgSrc
           ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
           : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -480,7 +480,7 @@ function CharModal({ c, onClose }) {
       </div>
 
       {/* 오른쪽 — 캐릭터 이름 크게 */}
-      <div style={{ position:"absolute", right:"clamp(24px,5vw,80px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }}>
+      <div style={{ position:"absolute", right:"clamp(80px,18vw,240px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }}>
         <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(48px,10vw,96px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.5), 0 0 60px ${c.color}20`, opacity:0.95 }}>{c.gem}</div>
         <div style={{ width:"clamp(40px,8vw,80px)", height:"2px", background:c.color, marginLeft:"auto", marginTop:"12px", opacity:0.6 }}/>
       </div>
