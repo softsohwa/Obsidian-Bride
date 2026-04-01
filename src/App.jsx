@@ -456,7 +456,7 @@ function Hero() {
         <div style={{ width:"1px", height:"44px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 28px" }}/>
         <TitleSVG/>
         <div style={{ width:"clamp(60px,20vw,120px)", height:"1px", margin:"20px auto", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
-        <p style={{ fontFamily:hf, fontSize:"clamp(14px,2.5vw,20px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l][0]}<br/>{copy[l][1]}</p>
+        <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2.5vw,20px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l][0]}<br/>{copy[l][1]}</p>
       </div>
     </div>
   );
