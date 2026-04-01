@@ -554,7 +554,7 @@ function Chars({ onOpen }) {
             return (
               <div key={i}
                 onMouseEnter={() => handleHover(i)} onMouseLeave={() => setHv(-1)}
-                onClick={() => onOpen(c)}
+                onClick={() => { handleHover(i); onOpen(c); }}
                 style={{
                   width:cW, aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
@@ -602,9 +602,9 @@ function Chars({ onOpen }) {
                   zIndex: isHovered ? 20 : i,
                 }}>
                 {c.img
-                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1) brightness(0.08) blur(2px)", transition:"filter 0.6s ease" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:"#1a1a1a", borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1) brightness(0.15) blur(2px)" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.2)" }}>?</span>
+                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1)", transition:"filter 0.6s ease" }}/>
+                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1)" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>?</span>
                     </div>
                 }
                 <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
