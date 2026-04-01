@@ -15,6 +15,12 @@ css.textContent = `
   font-weight: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Playlist Script';
+  src: url('/fonts/PlaylistScript.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}
 :root {
   --bg:#E8E0D0; --bg2:#DDD5C4; --bgc:#F2ECE0;
   --midnight:#0C1A2E; --mid2:#1E3A5C; --mid3:#152840;
@@ -24,6 +30,7 @@ css.textContent = `
   --brd:rgba(200,168,78,0.2);
   --fd:'Playfair Display','Noto Serif KR','Shippori Mincho',serif;
   --fk:'KotraDoYak','Noto Serif KR',serif;
+  --fs:'Playlist Script',cursive;
   --fb:'Noto Sans KR','Noto Sans JP',sans-serif;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -472,6 +479,7 @@ function CharModal({ c, onClose }) {
   const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   if (!c) return null;
   const imgSrc = c.modalImg || c.img;
+  const enName = (CHARS.en.find(e => e.img === c.img) || {}).gem || c.gem;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
       {/* 고스트 이미지 */}
@@ -502,7 +510,7 @@ function CharModal({ c, onClose }) {
         ? { position:"absolute", left:"50%", transform:"translateX(-50%)", bottom:"clamp(150px,28vh,210px)", zIndex:8, textAlign:"center", animation:"fadeUp 0.6s ease 0.1s both" }
         : { position:"absolute", right:"clamp(80px,18vw,240px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }
       }>
-        <div style={{ fontFamily:hf, fontSize:mob?"clamp(32px,10vw,48px)":"clamp(48px,10vw,96px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:mob?"1px":"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.7), 0 0 60px ${c.color}20`, opacity:0.95 }}>{c.gem}</div>
+        <div style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(32px,10vw,48px)":"clamp(48px,10vw,96px)", fontWeight:400, color:"#fff", lineHeight:1, letterSpacing:mob?"1px":"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.7), 0 0 60px ${c.color}20`, opacity:0.95 }}>{enName}</div>
         <div style={{ width:mob?"40px":"clamp(40px,8vw,80px)", height:"2px", background:c.color, margin:mob?"8px auto 0":"12px 0 0 auto", opacity:0.6 }}/>
       </div>
 
@@ -512,6 +520,7 @@ function CharModal({ c, onClose }) {
           {c.mystery
             ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:mob?"14px":"16px", letterSpacing:"4px", textAlign:"center" }}>■■■■■■ ■■■ ■■■■ ■■■■■■■■</div>
             : <>
+                <div style={{ fontSize:mob?"11px":"12px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:mob?"8px":"10px" }}>{c.gem}</div>
                 <div style={{ display:"flex", gap:mob?"10px":"clamp(12px,3vw,24px)", flexWrap:"wrap", marginBottom:mob?"8px":"12px" }}>
                   {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
                     <div key={i} style={{ flex:mob?"1 1 100%":"1 1 140px" }}>
@@ -533,6 +542,7 @@ function Chars({ onOpen }) {
   const t = useT(), l = useLang();
   const mob = useIsMobile();
   const allChars = CHARS[l];
+  const enChars = CHARS.en;
   const [revealed, setRevealed] = useState(new Set());
   const [hv, setHv] = useState(-1);
   const blueOwl = { ko:"블루 아울", en:"Blue Owl", ja:"ブルーアウル" };
@@ -554,6 +564,7 @@ function Chars({ onOpen }) {
   const renderChar = (c, idx) => {
     const isRevealed = revealed.has(idx);
     const isHovered = hv === idx;
+    const enName = enChars[idx] ? enChars[idx].gem : "???";
     return (
       <div key={idx}
         onMouseEnter={() => reveal(idx)} onMouseLeave={() => setHv(-1)}
@@ -576,7 +587,7 @@ function Chars({ onOpen }) {
             </div>
         }
         <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-          <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{c.mystery?"???":c.gem}</div>
+          <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{enName}</div>
         </div>
       </div>
     );
@@ -605,7 +616,7 @@ function Chars({ onOpen }) {
             }}>
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
             <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: boRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-              <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
+              <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color:"#6CBEEB" }}>Blue Owl</div>
             </div>
           </div>
           <div style={{ fontSize:mob?"9px":"11px", color:"var(--gold)", letterSpacing:"3px", fontWeight:600, marginTop:mob?"24px":"32px" }}>MC</div>
