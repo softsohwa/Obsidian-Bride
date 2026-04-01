@@ -312,72 +312,55 @@ function ScrollDown() {
 }
 
 /* ═══════════════════════════════════════════
-   언어 선택
+   언어 선택 + 보석함 인트로 (통합)
    ═══════════════════════════════════════════ */
-function LangSelect({ onPick }) {
+function LangSelect({ onPick, onStartBGM }) {
   const [show, setShow] = useState(false);
   const [hv, setHv] = useState(-1);
-  useEffect(() => { setTimeout(() => setShow(true), 300); }, []);
-  const items = [{ c:"ko", label:"한국어" },{ c:"en", label:"ENGLISH" },{ c:"ja", label:"日本語" }];
-  return (
-    <div style={{ position:"fixed", inset:0, zIndex:2000, background:"var(--midnight)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", opacity:show?1:0, transition:"opacity 0.8s ease" }}>
-      <GoldDust count={12} dark/>
-      <div style={{ width:"1px", height:"50px", background:"linear-gradient(180deg,transparent,var(--gold))", marginBottom:"28px" }}/>
-      <TitleSVG dark/>
-      <div style={{ width:"clamp(40px,12vw,80px)", height:"1px", margin:"20px auto 28px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
-      <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.3vw,12px)", color:"var(--gold)", marginBottom:"clamp(20px,4vw,32px)", fontWeight:600, letterSpacing:"5px" }}>SELECT LANGUAGE</p>
-      <div style={{ display:"flex", gap:"clamp(8px,2vw,16px)", animation:show?"langFade 0.6s ease 0.4s both":"none" }}>
-        {items.map((x,i) => (
-          <button key={x.c} onClick={() => onPick(x.c)} onMouseEnter={() => setHv(i)} onMouseLeave={() => setHv(-1)}
-            style={{ padding:"clamp(10px,1.8vw,14px) clamp(18px,3vw,28px)", background:hv===i?"rgba(200,168,78,0.06)":"transparent", border:hv===i?"1px solid var(--gold)":"1px solid rgba(200,168,78,0.2)", cursor:"pointer", transition:"all 0.4s", color:hv===i?"var(--gold)":"var(--goldl)" }}>
-            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,18px)", fontWeight:600, letterSpacing:"2px" }}>{x.label}</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════
-   보석함 인트로 (나레이션 없음, 뚜껑 분리형)
-   ═══════════════════════════════════════════ */
-function JewelBoxIntro({ onEnd }) {
-  const [hovered, setHovered] = useState(false);
+  const [picked, setPicked] = useState(null);
   const [opening, setOpening] = useState(false);
   const [burst, setBurst] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const done = useRef(false);
 
-  const open = () => {
-    if (done.current) return; done.current = true;
-    setOpening(true);
-    setTimeout(() => setBurst(true), 400);
-    setTimeout(() => setHidden(true), 1200);
-    setTimeout(() => onEnd(), 1400);
+  useEffect(() => { setTimeout(() => setShow(true), 300); }, []);
+
+  const pick = (lang) => {
+    if (picked) return;
+    setPicked(lang);
+    if (onStartBGM) onStartBGM();
+    setTimeout(() => setOpening(true), 300);
+    setTimeout(() => setBurst(true), 800);
+    setTimeout(() => setHidden(true), 1600);
+    setTimeout(() => onPick(lang), 1800);
   };
 
   if (hidden) return null;
 
+  const items = [{ c:"ko", label:"한국어" },{ c:"en", label:"ENGLISH" },{ c:"ja", label:"日本語" }];
   return (
-    <div style={{ position:"fixed", inset:0, zIndex:1000, background:"var(--midnight)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", opacity:burst?0:1, transition:"opacity 0.8s ease", cursor:"pointer" }} onClick={open}>
-      <GoldDust count={20} dark/>
-      <div style={{ position:"relative", zIndex:10, display:"flex", flexDirection:"column", alignItems:"center", gap:"16px" }}>
-        <div style={{ fontFamily:"var(--fd)", fontSize:"12px", letterSpacing:"6px", color:"var(--gold)", opacity:0.6 }}>THE JEWEL BOX</div>
-        <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-          style={{ position:"relative", width:"200px", height:"260px" }}>
+    <div style={{ position:"fixed", inset:0, zIndex:2000, background:"var(--midnight)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", opacity:burst?0:1, transition:"opacity 0.8s ease" }}>
+      <GoldDust count={16} dark/>
+      <div style={{ position:"relative", zIndex:10, display:"flex", flexDirection:"column", alignItems:"center" }}>
+        {/* 타이틀 — 언어 선택 후 위로 올라가며 페이드 */}
+        <div style={{ opacity:picked?0:show?1:0, transform:picked?"translateY(-30px)":"translateY(0)", transition:"all 0.6s ease", marginBottom:"24px" }}>
+          <div style={{ width:"1px", height:"40px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 20px" }}/>
+          <TitleSVG dark/>
+          <div style={{ width:"clamp(40px,12vw,80px)", height:"1px", margin:"16px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
+        </div>
+
+        {/* 보석함 */}
+        <div style={{ position:"relative", width:"200px", height:"260px", marginBottom:"24px" }}>
           {/* Lid */}
           <div style={{
             position:"absolute", top:0, left:"-10px", width:"220px", height:"90px", zIndex:2,
             background:"linear-gradient(135deg,#353060,#1a1a3e)", border:"2px solid var(--gold)", borderRadius:"6px 6px 0 0",
-            transition: opening ? "none" : "transform 0.5s cubic-bezier(.34,1.56,.64,1)",
-            transform: hovered && !opening ? "translateY(-20px)" : "translateY(0)",
             animation: opening ? "lidFloat 0.8s cubic-bezier(.22,1,.36,1) forwards" : "none",
             display:"flex", alignItems:"center", justifyContent:"center",
           }}>
             <div style={{ width:"20px", height:"20px", border:"2px solid var(--gold)", borderRadius:"50%", opacity:0.5 }}/>
           </div>
-          {/* Glow between */}
-          <div style={{ position:"absolute", top:"75px", left:"50%", transform:"translateX(-50%)", width:"160px", height:"20px", background:"radial-gradient(ellipse,rgba(200,168,78,0.5),transparent)", borderRadius:"50%", opacity:hovered||opening?1:0, transition:"opacity 0.4s", zIndex:1 }}/>
+          {/* Glow */}
+          <div style={{ position:"absolute", top:"75px", left:"50%", transform:"translateX(-50%)", width:"160px", height:"20px", background:"radial-gradient(ellipse,rgba(200,168,78,0.5),transparent)", borderRadius:"50%", opacity:opening?1:0, transition:"opacity 0.4s", zIndex:1 }}/>
           {/* Body */}
           <div style={{
             position:"absolute", bottom:0, width:"200px", height:"180px",
@@ -387,7 +370,19 @@ function JewelBoxIntro({ onEnd }) {
             <div style={{ width:"160px", height:"100px", background:"rgba(200,168,78,0.05)", border:"1px solid rgba(200,168,78,0.2)", borderRadius:"4px" }}/>
           </div>
         </div>
-        <div style={{ fontSize:"12px", color:"var(--goldl)", opacity:hovered?0.8:0, transition:"opacity 0.4s", letterSpacing:"1px" }}>보석함을 열어보세요</div>
+
+        {/* 언어 선택 버튼 — 선택 후 아래로 내려가며 페이드 */}
+        <div style={{ opacity:picked?0:show?1:0, transform:picked?"translateY(20px)":"translateY(0)", transition:"all 0.5s ease" }}>
+          <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.3vw,12px)", color:"var(--gold)", marginBottom:"clamp(16px,3vw,24px)", fontWeight:600, letterSpacing:"5px", textAlign:"center" }}>SELECT LANGUAGE</p>
+          <div style={{ display:"flex", gap:"clamp(8px,2vw,16px)", animation:show?"langFade 0.6s ease 0.4s both":"none" }}>
+            {items.map((x,i) => (
+              <button key={x.c} onClick={() => pick(x.c)} onMouseEnter={() => setHv(i)} onMouseLeave={() => setHv(-1)}
+                style={{ padding:"clamp(10px,1.8vw,14px) clamp(18px,3vw,28px)", background:hv===i?"rgba(200,168,78,0.06)":"transparent", border:hv===i?"1px solid var(--gold)":"1px solid rgba(200,168,78,0.2)", cursor:"pointer", transition:"all 0.4s", color:hv===i?"var(--gold)":"var(--goldl)" }}>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,18px)", fontWeight:600, letterSpacing:"2px" }}>{x.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
       {burst && <div style={{ position:"fixed", top:"50%", left:"50%", borderRadius:"50%", background:"radial-gradient(circle,rgba(232,216,146,.95),rgba(200,168,78,.5),transparent)", zIndex:999, pointerEvents:"none", transform:"translate(-50%,-50%)", animation:"burstLight 1.5s ease-out forwards" }}/>}
     </div>
@@ -586,28 +581,32 @@ function Chars({ onOpen }) {
           {mysteryChars.map((c, i) => {
             const mIdx = mainChars.length + i;
             const isHovered = hv === mIdx;
+            const isRevealed = revealed.has(mIdx);
             return (
               <div key={i}
-                onMouseEnter={() => setHv(mIdx)} onMouseLeave={() => setHv(-1)}
-                onClick={() => onOpen(c)}
+                onMouseEnter={() => { setHv(mIdx); setRevealed(prev => { const s = new Set(prev); s.add(mIdx); return s; }); }}
+                onMouseLeave={() => setHv(-1)}
+                onClick={() => { setRevealed(prev => { const s = new Set(prev); s.add(mIdx); return s; }); onOpen(c); }}
                 style={{
                   width:cW, aspectRatio:"2/3",
                   cursor:"pointer", flexShrink:0, position:"relative",
                   marginLeft: i === 0 ? 0 : cM,
                   filter: isHovered
-                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25))"
-                    : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
+                    ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
+                    : isRevealed
+                      ? "drop-shadow(0 4px 8px rgba(0,0,0,0.15))"
+                      : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
                   transform: isHovered ? hvUp : "translateY(0) scale(1)",
                   transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
                   zIndex: isHovered ? 20 : i,
                 }}>
                 {c.img
-                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1)", transition:"filter 0.6s ease" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1)" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>?</span>
+                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>?</span>
                     </div>
                 }
-                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
+                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
                   <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
                 </div>
               </div>
@@ -616,7 +615,7 @@ function Chars({ onOpen }) {
           {/* 블루 아울 */}
           <div
             onMouseEnter={() => setHv(99)} onMouseLeave={() => setHv(-1)}
-            onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/blueowl.webp", modalImg:"/images/chars/blueowl.webp" })}
+            onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/bo_pp.webp", modalImg:"/images/chars/bo_pp.webp" })}
             style={{
               width:cW, aspectRatio:"2/3",
               cursor:"pointer", flexShrink:0, position:"relative",
@@ -850,24 +849,26 @@ const TOTAL = SECS.length;
 
 export default function App() {
   const [lang, setLang] = useState(null);
-  const [showIntro, setShowIntro] = useState(true);
-  const [entered, setEntered] = useState(false);
   const [cur, setCur] = useState(0);
   const [modal, setModal] = useState(null);
   const [kModal, setKModal] = useState(null);
   const tr = useRef(false);
   const audioRef = useRef(null);
 
-  const pickLang = (l) => {
-    setLang(l);
+  const startBGM = () => {
+    if (audioRef.current) return;
     const a = new Audio("/bgm.mp3");
     a.loop = true; a.volume = 0.3;
     a.play().catch(() => {});
     audioRef.current = a;
   };
 
+  const pickLang = (l) => {
+    setLang(l);
+    document.body.style.background = "var(--bg)";
+  };
+
   const anyModal = modal || kModal;
-  const done = () => { setShowIntro(false); setEntered(true); document.body.style.background = "var(--bg)"; };
   const goTo = useCallback(i => {
     if (i < 0 || i >= TOTAL || tr.current) return;
     tr.current = true; setCur(i);
@@ -875,7 +876,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!entered) return;
+    if (!lang) return;
     const onW = e => {
       if (anyModal) return;
       const s = e.target.closest('.iscroll');
@@ -908,9 +909,9 @@ export default function App() {
     window.addEventListener("touchend", tE, { passive: true });
     window.addEventListener("keydown", kD);
     return () => { window.removeEventListener("wheel", onW); window.removeEventListener("touchstart", tS); window.removeEventListener("touchmove", tM); window.removeEventListener("touchend", tE); window.removeEventListener("keydown", kD); };
-  }, [entered, cur, goTo, anyModal]);
+  }, [lang, cur, goTo, anyModal]);
 
-  if (!lang) return <LangSelect onPick={pickLang}/>;
+  if (!lang) return <LangSelect onPick={pickLang} onStartBGM={startBGM}/>;
 
   const secProps = (S, i) => {
     if (S === Chars) return { onOpen: setModal };
@@ -921,21 +922,18 @@ export default function App() {
   return (
     <LangCtx.Provider value={lang}>
       <div style={{ width:"100vw", height:"var(--vh)", overflow:"hidden", background:"var(--bg)", position:"relative" }}>
-        {showIntro && <JewelBoxIntro onEnd={done}/>}
-        {entered && <>
-          <BGMPlayer audioRef={audioRef}/>
-          <GemChain cur={cur} total={TOTAL} onGo={goTo}/>
-          <div style={{ transform:`translateY(calc(-${cur} * var(--vh)))`, transition:"transform 0.8s cubic-bezier(0.65,0,0.35,1)", height:`calc(${TOTAL} * var(--vh))` }}>
-            {SECS.map((S, i) => (
-              <div key={i} style={{ height:"var(--vh)", width:"100vw", position:"relative" }}>
-                <S {...secProps(S, i)}/>
-                {i < TOTAL - 1 && <ScrollDown/>}
-              </div>
-            ))}
-          </div>
-          <CharModal c={modal} onClose={() => setModal(null)}/>
-          <KingdomModal k={kModal} onClose={() => setKModal(null)}/>
-        </>}
+        <BGMPlayer audioRef={audioRef}/>
+        <GemChain cur={cur} total={TOTAL} onGo={goTo}/>
+        <div style={{ transform:`translateY(calc(-${cur} * var(--vh)))`, transition:"transform 0.8s cubic-bezier(0.65,0,0.35,1)", height:`calc(${TOTAL} * var(--vh))` }}>
+          {SECS.map((S, i) => (
+            <div key={i} style={{ height:"var(--vh)", width:"100vw", position:"relative" }}>
+              <S {...secProps(S, i)}/>
+              {i < TOTAL - 1 && <ScrollDown/>}
+            </div>
+          ))}
+        </div>
+        <CharModal c={modal} onClose={() => setModal(null)}/>
+        <KingdomModal k={kModal} onClose={() => setKModal(null)}/>
       </div>
     </LangCtx.Provider>
   );
