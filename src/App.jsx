@@ -613,25 +613,35 @@ function Chars({ onOpen }) {
             );
           })}
           {/* 블루 아울 */}
-          <div
-            onMouseEnter={() => setHv(99)} onMouseLeave={() => setHv(-1)}
-            onClick={() => onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:"/images/chars/bo_pp.webp", modalImg:"/images/chars/bo_pp.webp" })}
-            style={{
-              width:cW, aspectRatio:"2/3",
-              cursor:"pointer", flexShrink:0, position:"relative",
-              marginLeft:cM,
-              filter: hv===99
-                ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
-                : "drop-shadow(0 4px 8px rgba(108,190,235,0.2))",
-              transform: hv===99 ? hvUp : "translateY(0) scale(1)",
-              transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
-              zIndex: hv===99 ? 20 : mysteryChars.length,
-            }}>
-            <div style={{ width:"100%", height:"100%", background:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(56px,12vw,80px)" }}>🦉</div>
-            <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", textAlign:"center" }}>
-              <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
-            </div>
-          </div>
+          {(() => {
+            const boImg = "/images/chars/bo_pp.webp";
+            const boRevealed = revealed.has(99);
+            const boHovered = hv === 99;
+            return (
+              <div
+                onMouseEnter={() => { setHv(99); setRevealed(prev => { const s = new Set(prev); s.add(99); return s; }); }}
+                onMouseLeave={() => setHv(-1)}
+                onClick={() => { setRevealed(prev => { const s = new Set(prev); s.add(99); return s; }); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
+                style={{
+                  width:cW, aspectRatio:"2/3",
+                  cursor:"pointer", flexShrink:0, position:"relative",
+                  marginLeft:cM,
+                  filter: boHovered
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
+                    : boRevealed
+                      ? "drop-shadow(0 4px 8px rgba(108,190,235,0.2))"
+                      : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
+                  transform: boHovered ? hvUp : "translateY(0) scale(1)",
+                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+                  zIndex: boHovered ? 20 : mysteryChars.length,
+                }}>
+                <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: boRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
+                  <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>
