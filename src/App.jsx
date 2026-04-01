@@ -470,7 +470,7 @@ function CharModal({ c, onClose }) {
       <button onClick={onClose} style={{ position:"absolute", top:"clamp(12px,2vw,20px)", right:"clamp(12px,2vw,20px)", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
       {/* 메인 캐릭터 이미지 — 왼쪽~중앙, 크게 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(10px,3vw,40px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(60px,18vw,200px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
         {imgSrc
           ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
           : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
