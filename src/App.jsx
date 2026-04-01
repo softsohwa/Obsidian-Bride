@@ -521,128 +521,97 @@ function Chars({ onOpen }) {
   const t = useT(), l = useLang();
   const mob = useIsMobile();
   const allChars = CHARS[l];
-  const mainChars = allChars.filter(c => !c.mystery);
-  const mysteryChars = allChars.filter(c => c.mystery);
   const [revealed, setRevealed] = useState(new Set());
   const [hv, setHv] = useState(-1);
   const blueOwl = { ko:"블루 아울", en:"Blue Owl", ja:"ブルーアウル" };
 
-  const handleHover = (i) => { setHv(i); setRevealed(prev => { const s = new Set(prev); s.add(i); return s; }); };
-  const cW = mob ? "clamp(80px,22vw,110px)" : "clamp(220px,38vw,320px)";
-  const cM = mob ? "clamp(-28px,-7vw,-40px)" : "clamp(-90px,-18vw,-130px)";
-  const nSize = mob ? "clamp(9px,2.5vw,11px)" : "clamp(12px,1.8vw,16px)";
-  const nBot = mob ? "-22px" : "-28px";
-  const hvUp = mob ? "translateY(-12px) scale(1.04)" : "translateY(-24px) scale(1.06)";
+  const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); s.add(idx); return s; }); };
+  const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
+  const cM = mob ? "clamp(-22px,-5vw,-32px)" : "clamp(-60px,-12vw,-85px)";
+  const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
+  const nBot = mob ? "-20px" : "-28px";
+  const hvUp = mob ? "translateY(-10px) scale(1.04)" : "translateY(-20px) scale(1.06)";
+  const boW = mob ? "clamp(60px,16vw,80px)" : "clamp(120px,20vw,160px)";
+
+  const boImg = "/images/chars/bo_pp.webp";
+  const boRevealed = revealed.has(99);
+  const boHovered = hv === 99;
+  const row1 = allChars.slice(0, 4);
+  const row2 = allChars.slice(4, 8);
+
+  const renderChar = (c, idx) => {
+    const isRevealed = revealed.has(idx);
+    const isHovered = hv === idx;
+    return (
+      <div key={idx}
+        onMouseEnter={() => reveal(idx)} onMouseLeave={() => setHv(-1)}
+        onClick={() => { reveal(idx); onOpen(c); }}
+        style={{
+          width:cW, aspectRatio:"2/3",
+          cursor:"pointer", flexShrink:0, position:"relative",
+          marginLeft: idx % 4 === 0 ? 0 : cM,
+          filter: isHovered
+            ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
+            : isRevealed ? "drop-shadow(0 4px 8px rgba(0,0,0,0.15))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
+          transform: isHovered ? hvUp : "translateY(0) scale(1)",
+          transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+          zIndex: isHovered ? 20 : idx % 4,
+        }}>
+        {c.img
+          ? <img src={c.img} alt={c.mystery?"???":c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+          : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
+              <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,6vw,42px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.mystery?"?":c.gem[0]}</span>
+            </div>
+        }
+        <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
+          <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{c.mystery?"???":c.gem}</div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg2)" }}>
-      <div style={{ padding:"clamp(24px,4vw,40px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
+      <div style={{ padding:"clamp(20px,3vw,32px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.charS} main={t.charT}/>
         <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-20px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
-      <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(12px,2vw,20px) clamp(12px,3vw,16px) 60px", gap:"clamp(28px,5vw,44px)" }} className="iscroll">
-        {/* 메인 캐릭터 — 수평 겹친 실루엣 */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-          {mainChars.map((c, i) => {
-            const isRevealed = revealed.has(i);
-            const isHovered = hv === i;
-            return (
-              <div key={i}
-                onMouseEnter={() => handleHover(i)} onMouseLeave={() => setHv(-1)}
-                onClick={() => { handleHover(i); onOpen(c); }}
-                style={{
-                  width:cW, aspectRatio:"2/3",
-                  cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : cM,
-                  filter: isHovered
-                    ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
-                    : isRevealed
-                      ? "drop-shadow(0 4px 8px rgba(0,0,0,0.15))"
-                      : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
-                  transform: isHovered ? hvUp : "translateY(0) scale(1)",
-                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
-                  zIndex: isHovered ? 20 : i,
-                }}>
-                {c.img
-                  ? <img src={c.img} alt={c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.gem[0]}</span>
-                    </div>
-                }
-                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-                  <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{c.gem}</div>
-                </div>
-              </div>
-            );
-          })}
+      <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(8px,1.5vw,16px) clamp(12px,3vw,16px) 60px", gap:"0" }} className="iscroll">
+
+        {/* 블루 아울 — MC, 상단 단독 배치 */}
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", marginBottom:mob?"12px":"20px" }}>
+          <div
+            onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
+            onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
+            style={{
+              width:boW, aspectRatio:"2/3", cursor:"pointer", position:"relative",
+              filter: boHovered
+                ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
+                : boRevealed ? "drop-shadow(0 4px 8px rgba(108,190,235,0.2))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
+              transform: boHovered ? hvUp : "translateY(0) scale(1)",
+              transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
+            }}>
+            <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+            <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: boRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
+              <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
+            </div>
+          </div>
+          <div style={{ fontSize:mob?"9px":"11px", color:"var(--gold)", letterSpacing:"3px", fontWeight:600, marginTop:mob?"24px":"32px" }}>MC</div>
         </div>
-        {/* 하단 — 미스터리 캐릭터 + 블루 아울 */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
-          {mysteryChars.map((c, i) => {
-            const mIdx = mainChars.length + i;
-            const isHovered = hv === mIdx;
-            const isRevealed = revealed.has(mIdx);
-            return (
-              <div key={i}
-                onMouseEnter={() => { setHv(mIdx); setRevealed(prev => { const s = new Set(prev); s.add(mIdx); return s; }); }}
-                onMouseLeave={() => setHv(-1)}
-                onClick={() => { setRevealed(prev => { const s = new Set(prev); s.add(mIdx); return s; }); onOpen(c); }}
-                style={{
-                  width:cW, aspectRatio:"2/3",
-                  cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft: i === 0 ? 0 : cM,
-                  filter: isHovered
-                    ? `drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px ${c.color}40)`
-                    : isRevealed
-                      ? "drop-shadow(0 4px 8px rgba(0,0,0,0.15))"
-                      : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
-                  transform: isHovered ? hvUp : "translateY(0) scale(1)",
-                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
-                  zIndex: isHovered ? 20 : i,
-                }}>
-                {c.img
-                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>?</span>
-                    </div>
-                }
-                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-                  <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"var(--txd)", letterSpacing:"2px" }}>???</div>
-                </div>
-              </div>
-            );
-          })}
-          {/* 블루 아울 */}
-          {(() => {
-            const boImg = "/images/chars/bo_pp.webp";
-            const boRevealed = revealed.has(99);
-            const boHovered = hv === 99;
-            return (
-              <div
-                onMouseEnter={() => { setHv(99); setRevealed(prev => { const s = new Set(prev); s.add(99); return s; }); }}
-                onMouseLeave={() => setHv(-1)}
-                onClick={() => { setRevealed(prev => { const s = new Set(prev); s.add(99); return s; }); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
-                style={{
-                  width:cW, aspectRatio:"2/3",
-                  cursor:"pointer", flexShrink:0, position:"relative",
-                  marginLeft:cM,
-                  filter: boHovered
-                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
-                    : boRevealed
-                      ? "drop-shadow(0 4px 8px rgba(108,190,235,0.2))"
-                      : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
-                  transform: boHovered ? hvUp : "translateY(0) scale(1)",
-                  transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
-                  zIndex: boHovered ? 20 : mysteryChars.length,
-                }}>
-                <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-                <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: boRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-                  <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:700, color:"#6CBEEB" }}>{blueOwl[l]}</div>
-                </div>
-              </div>
-            );
-          })()}
+
+        {/* 구분선 */}
+        <div style={{ width:"clamp(40px,12vw,80px)", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:mob?"8px auto 16px":"12px auto 24px" }}/>
+
+        {/* 출연자 1열 (4명) */}
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"28px":"40px" }}>
+          {row1.map((c, i) => renderChar(c, i))}
         </div>
+
+        {/* 출연자 2열 (4명) */}
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+          {row2.map((c, i) => renderChar(c, i + 4))}
+        </div>
+
       </div>
     </div>
   );
