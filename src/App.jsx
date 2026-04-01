@@ -355,14 +355,14 @@ function LangSelect({ onPick, onStartBGM }) {
             position:"absolute", top:0, left:"-10px", width:"220px", height:"90px", zIndex:2,
             animation: opening ? "lidFloat 0.8s cubic-bezier(.22,1,.36,1) forwards" : "none",
           }}>
-            <img src="/images/jb_lid.png" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
+            <img src="/images/jb_lid.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
               onError={e => { e.target.style.display="none"; e.target.parentElement.style.background="linear-gradient(135deg,#353060,#1a1a3e)"; e.target.parentElement.style.border="2px solid var(--gold)"; e.target.parentElement.style.borderRadius="6px 6px 0 0"; }}/>
           </div>
           {/* Glow */}
           <div style={{ position:"absolute", top:"75px", left:"50%", transform:"translateX(-50%)", width:"160px", height:"20px", background:"radial-gradient(ellipse,rgba(200,168,78,0.5),transparent)", borderRadius:"50%", opacity:opening?1:0, transition:"opacity 0.4s", zIndex:1 }}/>
           {/* Body */}
           <div style={{ position:"absolute", bottom:0, width:"200px", height:"180px" }}>
-            <img src="/images/jb_body.png" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
+            <img src="/images/jb_body.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"contain" }}
               onError={e => { e.target.style.display="none"; e.target.parentElement.style.background="linear-gradient(135deg,#1a1a3e,#12122e)"; e.target.parentElement.style.border="2px solid var(--gold)"; e.target.parentElement.style.borderRadius="4px 4px 8px 8px"; }}/>
           </div>
         </div>
