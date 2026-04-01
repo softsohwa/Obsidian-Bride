@@ -452,14 +452,12 @@ function CharModal({ c, onClose }) {
         {/* 누끼 이미지 (왼쪽) */}
         <div style={{ flex:"0 0 auto", width:"clamp(160px,35vw,260px)", aspectRatio:"3/4", display:"flex", alignItems:"flex-end", justifyContent:"center", position:"relative" }}>
           {c.modalImg
-            ? <img src={c.modalImg} alt={c.gem} style={{ maxWidth:"100%", maxHeight:"100%", objectFit:"contain", filter:`drop-shadow(0 4px 12px rgba(0,0,0,0.3)) drop-shadow(0 0 20px ${c.color}30)` }}/>
-            : <div style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <svg viewBox="0 0 120 180" style={{ width:"80%", height:"80%", filter:`drop-shadow(0 4px 12px rgba(0,0,0,0.3))` }}>
-                  <ellipse cx="60" cy="42" rx="22" ry="26" fill={c.color} opacity="0.7"/>
-                  <path d="M28 180 Q28 90 60 75 Q92 90 92 180 Z" fill={c.color} opacity="0.5"/>
-                </svg>
-              </div>
+            ? <img src={c.modalImg} alt={c.gem} onError={e => { e.target.style.display='none'; if(e.target.nextSibling) e.target.nextSibling.style.display='flex'; }} style={{ maxWidth:"100%", maxHeight:"100%", objectFit:"contain", filter:`drop-shadow(0 4px 12px rgba(0,0,0,0.3)) drop-shadow(0 0 20px ${c.color}30)` }}/>
+            : null
           }
+          <div style={{ width:"100%", height:"100%", display:c.modalImg?"none":"flex", alignItems:"center", justifyContent:"center", background:c.gemBg, borderRadius:"16px" }}>
+            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(48px,10vw,72px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>{c.gem[0]}</span>
+          </div>
           <div style={{ position:"absolute", bottom:"8px", left:"50%", transform:"translateX(-50%)", textAlign:"center" }}>
             <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(20px,4vw,28px)", fontWeight:700, color:"var(--goldl)", textShadow:"0 2px 8px rgba(0,0,0,0.5)" }}>{c.gem}</div>
           </div>
@@ -495,9 +493,12 @@ function Chars({ onOpen }) {
   const mysteryChars = allChars.filter(c => c.mystery);
   const [revealed, setRevealed] = useState(new Set());
   const [hv, setHv] = useState(-1);
+  const [brokenImgs, setBrokenImgs] = useState(new Set());
   const blueOwl = { ko:"블루 아울", en:"Blue Owl", ja:"ブルーアウル" };
 
   const handleHover = (i) => { setHv(i); setRevealed(prev => { const s = new Set(prev); s.add(i); return s; }); };
+  const imgOk = (src) => src && !brokenImgs.has(src);
+  const onImgErr = (src) => setBrokenImgs(prev => { const s = new Set(prev); s.add(src); return s; });
 
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg2)" }}>
@@ -528,8 +529,8 @@ function Chars({ onOpen }) {
                   transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
                   zIndex: isHovered ? 20 : i,
                 }}>
-                {c.img
-                  ? <img src={c.img} alt={c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+                {imgOk(c.img)
+                  ? <img src={c.img} alt={c.gem} onError={() => onImgErr(c.img)} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
                   : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
                       <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.gem[0]}</span>
                     </div>
@@ -561,8 +562,8 @@ function Chars({ onOpen }) {
                   transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
                   zIndex: isHovered ? 20 : i,
                 }}>
-                {c.img
-                  ? <img src={c.img} alt="???" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1) brightness(0.08) blur(2px)", transition:"filter 0.6s ease" }}/>
+                {imgOk(c.img)
+                  ? <img src={c.img} alt="???" onError={() => onImgErr(c.img)} style={{ width:"100%", height:"100%", objectFit:"contain", filter:"grayscale(1) brightness(0.08) blur(2px)", transition:"filter 0.6s ease" }}/>
                   : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter:"grayscale(1) brightness(0.08) blur(2px)" }}>
                       <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,8vw,54px)", fontWeight:700, color:"rgba(255,255,255,0.3)" }}>?</span>
                     </div>
