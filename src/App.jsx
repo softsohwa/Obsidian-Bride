@@ -664,7 +664,7 @@ function KingdomModal({ k, onClose }) {
         <div style={{ padding:"clamp(20px,4vw,28px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"12px" }}>
             <div style={{ width:"6px", height:"6px", borderRadius:"50%", background:k.color, boxShadow:`0 0 8px ${k.color}60` }}/>
-            <h3 style={{ fontFamily:hf, fontSize:"clamp(20px,3.5vw,26px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
+            <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(20px,3.5vw,26px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
           </div>
           <div style={{ fontSize:"clamp(11px,1.4vw,13px)", color:k.color, letterSpacing:"1px", fontWeight:600, marginBottom:"12px" }}>{k.d}</div>
           <p style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{k.detail}</p>
@@ -754,7 +754,7 @@ function World({ onKingdom }) {
                 <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
               </div>
               <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
-                <div style={{ fontFamily:hf, fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
+                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
                 <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.4 }}>{k.d}</p>
               </div>
             </div>
@@ -776,7 +776,7 @@ function World({ onKingdom }) {
                 <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
                   <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
                   <div style={{ flex:1 }}>
-                    <h4 style={{ fontFamily:hf, fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
+                    <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
                     {isOpen && (
                       <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
                     )}
