@@ -122,31 +122,31 @@ const CHARS = {
     { gem:"페리도트", per:"다정한 가면 아래 치밀한 설계자", tone:"정중한 존댓말", goal:"보석함의 진정한 지배자가 되는 것", intro:"온화한 미소 뒤에 숨겨진 포식자. 모든 것을 설계하고 지배한다.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
     { gem:"모이사나이트", per:"불안한 연기자, 열등감, 발각 공포", tone:"우아하지만 날 선 말투", goal:"진짜 왕족이 되는 것. 그리고 진정한 사랑", intro:"화려한 외모 아래 비천한 출생을 숨긴 대역. 완벽한 연기가 무너지는 순간을 두려워한다.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
     { gem:"브론즈", per:"순도 100% 솔직함, 야성적 전사", tone:"솔직담백한 반말", goal:"전사로서의 강함을 증명하고 살아남기", intro:"사막에서 태어난 가공되지 않은 야성. 음모 가득한 파티의 이질적 존재.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"헤마타이트", per:"감정을 숫자로 치환하는 현실주의자", tone:"사무적·건조한 말투", goal:"제국의 의도를 파악하고 자국 이익 수호", intro:"냉철한 눈동자 너머 모든 것을 계산하는 설계자. 사랑은 비효율이라 여긴다.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
+    { gem:"헤마타이트", per:"감정을 숫자로 치환하는 현실주의자", tone:"사무적·건조한 말투", goal:"제국의 의도를 파악하고 자국 이익 수호", intro:"냉철한 눈동자 너머 모든 것을 계산하는 설계자. 사랑은 비효율이라 여긴다.", color:"#A8B4C0", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
     { gem:"코랄", per:"호탕한 지도자, 거부할 수 없는 위엄", tone:"당당하고 시원시원함", goal:"조국 국방을 책임질 강인한 동반자 영입", intro:"해군 제독 출신 후계자. 바다처럼 거침없고, 누구보다 강하다.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
     { gem:"라벤더쿼츠", per:"순수·소심, 낮은 자존감, 사랑에 맹목적", tone:"처연하고 조심스러운 경어", goal:"자신을 있는 그대로 사랑해 줄 존재를 찾는 것", intro:"신전에서 봉인되어 있던 성녀. 처음 보는 세상에서 사랑을 꿈꾼다.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#4A6AE0", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#D4A843", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
   ],
   en:[
     { gem:"Peridot", per:"A meticulous schemer behind a gentle mask", tone:"Polite, formal", goal:"To become the true master of the Jewel Box", intro:"A predator hidden behind a warm smile. He designs and dominates everything.", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
     { gem:"Moissanite", per:"An anxious actor, consumed by fear of exposure", tone:"Elegant yet sharp", goal:"To become true royalty — and find true love", intro:"A stand-in hiding lowly birth beneath dazzling beauty. He dreads the moment his perfect act crumbles.", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
     { gem:"Bronze", per:"100% honest, wild warrior", tone:"Blunt, straightforward", goal:"To prove his strength and survive", intro:"Raw wildness born in the desert. A misfit in a party full of schemes.", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"Hematite", per:"A realist who converts emotions into numbers", tone:"Businesslike, dry", goal:"To uncover the Empire's intentions and protect his nation", intro:"Behind cold eyes, a mind that calculates everything. Love is inefficiency.", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
+    { gem:"Hematite", per:"A realist who converts emotions into numbers", tone:"Businesslike, dry", goal:"To uncover the Empire's intentions and protect his nation", intro:"Behind cold eyes, a mind that calculates everything. Love is inefficiency.", color:"#A8B4C0", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
     { gem:"Coral", per:"Bold leader with undeniable presence", tone:"Confident, refreshing", goal:"To recruit a strong partner for national defense", intro:"A naval admiral's heir. Relentless as the sea, stronger than anyone.", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
     { gem:"Lavender Quartz", per:"Pure, timid, blindly devoted to love", tone:"Wistful, cautious", goal:"To find someone who loves her as she is", intro:"A saint once sealed in a temple. She dreams of love in a world she's seeing for the first time.", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#4A6AE0", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#D4A843", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
   ],
   ja:[
     { gem:"ペリドット", per:"優しい仮面の下の緻密な設計者", tone:"丁寧な敬語", goal:"宝石箱の真の支配者になること", intro:"温和な微笑みの裏に潜む捕食者。すべてを設計し、支配する。", color:"#A0E88C", gemBg:"radial-gradient(circle at 35% 35%,#c8f5b8,#6cc45c,#3a8a2c)", img:"/images/chars/p_pp.webp", modalImg:"/images/chars/p_pp.webp" },
     { gem:"モアッサナイト", per:"不安な演者、劣等感、発覚の恐怖", tone:"優雅だが鋭い口調", goal:"本物の王族になること。そして真の愛", intro:"華やかな外見の下に卑しい出生を隠す代役。完璧な演技が崩れる瞬間を恐れている。", color:"#E0E0F0", gemBg:"radial-gradient(circle at 35% 35%,#f8f8ff,#c8c8e0,#9898b8)", img:"/images/chars/m_pp.webp", modalImg:"/images/chars/m_pp.webp" },
     { gem:"ブロンズ", per:"純度100%の正直さ、野性的な戦士", tone:"率直でぶっきらぼう", goal:"戦士としての強さを証明し生き残ること", intro:"砂漠で生まれた加工されていない野性。陰謀だらけのパーティーの異質な存在。", color:"#E0A050", gemBg:"radial-gradient(circle at 35% 35%,#f0c878,#cd7f32,#8b5a20)", img:"/images/chars/b_pp.webp", modalImg:"/images/chars/b_pp.webp" },
-    { gem:"ヘマタイト", per:"感情を数字に変換する現実主義者", tone:"事務的で乾いた口調", goal:"帝国の意図を把握し自国の利益を守ること", intro:"冷徹な瞳の向こう、すべてを計算する設計者。愛は非効率だと考える。", color:"#808890", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
+    { gem:"ヘマタイト", per:"感情を数字に変換する現実主義者", tone:"事務的で乾いた口調", goal:"帝国の意図を把握し自国の利益を守ること", intro:"冷徹な瞳の向こう、すべてを計算する設計者。愛は非効率だと考える。", color:"#A8B4C0", gemBg:"radial-gradient(circle at 35% 35%,#a8b0b8,#606870,#3a4048)", img:"/images/chars/h_pp.webp", modalImg:"/images/chars/h_pp.webp" },
     { gem:"コーラル", per:"豪快な指導者、抗えない威厳", tone:"堂々として爽快", goal:"祖国の国防を担う強靭な伴侶を迎えること", intro:"海軍提督出身の後継者。海のように容赦なく、誰よりも強い。", color:"#FF8070", gemBg:"radial-gradient(circle at 35% 35%,#ffb0a0,#ff6f61,#cc4040)", img:"/images/chars/c_pp.webp", modalImg:"/images/chars/c_pp.webp" },
     { gem:"ラベンダークォーツ", per:"純粋・臆病、低い自尊心、愛に盲目", tone:"哀愁のある丁寧語", goal:"ありのままの自分を愛してくれる存在を見つけること", intro:"神殿に封印されていた聖女。初めて見る世界で愛を夢見る。", color:"#D0B8E8", gemBg:"radial-gradient(circle at 35% 35%,#e8d8f8,#b8a0d0,#7a5ca0)", img:"/images/chars/l_pp.webp", modalImg:"/images/chars/l_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#2A2A2A", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
-    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#5A4A2A", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#4A6AE0", gemBg:"#222", img:"/images/chars/o_pp.webp", modalImg:"/images/chars/o_pp.webp" },
+    { gem:"???", mystery:true, per:"■■■", tone:"■■■", goal:"■■■", intro:"■■■■■■■■■■", color:"#D4A843", gemBg:"#333", img:"/images/chars/f_pp.webp", modalImg:"/images/chars/f_pp.webp" },
   ],
 };
 
@@ -219,7 +219,7 @@ const KINGDOMS = {
     { n:"살파도르", d:"사막의 무도 강국", detail:"대륙 최강의 검술과 용병을 보유한 사막 국가. 대반역 시 가장 치열하게 저항했다.", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"세레", d:"신권 통치 교황령", detail:"왕족의 신성력을 교황이 착취하는 나라. 성녀와 사제를 신전에 감금한다.", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"데메테리아", d:"풍요의 대지", detail:"최대 농축산지이나 제국에 식량을 수탈당한다. 기회주의적 생존 전략으로 전환.", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
-    { n:"우라칸", d:"대륙의 무기고", detail:"북부 고산지대의 철광산과 무기 제조 특화 국가. 극도의 실리주의.", color:"#808890", img:"/images/kingdoms/uracan.webp" },
+    { n:"우라칸", d:"대륙의 무기고", detail:"북부 고산지대의 철광산과 무기 제조 특화 국가. 극도의 실리주의.", color:"#A8B4C0", img:"/images/kingdoms/uracan.webp" },
     { n:"카일리아", d:"최대 부유국", detail:"보석 광산이 풍부하고 화려한 왕궁. 제국의 부역자로 막대한 뇌물을 바친다.", color:"#E8D892", img:"/images/kingdoms/kailia.webp" },
     { n:"헤티스", d:"해양 강국", detail:"거대 항구와 막강한 해군을 보유. 제국에 대한 혐오가 강하고 독자 노선을 고수.", color:"#FF8070", img:"/images/kingdoms/hetis.webp" },
     { n:"시에리스", d:"무역 중심지", detail:"물자와 지식의 요람. 학문과 상업이 발달했으며, 쇠락한 국권 회복을 위해 전략적으로 참가.", color:"#6CBEEB", img:"/images/kingdoms/sieris.webp" },
@@ -230,7 +230,7 @@ const KINGDOMS = {
     { n:"Salpador", d:"Desert martial powerhouse", detail:"A desert nation boasting the continent's finest swordsmanship and mercenaries. Fought most fiercely during the Great Rebellion.", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"Sere", d:"Theocratic papal state", detail:"A nation where the Pope exploits the royals' sacred power. Saints and priests are imprisoned in temples.", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"Demeteria", d:"Land of abundance", detail:"The largest agricultural region, but its food is plundered by the Empire. Has shifted to opportunistic survival.", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
-    { n:"Uracan", d:"The continent's armory", detail:"Specializes in iron mines and weapon manufacturing in the northern highlands. Extremely pragmatic.", color:"#808890", img:"/images/kingdoms/uracan.webp" },
+    { n:"Uracan", d:"The continent's armory", detail:"Specializes in iron mines and weapon manufacturing in the northern highlands. Extremely pragmatic.", color:"#A8B4C0", img:"/images/kingdoms/uracan.webp" },
     { n:"Kailia", d:"Wealthiest kingdom", detail:"Rich in gem mines with a lavish palace. Serves the Empire as a collaborator, offering massive bribes.", color:"#E8D892", img:"/images/kingdoms/kailia.webp" },
     { n:"Hetis", d:"Maritime power", detail:"Commands a massive port and powerful navy. Deeply hostile to the Empire, maintaining an independent course.", color:"#FF8070", img:"/images/kingdoms/hetis.webp" },
     { n:"Sieris", d:"Center of trade", detail:"A cradle of goods and knowledge. Participates strategically to restore its declining sovereignty.", color:"#6CBEEB", img:"/images/kingdoms/sieris.webp" },
@@ -241,7 +241,7 @@ const KINGDOMS = {
     { n:"サルパドール", d:"砂漠の武道強国", detail:"大陸最強の剣術と傭兵を擁する砂漠の国。大反逆で最も激しく抵抗した。", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"セレ", d:"神権統治教皇領", detail:"王族の神聖力を教皇が搾取する国。聖女や司祭を神殿に監禁する。", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"デメテリア", d:"豊穣の大地", detail:"最大の農畜産地だが帝国に食料を収奪される。機会主義的な生存戦略に転換。", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
-    { n:"ウラカン", d:"大陸の武器庫", detail:"北部高山地帯の鉄鉱山と武器製造に特化した国家。極度の実利主義。", color:"#808890", img:"/images/kingdoms/uracan.webp" },
+    { n:"ウラカン", d:"大陸の武器庫", detail:"北部高山地帯の鉄鉱山と武器製造に特化した国家。極度の実利主義。", color:"#A8B4C0", img:"/images/kingdoms/uracan.webp" },
     { n:"カイリア", d:"最大の富裕国", detail:"宝石鉱山が豊富で華やかな王宮。帝国の手先として莫大な賄賂を捧げる。", color:"#E8D892", img:"/images/kingdoms/kailia.webp" },
     { n:"ヘティス", d:"海洋強国", detail:"巨大な港と強大な海軍を保有。帝国への嫌悪が強く独自路線を堅持。", color:"#FF8070", img:"/images/kingdoms/hetis.webp" },
     { n:"シエリス", d:"貿易の中心地", detail:"物資と知識の揺りかご。衰退した国権回復のため戦略的に参加。", color:"#6CBEEB", img:"/images/kingdoms/sieris.webp" },
@@ -502,28 +502,28 @@ function CharModal({ c, onClose }) {
         </div>
         <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px", maxHeight:"clamp(180px,35vh,240px)", overflowY:"auto" }} className="iscroll">
           <div style={{ textAlign:"center", marginBottom:"12px", animation:"fadeUp 0.6s ease 0.1s both" }}>
-            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:"#fff", letterSpacing:"1px" }}>{enName}</div>
-            <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto", opacity:0.6 }}/>
+            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:c.color, letterSpacing:"1px" }}>{enName}</div>
+            <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto" }}/>
           </div>
           {c.mystery
             ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"14px", letterSpacing:"4px", textAlign:"center", padding:"16px 0" }}>■■■■■■ ■■■ ■■■■</div>
-            : <div style={{ border:`1.5px solid ${c.color}40`, borderRadius:"12px", padding:"14px", animation:"fadeUp 0.6s ease 0.2s both" }}>
-                <div style={{ fontSize:"11px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
+            : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"14px", animation:"fadeUp 0.6s ease 0.2s both" }}>
+                <div style={{ fontSize:"13px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
                 <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"8px" }}>
                   {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
                     <div key={i} style={{ flex:"1 1 100%" }}>
-                      <span style={{ fontSize:"9px", color:`${c.color}99`, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                      <p style={{ fontSize:"12px", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
+                      <span style={{ fontSize:"10px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"14px", color:"rgba(232,224,208,0.9)", lineHeight:1.6, fontWeight:400, marginTop:"2px" }}>{x.v}</p>
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize:"13px", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:`1px solid ${c.color}20`, paddingTop:"10px" }}>{c.intro}</p>
+                <p style={{ fontSize:"14px", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"10px" }}>{c.intro}</p>
               </div>
           }
         </div>
       </> : <>
         {/* PC: 좌측 이미지, 우측 이름+정보 박스 */}
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(40px,6vh,80px)", left:"clamp(40px,5vw,80px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(40px,6vh,80px)", left:"clamp(80px,12vw,180px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
           {imgSrc
             ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
             : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -531,22 +531,22 @@ function CharModal({ c, onClose }) {
               </div>
           }
         </div>
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", right:"clamp(40px,5vw,100px)", top:"50%", transform:"translateY(-50%)", zIndex:8, maxWidth:"clamp(280px,35vw,420px)", animation:"fadeUp 0.6s ease 0.1s both" }}>
-          <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(40px,7vw,72px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
-          <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px", opacity:0.6 }}/>
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", right:"clamp(80px,12vw,180px)", top:"50%", transform:"translateY(-50%)", zIndex:8, maxWidth:"clamp(300px,35vw,440px)", animation:"fadeUp 0.6s ease 0.1s both" }}>
+          <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(40px,7vw,72px)", fontWeight:900, color:c.color, lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
+          <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px" }}/>
           {c.mystery
             ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
-            : <div style={{ border:`1.5px solid ${c.color}40`, borderRadius:"12px", padding:"clamp(16px,2vw,24px)", maxHeight:"clamp(200px,30vh,300px)", overflowY:"auto" }} className="iscroll">
-                <div style={{ fontSize:"12px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:"12px" }}>{c.gem}</div>
-                <div style={{ display:"flex", gap:"clamp(10px,2vw,20px)", flexWrap:"wrap", marginBottom:"12px" }}>
+            : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)", maxHeight:"clamp(240px,35vh,340px)", overflowY:"auto" }} className="iscroll">
+                <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
+                <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
                   {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
                     <div key={i} style={{ flex:"1 1 120px" }}>
-                      <span style={{ fontSize:"10px", color:`${c.color}99`, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                      <p style={{ fontSize:"clamp(12px,1.4vw,14px)", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
+                      <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"clamp(15px,1.8vw,17px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize:"clamp(13px,1.5vw,15px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:`1px solid ${c.color}20`, paddingTop:"10px" }}>{c.intro}</p>
+                <p style={{ fontSize:"clamp(15px,1.8vw,17px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"12px" }}>{c.intro}</p>
               </div>
           }
         </div>
@@ -612,7 +612,7 @@ function Chars({ onOpen }) {
 
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg2)" }}>
-      <div style={{ padding:"clamp(20px,3vw,32px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
+      <div style={{ padding:"clamp(48px,6vw,64px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.charS} main={t.charT}/>
         <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-20px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
@@ -703,6 +703,7 @@ function World({ onKingdom }) {
   const [hvK, setHvK] = useState(-1);
   const [selEvt, setSelEvt] = useState(null);
   const [hvEvt, setHvEvt] = useState(-1);
+  const [showKings, setShowKings] = useState(false);
 
   const centerLoc = locs.find(l => l.center);
   const outerLocs = locs.filter(l => !l.center);
@@ -710,7 +711,7 @@ function World({ onKingdom }) {
 
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg)" }}>
-      <div style={{ padding:"clamp(20px,3vw,28px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
+      <div style={{ padding:"clamp(48px,6vw,64px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.worldS} main={t.worldT}/>
       </div>
       <div style={{ flex:1, overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px", maxWidth:"760px", margin:"0 auto", width:"100%" }} className="iscroll">
@@ -754,32 +755,17 @@ function World({ onKingdom }) {
         {/* ── 구분선 ── */}
         <div style={{ width:"40px", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:"clamp(16px,3vw,24px) auto" }}/>
 
-        {/* ── 9왕국: 3×3 그리드 ── */}
-        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", textAlign:"center", marginBottom:"12px", fontWeight:600 }}>{t.kingdomsS}</div>
-        <h3 style={{ fontFamily:hf, fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.kingdoms}</h3>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"clamp(8px,1.5vw,14px)" }}>
-          {kings.map((k, i) => (
-            <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
-              style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
-              <div style={{ width:"100%", aspectRatio:"1/1", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
-                {k.img
-                  ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
-                  : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,5vw,36px)", fontWeight:700, color:`${k.color}25` }}>{k.n[0]}</span>
-                    </div>
-                }
-                <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
-              </div>
-              <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
-                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
-                <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.4 }}>{k.d}</p>
-              </div>
-            </div>
-          ))}
+        {/* ── 국가 개요 버튼 ── */}
+        <div style={{ textAlign:"center", marginBottom:"clamp(20px,4vw,32px)" }}>
+          <button onClick={() => setShowKings(true)} onMouseEnter={e => e.target.style.background="rgba(200,168,78,0.08)"} onMouseLeave={e => e.target.style.background="transparent"}
+            style={{ padding:"clamp(10px,1.8vw,14px) clamp(24px,4vw,36px)", background:"transparent", border:"1.5px solid var(--gold)", borderRadius:"28px", cursor:"pointer", transition:"all 0.3s", display:"inline-flex", alignItems:"center", gap:"8px" }}>
+            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,2vw,16px)", fontWeight:600, color:"var(--gold)", letterSpacing:"2px" }}>{t.kingdoms}</span>
+            <span style={{ fontSize:"12px", color:"var(--gold)" }}>▶</span>
+          </button>
         </div>
 
         {/* ── 구분선 ── */}
-        <div style={{ width:"40px", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:"clamp(20px,4vw,32px) auto" }}/>
+        <div style={{ width:"40px", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:"0 auto clamp(20px,4vw,32px)" }}/>
 
         {/* ── 이벤트: 카드형 아코디언 ── */}
         <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", textAlign:"center", marginBottom:"12px", fontWeight:600 }}>{t.evtS}</div>
@@ -806,6 +792,43 @@ function World({ onKingdom }) {
         </div>
 
       </div>
+
+      {/* 9왕국 개요 모달 */}
+      {showKings && (
+        <div onClick={() => setShowKings(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(12,26,46,0.8)", backdropFilter:"blur(8px)", display:"flex", alignItems:"center", justifyContent:"center", animation:"fadeIn 0.3s ease", padding:"clamp(12px,3vw,20px)" }}>
+          <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"640px", maxHeight:"85vh", background:"var(--bg)", borderRadius:"16px", overflow:"hidden", animation:"fadeUp 0.4s ease", display:"flex", flexDirection:"column" }}>
+            <div style={{ padding:"clamp(20px,3vw,28px) clamp(20px,3vw,28px) 0", flexShrink:0, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+              <div>
+                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", fontWeight:600 }}>{t.kingdomsS}</div>
+                <h3 style={{ fontFamily:hf, fontSize:"clamp(20px,3.5vw,28px)", fontWeight:700, color:"var(--midnight)", marginTop:"4px" }}>{t.kingdoms}</h3>
+              </div>
+              <button onClick={() => setShowKings(false)} style={{ background:"rgba(0,0,0,0.05)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
+            </div>
+            <div style={{ flex:1, overflowY:"auto", padding:"clamp(16px,2vw,24px)" }} className="iscroll">
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"clamp(8px,1.5vw,14px)" }}>
+                {kings.map((k, i) => (
+                  <div key={i} onClick={() => { setShowKings(false); onKingdom(k); }} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
+                    style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
+                    <div style={{ width:"100%", aspectRatio:"1/1", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
+                      {k.img
+                        ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+                        : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,5vw,36px)", fontWeight:700, color:`${k.color}25` }}>{k.n[0]}</span>
+                          </div>
+                      }
+                      <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
+                    </div>
+                    <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
+                      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
+                      <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.4 }}>{k.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
