@@ -50,7 +50,7 @@ body { background:var(--midnight); color:var(--tx); font-family:var(--fb); overf
 @keyframes spinHighlight { 0%{box-shadow:0 0 0 transparent} 50%{box-shadow:0 0 18px rgba(200,168,78,.5)} 100%{box-shadow:0 0 0 transparent} }
 @keyframes burstLight { 0%{width:0;height:0;opacity:1} 50%{width:250vmax;height:250vmax;opacity:.9} 100%{width:300vmax;height:300vmax;opacity:0} }
 @keyframes lidFloat { 0%{transform:translateY(0)} 100%{transform:translateY(-120px) scale(1.05);opacity:0} }
-@media(max-width:600px) { .gem-chain-wrap { right:6px!important; } .gem-chain-wrap .gem-tip { display:none!important; } }
+@media(max-width:600px) { }
 `;
 document.head.appendChild(css);
 
@@ -432,13 +432,14 @@ function BGMPlayer({ audioRef }) {
 function GemChain({ cur, total, onGo }) {
   const t = useT();
   return (
-    <div className="gem-chain-wrap" style={{ position:"fixed", right:"clamp(10px,1.5vw,18px)", top:"50%", transform:"translateY(-50%)", zIndex:800, display:"flex", flexDirection:"column", alignItems:"center", gap:"4px" }}>
+    <div style={{ position:"fixed", top:"clamp(10px,1.5vw,16px)", left:"50%", transform:"translateX(-50%)", zIndex:800, display:"flex", alignItems:"flex-start", gap:"clamp(16px,3vw,28px)" }}>
       {Array.from({ length: total }).map((_, i) => (
-        <div key={i} style={{ display:"flex", flexDirection:"column", alignItems:"center" }}>
-          <button onClick={() => onGo(i)} style={{ position:"relative", width:cur===i?"14px":"9px", height:cur===i?"14px":"9px", borderRadius:"50%", border:`1.5px solid ${cur===i?"var(--gold)":"var(--goldd)"}`, background:cur===i?"var(--gold)":"transparent", cursor:"pointer", transition:"all 0.4s", boxShadow:cur===i?"0 0 10px rgba(200,168,78,0.4)":"none", padding:0 }}>
-            <span className="gem-tip" style={{ position:"absolute", right:"22px", top:"50%", transform:"translateY(-50%)", fontSize:"10px", color:"var(--tx)", whiteSpace:"nowrap", opacity:cur===i?1:0, transition:"opacity 0.3s", pointerEvents:"none", background:"var(--bgc)", padding:"2px 8px", borderRadius:"6px", border:"1px solid var(--brd)", letterSpacing:"1px" }}>{t.nav[i]}</span>
-          </button>
-          {i < total - 1 && <div style={{ width:"1px", height:"8px", background:"var(--gold)", opacity:0.2 }}/>}
+        <div key={i} style={{ display:"flex", alignItems:"center" }}>
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"6px", cursor:"pointer" }} onClick={() => onGo(i)}>
+            <div style={{ width:cur===i?"16px":"11px", height:cur===i?"16px":"11px", borderRadius:"50%", border:`1.5px solid ${cur===i?"var(--gold)":"var(--goldd)"}`, background:cur===i?"var(--gold)":"transparent", transition:"all 0.4s", boxShadow:cur===i?"0 0 10px rgba(200,168,78,0.4)":"none" }}/>
+            <span style={{ fontSize:"clamp(8px,1vw,10px)", color:cur===i?"var(--gold)":"var(--txd)", letterSpacing:"1px", fontFamily:"var(--fd)", fontWeight:cur===i?600:400, transition:"all 0.3s", whiteSpace:"nowrap" }}>{t.nav[i]}</span>
+          </div>
+          {i < total - 1 && <div style={{ width:"clamp(12px,2vw,20px)", height:"1px", background:"var(--gold)", opacity:0.2, marginLeft:"clamp(16px,3vw,28px)", marginTop:"-12px" }}/>}
         </div>
       ))}
     </div>
@@ -474,64 +475,82 @@ function CharModal({ c, onClose }) {
   const t = useT();
   const l = useLang();
   const mob = useIsMobile();
-  const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   if (!c) return null;
   const imgSrc = c.modalImg || c.img;
   const enName = (CHARS.en.find(e => e.img === c.img) || {}).gem || c.gem;
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
       {/* 고스트 이미지 */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:mob?"-10%":"-5%", left:mob?"50%":"clamp(120px,25vw,300px)", transform:mob?"translateX(-50%)":"none", height:mob?"100%":"115%", objectFit:"contain", opacity:mob?0.12:0.15, pointerEvents:"none" }}/>}
-      {/* 그라데이션 오버레이 */}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:mob?"-10%":"-5%", left:mob?"50%":"10%", transform:mob?"translateX(-50%)":"none", height:mob?"90%":"115%", objectFit:"contain", opacity:0.12, pointerEvents:"none" }}/>}
+      {/* 그라데이션 */}
       <div style={{ position:"absolute", inset:0, background:mob
-        ? "linear-gradient(180deg,rgba(12,26,46,0.5) 0%,transparent 25%,rgba(12,26,46,0.3) 55%,rgba(12,26,46,0.95) 85%)"
-        : "linear-gradient(90deg,rgba(12,26,46,0.5) 0%,rgba(12,26,46,0.1) 35%,rgba(12,26,46,0.4) 65%,rgba(12,26,46,0.7) 100%), linear-gradient(180deg,rgba(12,26,46,0.4) 0%,transparent 30%,rgba(12,26,46,0.3) 70%,rgba(12,26,46,0.95) 100%)" }}/>
+        ? "linear-gradient(180deg,rgba(12,26,46,0.5) 0%,transparent 25%,rgba(12,26,46,0.4) 55%,rgba(12,26,46,0.95) 80%)"
+        : "linear-gradient(90deg,rgba(12,26,46,0.4) 0%,rgba(12,26,46,0.1) 30%,rgba(12,26,46,0.5) 55%,rgba(12,26,46,0.85) 100%), linear-gradient(180deg,rgba(12,26,46,0.3) 0%,transparent 40%,rgba(12,26,46,0.6) 100%)" }}/>
 
-      {/* 닫기 버튼 */}
+      {/* 닫기 */}
       <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"12px", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
-      {/* 메인 캐릭터 이미지 */}
-      <div onClick={e => e.stopPropagation()} style={mob
-        ? { position:"absolute", bottom:"clamp(160px,30vh,220px)", left:"50%", transform:"translateX(-50%)", height:"clamp(280px,50vh,400px)", zIndex:5, animation:"fadeUp 0.5s ease" }
-        : { position:"absolute", bottom:"clamp(50px,8vh,90px)", left:"clamp(100px,25vw,260px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }
-      }>
-        {imgSrc
-          ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
-          : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <span style={{ fontFamily:"var(--fd)", fontSize:mob?"48px":"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
-            </div>
-        }
-      </div>
-
-      {/* 캐릭터 이름 */}
-      <div style={mob
-        ? { position:"absolute", left:"50%", transform:"translateX(-50%)", bottom:"clamp(150px,28vh,210px)", zIndex:8, textAlign:"center", animation:"fadeUp 0.6s ease 0.1s both" }
-        : { position:"absolute", right:"clamp(80px,18vw,240px)", top:"clamp(40%,45%,50%)", transform:"translateY(-50%)", zIndex:8, textAlign:"right", animation:"fadeUp 0.6s ease 0.1s both" }
-      }>
-        <div style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(32px,10vw,48px)":"clamp(48px,10vw,96px)", fontWeight:400, color:"#fff", lineHeight:1, letterSpacing:mob?"1px":"clamp(2px,0.5vw,6px)", textShadow:`0 4px 30px rgba(0,0,0,0.7), 0 0 60px ${c.color}20`, opacity:0.95 }}>{enName}</div>
-        <div style={{ width:mob?"40px":"clamp(40px,8vw,80px)", height:"2px", background:c.color, margin:mob?"8px auto 0":"12px 0 0 auto", opacity:0.6 }}/>
-      </div>
-
-      {/* 대사창 */}
-      <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:mob?"0 12px 12px":"0 clamp(16px,4vw,40px) clamp(20px,3vw,32px)" }}>
-        <div style={{ background:"rgba(12,26,46,0.88)", backdropFilter:"blur(16px)", border:`1px solid ${c.color}22`, borderRadius:"12px", padding:mob?"14px":"clamp(16px,3vw,24px)", maxHeight:mob?"clamp(120px,22vh,160px)":"clamp(130px,22vh,180px)", overflowY:"auto" }} className="iscroll">
+      {mob ? <>
+        {/* 모바일: 세로 배치 — 이미지 위, 이름+정보 아래 */}
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", top:"clamp(40px,8vh,60px)", left:"50%", transform:"translateX(-50%)", height:"clamp(220px,38vh,320px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+          {imgSrc
+            ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
+            : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"48px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
+              </div>
+          }
+        </div>
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px", maxHeight:"clamp(180px,35vh,240px)", overflowY:"auto" }} className="iscroll">
+          <div style={{ textAlign:"center", marginBottom:"12px", animation:"fadeUp 0.6s ease 0.1s both" }}>
+            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:"#fff", letterSpacing:"1px" }}>{enName}</div>
+            <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto", opacity:0.6 }}/>
+          </div>
           {c.mystery
-            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:mob?"14px":"16px", letterSpacing:"4px", textAlign:"center" }}>■■■■■■ ■■■ ■■■■ ■■■■■■■■</div>
-            : <>
-                <div style={{ fontSize:mob?"11px":"12px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:mob?"8px":"10px" }}>{c.gem}</div>
-                <div style={{ display:"flex", gap:mob?"10px":"clamp(12px,3vw,24px)", flexWrap:"wrap", marginBottom:mob?"8px":"12px" }}>
+            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"14px", letterSpacing:"4px", textAlign:"center", padding:"16px 0" }}>■■■■■■ ■■■ ■■■■</div>
+            : <div style={{ border:`1.5px solid ${c.color}40`, borderRadius:"12px", padding:"14px", animation:"fadeUp 0.6s ease 0.2s both" }}>
+                <div style={{ fontSize:"11px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
+                <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"8px" }}>
                   {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
-                    <div key={i} style={{ flex:mob?"1 1 100%":"1 1 140px" }}>
-                      <span style={{ fontSize:mob?"9px":"10px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                      <p style={{ fontSize:mob?"12px":"clamp(12px,1.5vw,14px)", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
+                    <div key={i} style={{ flex:"1 1 100%" }}>
+                      <span style={{ fontSize:"9px", color:`${c.color}99`, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"12px", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize:mob?"13px":"clamp(13px,1.6vw,15px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:"1px solid rgba(200,168,78,0.15)", paddingTop:"10px" }}>{c.intro}</p>
-              </>
+                <p style={{ fontSize:"13px", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:`1px solid ${c.color}20`, paddingTop:"10px" }}>{c.intro}</p>
+              </div>
           }
         </div>
-      </div>
+      </> : <>
+        {/* PC: 좌측 이미지, 우측 이름+정보 박스 */}
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(40px,6vh,80px)", left:"clamp(40px,5vw,80px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+          {imgSrc
+            ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
+            : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
+              </div>
+          }
+        </div>
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", right:"clamp(40px,5vw,100px)", top:"50%", transform:"translateY(-50%)", zIndex:8, maxWidth:"clamp(280px,35vw,420px)", animation:"fadeUp 0.6s ease 0.1s both" }}>
+          <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(40px,7vw,72px)", fontWeight:900, color:"#fff", lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
+          <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px", opacity:0.6 }}/>
+          {c.mystery
+            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
+            : <div style={{ border:`1.5px solid ${c.color}40`, borderRadius:"12px", padding:"clamp(16px,2vw,24px)", maxHeight:"clamp(200px,30vh,300px)", overflowY:"auto" }} className="iscroll">
+                <div style={{ fontSize:"12px", color:c.color, fontWeight:600, letterSpacing:"1px", marginBottom:"12px" }}>{c.gem}</div>
+                <div style={{ display:"flex", gap:"clamp(10px,2vw,20px)", flexWrap:"wrap", marginBottom:"12px" }}>
+                  {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
+                    <div key={i} style={{ flex:"1 1 120px" }}>
+                      <span style={{ fontSize:"10px", color:`${c.color}99`, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"clamp(12px,1.4vw,14px)", color:"rgba(232,224,208,0.85)", lineHeight:1.6, fontWeight:300, marginTop:"2px" }}>{x.v}</p>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize:"clamp(13px,1.5vw,15px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.95)", borderTop:`1px solid ${c.color}20`, paddingTop:"10px" }}>{c.intro}</p>
+              </div>
+          }
+        </div>
+      </>}
     </div>
   );
 }
@@ -698,12 +717,12 @@ function World({ onKingdom }) {
 
         {/* ── 섬 지역: 방사형 카드 ── */}
         <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(8px,1.5vw,14px)", fontWeight:300 }}>{t.worldDesc}</p>
-        <div style={{ position:"relative", width:"clamp(240px,55vw,320px)", aspectRatio:"1/1", margin:"0 auto clamp(12px,2vw,20px)" }}>
+        <div style={{ position:"relative", width:"clamp(280px,60vw,380px)", aspectRatio:"1/1", margin:"0 auto clamp(12px,2vw,20px)" }}>
           {centerLoc && (
             <button onClick={() => setSelLoc(selLoc===0?null:0)} onMouseEnter={() => setHvLoc(0)} onMouseLeave={() => setHvLoc(-1)}
-              style={{ position:"absolute", top:"50%", left:"50%", transform:`translate(-50%,-50%) ${hvLoc===0?"scale(1.08)":"scale(1)"}`, width:"clamp(68px,17vw,90px)", height:"clamp(68px,17vw,90px)", borderRadius:"50%", border:selLoc===0?"2px solid var(--gold)":"2px solid var(--brd)", background:selLoc===0?"rgba(200,168,78,0.12)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"2px", transition:"all 0.3s", boxShadow:selLoc===0?"0 0 24px rgba(200,168,78,0.3)":"0 2px 12px rgba(0,0,0,0.06)", zIndex:5, padding:0 }}>
-              <span style={{ fontSize:"clamp(18px,4vw,24px)" }}>{centerLoc.ic}</span>
-              <span style={{ fontSize:"clamp(8px,1.2vw,10px)", color:selLoc===0?"var(--gold)":"var(--tx)", fontWeight:600 }}>{centerLoc.n}</span>
+              style={{ position:"absolute", top:"50%", left:"50%", transform:`translate(-50%,-50%) ${hvLoc===0?"scale(1.08)":"scale(1)"}`, width:"clamp(80px,20vw,105px)", height:"clamp(80px,20vw,105px)", borderRadius:"50%", border:selLoc===0?"2px solid var(--gold)":"2px solid var(--brd)", background:selLoc===0?"rgba(200,168,78,0.12)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"3px", transition:"all 0.3s", boxShadow:selLoc===0?"0 0 24px rgba(200,168,78,0.3)":"0 2px 12px rgba(0,0,0,0.06)", zIndex:5, padding:0 }}>
+              <span style={{ fontSize:"clamp(24px,5.5vw,32px)" }}>{centerLoc.ic}</span>
+              <span style={{ fontSize:"clamp(9px,1.4vw,12px)", color:selLoc===0?"var(--gold)":"var(--tx)", fontWeight:600 }}>{centerLoc.n}</span>
             </button>
           )}
           <svg viewBox="0 0 400 400" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:1 }}>
@@ -715,9 +734,9 @@ function World({ onKingdom }) {
             const idx = i + 1; const active = selLoc === idx;
             return (
               <button key={i} onClick={() => setSelLoc(active?null:idx)} onMouseEnter={() => setHvLoc(idx)} onMouseLeave={() => setHvLoc(-1)}
-                style={{ position:"absolute", left:`${cx}%`, top:`${cy}%`, transform:`translate(-50%,-50%) ${hvLoc===idx?"scale(1.1)":"scale(1)"}`, width:"clamp(52px,13vw,68px)", height:"clamp(52px,13vw,68px)", borderRadius:"50%", border:active?"2px solid var(--gold)":"1.5px solid var(--brd)", background:active?"rgba(200,168,78,0.1)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"1px", transition:"all 0.3s", boxShadow:active?"0 0 16px rgba(200,168,78,0.25)":"0 2px 8px rgba(0,0,0,0.05)", zIndex:3, padding:0 }}>
-                <span style={{ fontSize:"clamp(12px,3vw,16px)" }}>{loc.ic}</span>
-                <span style={{ fontSize:"clamp(7px,1vw,9px)", color:active?"var(--gold)":"var(--tx2)", fontWeight:500, lineHeight:1.2 }}>{loc.n}</span>
+                style={{ position:"absolute", left:`${cx}%`, top:`${cy}%`, transform:`translate(-50%,-50%) ${hvLoc===idx?"scale(1.1)":"scale(1)"}`, width:"clamp(60px,15vw,78px)", height:"clamp(60px,15vw,78px)", borderRadius:"50%", border:active?"2px solid var(--gold)":"1.5px solid var(--brd)", background:active?"rgba(200,168,78,0.1)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"2px", transition:"all 0.3s", boxShadow:active?"0 0 16px rgba(200,168,78,0.25)":"0 2px 8px rgba(0,0,0,0.05)", zIndex:3, padding:0 }}>
+                <span style={{ fontSize:"clamp(16px,3.5vw,22px)" }}>{loc.ic}</span>
+                <span style={{ fontSize:"clamp(8px,1.2vw,11px)", color:active?"var(--gold)":"var(--tx2)", fontWeight:500, lineHeight:1.2 }}>{loc.n}</span>
               </button>
             );
           })}
@@ -770,7 +789,7 @@ function World({ onKingdom }) {
             const isOpen = selEvt === i;
             return (
               <div key={i} onClick={() => setSelEvt(isOpen ? null : i)} onMouseEnter={() => setHvEvt(i)} onMouseLeave={() => setHvEvt(-1)}
-                style={{ background: isOpen ? "rgba(200,168,78,0.1)" : "var(--bgc)", border: isOpen ? "1.5px solid var(--gold)" : hvEvt===i ? "1.5px solid rgba(200,168,78,0.4)" : "1.5px solid var(--brd)", borderRadius:"14px", padding:"clamp(14px,2.5vw,20px)", cursor:"pointer", transition:"all 0.3s", transform:hvEvt===i?"translateX(4px)":"translateX(0)" }}>
+                style={{ background: isOpen ? "rgba(200,168,78,0.1)" : "var(--bgc)", border: isOpen ? "1.5px solid var(--gold)" : hvEvt===i ? "1.5px solid rgba(200,168,78,0.5)" : "1.5px solid var(--brd)", borderRadius:"14px", padding:"clamp(14px,2.5vw,20px)", cursor:"pointer", transition:"all 0.3s" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
                   <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
                   <div style={{ flex:1 }}>
