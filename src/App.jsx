@@ -315,13 +315,11 @@ function TitleSVG({ dark = false }) {
 
 /* 스크롤 다운 */
 function ScrollDown() {
-  const t = useT();
   return (
-    <div style={{ position:"absolute", bottom:"clamp(8px,1.5vw,14px)", left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"4px", zIndex:50, pointerEvents:"none" }}>
-      <span style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"var(--txd)", letterSpacing:"3px", fontFamily:"var(--fd)", fontWeight:600 }}>{t.scroll}</span>
-      <svg width="16" height="24" viewBox="0 0 16 24" fill="none" style={{ animation:"scrollBounce 2s ease-in-out infinite" }}>
-        <path d="M8 4 L8 18" stroke="var(--gold)" strokeWidth="1.2" strokeLinecap="round" opacity="0.5"/>
-        <path d="M2 14 L8 20 L14 14" stroke="var(--gold)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+    <div style={{ position:"absolute", bottom:"clamp(10px,2vw,18px)", left:"50%", transform:"translateX(-50%)", zIndex:50, pointerEvents:"none" }}>
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none" style={{ animation:"scrollBounce 2s ease-in-out infinite" }}>
+        <path d="M12 6 L12 24" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+        <path d="M4 19 L12 27 L20 19" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
       </svg>
     </div>
   );
