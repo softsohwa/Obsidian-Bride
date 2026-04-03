@@ -481,7 +481,7 @@ function CharModal({ c, onClose }) {
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"#0C1A2E", animation:"fadeIn 0.3s ease", overflow:"hidden" }}>
       {/* 고스트 이미지 */}
-      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:mob?"-10%":"-5%", left:mob?"50%":"10%", transform:mob?"translateX(-50%)":"none", height:mob?"90%":"115%", objectFit:"contain", opacity:0.12, pointerEvents:"none" }}/>}
+      {imgSrc && <img src={imgSrc} alt="" style={{ position:"absolute", bottom:mob?"-10%":"-5%", left:mob?"50%":"10%", transform:mob?"translateX(-50%)":"none", height:mob?"90%":"115%", objectFit:"contain", opacity:0.2, pointerEvents:"none" }}/>}
       {/* 그라데이션 */}
       <div style={{ position:"absolute", inset:0, background:mob
         ? "linear-gradient(180deg,rgba(12,26,46,0.5) 0%,transparent 25%,rgba(12,26,46,0.4) 55%,rgba(12,26,46,0.95) 80%)"
@@ -500,7 +500,7 @@ function CharModal({ c, onClose }) {
               </div>
           }
         </div>
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px", maxHeight:"clamp(180px,35vh,240px)", overflowY:"auto" }} className="iscroll">
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px" }}>
           <div style={{ textAlign:"center", marginBottom:"12px", animation:"fadeUp 0.6s ease 0.1s both" }}>
             <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:c.color, letterSpacing:"1px" }}>{enName}</div>
             <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto" }}/>
@@ -539,7 +539,7 @@ function CharModal({ c, onClose }) {
             <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px" }}/>
             {c.mystery
               ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
-              : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)", maxHeight:"clamp(220px,32vh,320px)", overflowY:"auto" }} className="iscroll">
+              : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)" }}>
                   <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
                   <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
                     {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
@@ -572,7 +572,7 @@ function Chars({ onOpen }) {
   const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
   const cM = mob ? "clamp(-22px,-5vw,-32px)" : "clamp(-60px,-12vw,-85px)";
   const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
-  const nBot = mob ? "-20px" : "-28px";
+  const nBot = mob ? "-14px" : "-18px";
   const hvUp = mob ? "translateY(-10px) scale(1.04)" : "translateY(-20px) scale(1.06)";
   const boW = mob ? "clamp(60px,16vw,80px)" : "clamp(120px,20vw,160px)";
 
@@ -581,6 +581,9 @@ function Chars({ onOpen }) {
   const boHovered = hv === 99;
   const row1 = allChars.slice(0, 4);
   const row2 = allChars.slice(4, 8);
+
+  const CARD_COLORS = {"#A0E88C":"#2E7A1E","#E0E0F0":"#6A6A7A","#E0A050":"#D07020","#A8B4C0":"#1A1A1A","#FF8070":"#D04030","#D0B8E8":"#7A50A0","#4A6AE0":"#3050B0","#D4A843":"#A07820"};
+  const cardColor = (c) => CARD_COLORS[c.color] || c.color;
 
   const renderChar = (c, idx) => {
     const isRevealed = revealed.has(idx);
@@ -608,7 +611,7 @@ function Chars({ onOpen }) {
             </div>
         }
         <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-          <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color: isHovered ? c.color : "var(--tx)", transition:"color 0.3s", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{enName}</div>
+          <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color:cardColor(c), textTransform:"uppercase", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{enName}</div>
         </div>
       </div>
     );
@@ -622,37 +625,34 @@ function Chars({ onOpen }) {
       </div>
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(8px,1.5vw,16px) clamp(12px,3vw,16px) 60px", gap:"0" }} className="iscroll">
 
-        {/* 블루 아울 — MC, 상단 단독 배치 */}
-        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", marginBottom:mob?"12px":"20px" }}>
+        {/* 출연자 1열 (4명) */}
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"24px":"36px" }}>
+          {row1.map((c, i) => renderChar(c, i))}
+        </div>
+
+        {/* 블루 아울 — 두 줄 사이, 가로 배치 */}
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:"100%", margin:mob?"6px 0 4px":"10px 0 6px" }}>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)" }}/>
+          <span style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(8px,2.2vw,10px)":"clamp(10px,1.4vw,13px)", color:"#3A8BBF", letterSpacing:"3px", fontWeight:700, flexShrink:0, textTransform:"uppercase", minWidth:mob?"40px":"60px", textAlign:"right" }}>MC</span>
           <div
             onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
             style={{
-              width:boW, aspectRatio:"2/3", cursor:"pointer", position:"relative",
+              width:mob?"clamp(36px,10vw,48px)":"clamp(48px,8vw,64px)", aspectRatio:"1/1", cursor:"pointer", flexShrink:0,
               filter: boHovered
-                ? "drop-shadow(0 8px 16px rgba(0,0,0,0.25)) drop-shadow(0 0 12px rgba(108,190,235,0.4))"
-                : boRevealed ? "drop-shadow(0 4px 8px rgba(108,190,235,0.2))" : "drop-shadow(0 2px 6px rgba(0,0,0,0.2))",
-              transform: boHovered ? hvUp : "translateY(0) scale(1)",
+                ? "drop-shadow(0 4px 10px rgba(108,190,235,0.4))"
+                : boRevealed ? "drop-shadow(0 2px 6px rgba(108,190,235,0.2))" : "drop-shadow(0 1px 4px rgba(0,0,0,0.2))",
+              transform: boHovered ? "scale(1.12)" : "scale(1)",
               transition: "all 0.4s cubic-bezier(.34,1.56,.64,1)",
             }}>
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-            <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: boRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-              <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color:"#6CBEEB" }}>Blue Owl</div>
-            </div>
           </div>
-          <div style={{ fontSize:mob?"9px":"11px", color:"var(--gold)", letterSpacing:"3px", fontWeight:600, marginTop:mob?"24px":"32px" }}>MC</div>
-        </div>
-
-        {/* 구분선 */}
-        <div style={{ width:"clamp(40px,12vw,80px)", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:mob?"8px auto 16px":"12px auto 24px" }}/>
-
-        {/* 출연자 1열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"28px":"40px" }}>
-          {row1.map((c, i) => renderChar(c, i))}
+          <span style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(8px,2.2vw,10px)":"clamp(10px,1.4vw,13px)", fontWeight:400, color:"#3A8BBF", flexShrink:0, textTransform:"uppercase", minWidth:mob?"40px":"60px", textAlign:"left" }}>Blue Owl</span>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
         </div>
 
         {/* 출연자 2열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginTop:mob?"8px":"12px" }}>
           {row2.map((c, i) => renderChar(c, i + 4))}
         </div>
 
