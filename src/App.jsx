@@ -570,9 +570,9 @@ function Chars({ onOpen }) {
 
   const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); s.add(idx); return s; }); };
   const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
-  const cM = mob ? "clamp(-22px,-5vw,-32px)" : "clamp(-60px,-12vw,-85px)";
+  const cM = mob ? "clamp(-25px,-6vw,-36px)" : "clamp(-66px,-14vw,-94px)";
   const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
-  const nBot = mob ? "-14px" : "-18px";
+  const nBot = mob ? "-7px" : "-9px";
   const hvUp = mob ? "translateY(-10px) scale(1.04)" : "translateY(-20px) scale(1.06)";
   const boW = mob ? "clamp(60px,16vw,80px)" : "clamp(120px,20vw,160px)";
 
@@ -623,22 +623,17 @@ function Chars({ onOpen }) {
         <STitle sub={t.charS} main={t.charT}/>
         <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-8px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
-      <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(8px,1.5vw,16px) clamp(12px,3vw,16px) 60px", gap:"0" }} className="iscroll">
+      <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(4px,1vw,10px) clamp(12px,3vw,16px) 40px", gap:"0" }} className="iscroll">
 
-        {/* 출연자 1열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"16px":"24px" }}>
-          {row1.map((c, i) => renderChar(c, i))}
-        </div>
-
-        {/* 블루 아울 — 두 줄 사이, 가로 배치 */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:"100%", margin:mob?"2px 0 2px":"4px 0 4px" }}>
+        {/* 블루 아울 — 1열 위, 가로 배치 */}
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:mob?"clamp(300px,85vw,400px)":"clamp(580px,80vw,820px)", margin:mob?"0 auto 6px":"0 auto 10px" }}>
           <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)" }}/>
-          <span style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(8px,2.2vw,10px)":"clamp(10px,1.4vw,13px)", color:"#3A8BBF", letterSpacing:"3px", fontWeight:700, flexShrink:0, textTransform:"uppercase", minWidth:mob?"40px":"60px", textAlign:"right" }}>MC</span>
+          <span style={{ fontFamily:"var(--fd)", fontSize:nSize, color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, flexShrink:0, textTransform:"uppercase" }}>MC</span>
           <div
             onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
             style={{
-              width:mob?"clamp(36px,10vw,48px)":"clamp(48px,8vw,64px)", aspectRatio:"1/1", cursor:"pointer", flexShrink:0,
+              width:mob?"clamp(32px,9vw,42px)":"clamp(44px,7vw,56px)", aspectRatio:"1/1", cursor:"pointer", flexShrink:0,
               filter: boHovered
                 ? "drop-shadow(0 4px 10px rgba(108,190,235,0.4))"
                 : boRevealed ? "drop-shadow(0 2px 6px rgba(108,190,235,0.2))" : "drop-shadow(0 1px 4px rgba(0,0,0,0.2))",
@@ -647,12 +642,17 @@ function Chars({ onOpen }) {
             }}>
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
           </div>
-          <span style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(8px,2.2vw,10px)":"clamp(10px,1.4vw,13px)", fontWeight:400, color:"#3A8BBF", flexShrink:0, textTransform:"uppercase", minWidth:mob?"40px":"60px", textAlign:"left" }}>Blue Owl</span>
+          <span style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:"#3A8BBF", flexShrink:0, textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
           <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
         </div>
 
+        {/* 출연자 1열 (4명) */}
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"10px":"16px" }}>
+          {row1.map((c, i) => renderChar(c, i))}
+        </div>
+
         {/* 출연자 2열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginTop:mob?"6px":"8px" }}>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
           {row2.map((c, i) => renderChar(c, i + 4))}
         </div>
 
@@ -726,14 +726,16 @@ function World({ onKingdom }) {
       <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.worldS} main={t.worldT}/>
         {/* 탭 바 — 성벽 디자인 */}
-        <div style={{ display:"flex", justifyContent:"center", gap:0, marginTop:mob?"-4px":"-8px", marginBottom:mob?"8px":"12px" }}>
+        <div style={{ display:"flex", justifyContent:"center", gap:mob?"4px":"6px", marginTop:mob?"-4px":"-8px", marginBottom:mob?"8px":"12px" }}>
           {tabs.map((tab, i) => {
             const act = page === i;
             const bc = act ? "var(--gold)" : "rgba(200,168,78,0.35)";
             return (
               <button key={i} onClick={() => setPage(i)}
-                style={{ position:"relative", padding:mob?"10px 16px":"12px 24px", paddingTop:mob?"16px":"20px", background:act?"rgba(200,168,78,0.1)":"transparent", border:`2px solid ${bc}`, borderRadius:0, cursor:"pointer", transition:"all 0.3s", borderLeft:i>0?"none":undefined }}>
-                {[25,65].map(p => <div key={p} style={{ position:"absolute", top:"-2px", left:`${p-8}%`, width:"16%", height:"8px", background:bc, transition:"background 0.3s" }}/>)}
+                style={{ position:"relative", padding:mob?"6px 14px":"8px 22px", paddingTop:mob?"12px":"14px", background:act?"rgba(200,168,78,0.1)":"transparent", border:"none", borderBottom:`2px solid ${bc}`, borderLeft:`2px solid ${bc}`, borderRight:`2px solid ${bc}`, borderRadius:0, cursor:"pointer", transition:"all 0.3s" }}>
+                <svg style={{ position:"absolute", top:0, left:"-2px", width:"calc(100% + 4px)", height:"8px" }} viewBox="0 0 120 8" preserveAspectRatio="none">
+                  <path d={`M0,8 L0,2 L10,2 L10,8 L20,8 L20,2 L30,2 L30,8 L40,8 L40,2 L50,2 L50,8 L60,8 L60,2 L70,2 L70,8 L80,8 L80,2 L90,2 L90,8 L100,8 L100,2 L110,2 L110,8 L120,8`} fill="none" stroke={act?"var(--gold)":"rgba(200,168,78,0.35)"} strokeWidth="1.5" vectorEffect="non-scaling-stroke"/>
+                </svg>
                 <span style={{ fontFamily:"var(--fk)", fontSize:mob?"12px":"14px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px" }}>{tab.label}</span>
               </button>
             );
@@ -762,8 +764,8 @@ function World({ onKingdom }) {
                       <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
                     </div>
                     <div style={{ padding:"clamp(6px,1vw,10px) clamp(8px,1.5vw,12px)" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.6vw,14px)", fontWeight:700, color:"var(--gold)" }}>{k.n}</span>
-                      <span style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, marginLeft:"6px" }}>{k.d}</span>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.7vw,15px)", fontWeight:700, color:"var(--gold)" }}>{k.n}</span>
+                      <span style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"var(--tx2)", fontWeight:300, marginLeft:"6px" }}>{k.d}</span>
                     </div>
                   </div>
                 ))}
@@ -818,7 +820,6 @@ function World({ onKingdom }) {
           {/* ── 페이지 3: 이벤트 ── */}
           <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
             <div style={{ maxWidth:"520px", margin:"0 auto" }}>
-              <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(12px,2vw,20px)", fontWeight:300 }}>{t.evtTap}</p>
               <div style={{ display:"flex", flexDirection:"column", gap:"clamp(8px,1.5vw,12px)" }}>
                 {events.map((ev, i) => {
                   const isOpen = selEvt === i;
@@ -846,10 +847,10 @@ function World({ onKingdom }) {
 
         {/* 좌우 화살표 */}
         {page > 0 && (
-          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"8px":"calc(50% - clamp(180px,34vw,340px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
+          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
         )}
         {page < 2 && (
-          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"8px":"calc(50% - clamp(180px,34vw,340px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
+          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
         )}
       </div>
 
@@ -869,9 +870,12 @@ function World({ onKingdom }) {
 function System() {
   const t = useT();
   return (
-    <div style={{ height:"100%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"clamp(32px,5vw,44px) clamp(12px,3vw,16px)", background:"var(--bg)" }}>
-      <div style={{ maxWidth:"680px", width:"100%" }}>
+    <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg)" }}>
+      <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.sysS} main={t.sysT}/>
+      </div>
+      <div style={{ flex:1, overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
+      <div style={{ maxWidth:"680px", width:"100%", margin:"0 auto" }}>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(min(240px,100%),1fr))", gap:"14px", marginBottom:"clamp(28px,5vw,44px)" }}>
           {[{ l:t.sm, d:t.smd, ic:"📖" },{ l:t.fm, d:t.fmd, ic:"💎" }].map((m,i) => (
             <div key={i} style={{ padding:"clamp(18px,3vw,24px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px" }}>
@@ -881,15 +885,16 @@ function System() {
             </div>
           ))}
         </div>
-        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.3vw,12px)", letterSpacing:"4px", color:"var(--gold)", textAlign:"center", marginBottom:"16px", fontWeight:600 }}>{t.cmdL}</div>
+        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.6vw,15px)", letterSpacing:"4px", color:"var(--gold)", textAlign:"center", marginBottom:"16px", fontWeight:600 }}>{t.cmdL}</div>
         <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
           {[{ c:t.c1, d:t.c1d },{ c:t.c2, d:t.c2d },{ c:t.c3, d:t.c3d },{ c:t.c4, d:t.c4d }].map((x,i) => (
             <div key={i} style={{ display:"flex", gap:"clamp(8px,2vw,14px)", alignItems:"baseline", padding:"12px clamp(12px,2vw,16px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"8px", flexWrap:"wrap" }}>
-              <code style={{ fontFamily:"monospace", fontSize:"clamp(12px,1.5vw,14px)", color:"var(--gold)", fontWeight:600, background:"rgba(200,168,78,0.08)", padding:"3px 8px", borderRadius:"4px", flexShrink:0 }}>{x.c}</code>
-              <span style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.6 }}>{x.d}</span>
+              <code style={{ fontFamily:"var(--fk)", fontSize:"clamp(13px,1.6vw,15px)", color:"var(--gold)", fontWeight:400, background:"rgba(200,168,78,0.08)", padding:"3px 8px", borderRadius:"4px", flexShrink:0 }}>{x.c}</code>
+              <span style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.6 }}>{x.d}</span>
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );
