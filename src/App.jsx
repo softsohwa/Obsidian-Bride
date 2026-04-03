@@ -70,7 +70,7 @@ const T = {
     c2:"!챕터", c2d:"현재 챕터 진행도와 다음 챕터 조건을 확인",
     c3:"!지도", c3d:"보석함 섬 지역과 9왕국 정보를 출력",
     c4:"!디버그", c4d:"이미지 출력 오류를 점검하고 수정·재출력",
-    ctaT:"보석함에 참가하시겠습니까?", ctaB:"입장하기", ctaN:"URL 추후 연결 예정",
+    ctaT:"당신은 어떤 보석인가요?", ctaB:"입장하기", ctaN:"URL 추후 연결 예정",
     credit:"흑요석의 신부",
     per:"성격", tone:"말투", goal:"목표",
     scroll:"아래로 스크롤",
@@ -88,7 +88,7 @@ const T = {
     c2:"!chapter", c2d:"Check current chapter progress and next chapter conditions",
     c3:"!map", c3d:"Display Jewel Box island locations and Nine Kingdoms info",
     c4:"!debug", c4d:"Fix image output errors",
-    ctaT:"Will you enter the Jewel Box?", ctaB:"Enter", ctaN:"URL coming soon",
+    ctaT:"What gem are you?", ctaB:"Enter", ctaN:"URL coming soon",
     credit:"The Obsidian Bride",
     per:"Personality", tone:"Tone", goal:"Goal",
     scroll:"Scroll Down",
@@ -106,7 +106,7 @@ const T = {
     c2:"!チャプター", c2d:"現在のチャプター進行度と次の条件を確認",
     c3:"!マップ", c3d:"宝石箱の島の施設と九王国の情報を表示",
     c4:"!デバッグ", c4d:"画像出力エラーの修正",
-    ctaT:"宝石箱に参加しますか？", ctaB:"入場する", ctaN:"URLは後日追加予定",
+    ctaT:"あなたはどんな宝石ですか？", ctaB:"入場する", ctaN:"URLは後日追加予定",
     credit:"黒曜石の花嫁",
     per:"性格", tone:"口調", goal:"目標",
     scroll:"下にスクロール",
@@ -605,13 +605,13 @@ function Chars({ onOpen }) {
           zIndex: isHovered ? 20 : idx % 4,
         }}>
         {c.img
-          ? <img src={c.img} alt={c.mystery?"???":c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
-          : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
+          ? <img src={c.img} alt={c.mystery?"???":c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", transform:"scale(0.9)", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
+          : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", transform:"scale(0.9)", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
               <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,6vw,42px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.mystery?"?":c.gem[0]}</span>
             </div>
         }
         <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
-          <div style={{ fontFamily:"var(--fs)", fontSize:nSize, fontWeight:400, color:cardColor(c), textTransform:"uppercase", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{enName}</div>
+          <div style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:cardColor(c), textTransform:"uppercase", letterSpacing:"1px", textShadow:"0 1px 3px rgba(232,224,208,0.8)" }}>{enName}</div>
         </div>
       </div>
     );
@@ -626,12 +626,12 @@ function Chars({ onOpen }) {
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(8px,1.5vw,16px) clamp(12px,3vw,16px) 60px", gap:"0" }} className="iscroll">
 
         {/* 출연자 1열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"24px":"36px" }}>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginBottom:mob?"16px":"24px" }}>
           {row1.map((c, i) => renderChar(c, i))}
         </div>
 
         {/* 블루 아울 — 두 줄 사이, 가로 배치 */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:"100%", margin:mob?"6px 0 4px":"10px 0 6px" }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:"100%", margin:mob?"2px 0 2px":"4px 0 4px" }}>
           <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)" }}/>
           <span style={{ fontFamily:"var(--fs)", fontSize:mob?"clamp(8px,2.2vw,10px)":"clamp(10px,1.4vw,13px)", color:"#3A8BBF", letterSpacing:"3px", fontWeight:700, flexShrink:0, textTransform:"uppercase", minWidth:mob?"40px":"60px", textAlign:"right" }}>MC</span>
           <div
@@ -652,7 +652,7 @@ function Chars({ onOpen }) {
         </div>
 
         {/* 출연자 2열 (4명) */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginTop:mob?"8px":"12px" }}>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", marginTop:mob?"6px":"8px" }}>
           {row2.map((c, i) => renderChar(c, i + 4))}
         </div>
 
@@ -725,15 +725,19 @@ function World({ onKingdom }) {
       {/* 헤더 + 탭 */}
       <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.worldS} main={t.worldT}/>
-        {/* 탭 바 */}
-        <div style={{ display:"flex", justifyContent:"center", gap:mob?"6px":"10px", marginTop:mob?"-8px":"-12px", marginBottom:mob?"8px":"12px" }}>
-          {tabs.map((tab, i) => (
-            <button key={i} onClick={() => setPage(i)}
-              style={{ padding:mob?"6px 14px":"8px 20px", background:page===i?"rgba(200,168,78,0.12)":"transparent", border:page===i?"1.5px solid var(--gold)":"1.5px solid var(--brd)", borderRadius:"20px", cursor:"pointer", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.3s" }}>
-              <span style={{ fontSize:mob?"11px":"13px" }}>{tab.icon}</span>
-              <span style={{ fontFamily:"var(--fd)", fontSize:mob?"12px":"14px", fontWeight:page===i?700:500, color:page===i?"var(--gold)":"var(--tx2)", letterSpacing:"1px" }}>{tab.label}</span>
-            </button>
-          ))}
+        {/* 탭 바 — 성벽 디자인 */}
+        <div style={{ display:"flex", justifyContent:"center", gap:0, marginTop:mob?"-4px":"-8px", marginBottom:mob?"8px":"12px" }}>
+          {tabs.map((tab, i) => {
+            const act = page === i;
+            const bc = act ? "var(--gold)" : "rgba(200,168,78,0.35)";
+            return (
+              <button key={i} onClick={() => setPage(i)}
+                style={{ position:"relative", padding:mob?"10px 16px":"12px 24px", paddingTop:mob?"16px":"20px", background:act?"rgba(200,168,78,0.1)":"transparent", border:`2px solid ${bc}`, borderRadius:0, cursor:"pointer", transition:"all 0.3s", borderLeft:i>0?"none":undefined }}>
+                {[25,65].map(p => <div key={p} style={{ position:"absolute", top:"-2px", left:`${p-8}%`, width:"16%", height:"8px", background:bc, transition:"background 0.3s" }}/>)}
+                <span style={{ fontFamily:"var(--fk)", fontSize:mob?"12px":"14px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px" }}>{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -757,9 +761,9 @@ function World({ onKingdom }) {
                       }
                       <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
                     </div>
-                    <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
-                      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.8vw,15px)", fontWeight:700, color:"var(--gold)", marginBottom:"3px", lineHeight:1.3 }}>{k.n}</div>
-                      <p style={{ fontSize:"clamp(10px,1.4vw,12px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.5 }}>{k.d}</p>
+                    <div style={{ padding:"clamp(6px,1vw,10px) clamp(8px,1.5vw,12px)" }}>
+                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.6vw,14px)", fontWeight:700, color:"var(--gold)" }}>{k.n}</span>
+                      <span style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, marginLeft:"6px" }}>{k.d}</span>
                     </div>
                   </div>
                 ))}
@@ -795,15 +799,19 @@ function World({ onKingdom }) {
                   );
                 })}
               </div>
-              {selLoc !== null && (
-                <div style={{ maxWidth:"340px", margin:"-4px auto 0", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", animation:"fadeUp 0.3s ease" }}>
+              <div style={{ maxWidth:"340px", margin:"-4px auto 0", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", animation:selLoc!==null?"fadeUp 0.3s ease":"none" }}>
+                {selLoc !== null ? (<>
                   <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"4px" }}>
                     <span style={{ fontSize:"16px" }}>{locs[selLoc].ic}</span>
                     <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
                   </div>
                   <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
-                </div>
-              )}
+                </>) : (
+                  <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--txd)", textAlign:"center", fontWeight:300, fontStyle:"italic" }}>{
+                    { ko:"장소를 클릭하세요.", en:"Click a location.", ja:"場所をクリックしてください。" }[l]
+                  }</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -838,10 +846,10 @@ function World({ onKingdom }) {
 
         {/* 좌우 화살표 */}
         {page > 0 && (
-          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"4px":"12px", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
+          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"8px":"calc(50% - clamp(180px,34vw,340px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
         )}
         {page < 2 && (
-          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"4px":"12px", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
+          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"8px":"calc(50% - clamp(180px,34vw,340px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
         )}
       </div>
 
