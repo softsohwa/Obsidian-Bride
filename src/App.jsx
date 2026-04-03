@@ -286,10 +286,10 @@ function STitle({ sub, main }) {
   const l = useLang();
   const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   return (
-    <div style={{ textAlign:"center", marginBottom:"clamp(24px,4vw,40px)" }}>
-      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"12px", fontWeight:600 }}>{sub}</div>
-      <h2 style={{ fontFamily:hf, fontSize:"clamp(24px,5vw,44px)", fontWeight:700, lineHeight:1.3, color:"var(--midnight)" }}>{main}</h2>
-      <div style={{ width:"36px", height:"1px", margin:"18px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
+    <div style={{ textAlign:"center", marginBottom:"clamp(12px,2vw,20px)" }}>
+      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"3px", fontWeight:600 }}>{sub}</div>
+      <h2 style={{ fontFamily:hf, fontSize:"clamp(20px,4vw,36px)", fontWeight:700, lineHeight:1.3, color:"var(--gold)" }}>{main}</h2>
+      <div style={{ width:"36px", height:"1px", margin:"3px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
     </div>
   );
 }
@@ -619,9 +619,9 @@ function Chars({ onOpen }) {
 
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg2)" }}>
-      <div style={{ padding:"clamp(48px,6vw,64px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
+      <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.charS} main={t.charT}/>
-        <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-20px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
+        <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-8px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(8px,1.5vw,16px) clamp(12px,3vw,16px) 60px", gap:"0" }} className="iscroll">
 
@@ -700,6 +700,7 @@ function KingdomModal({ k, onClose }) {
    ═══════════════════════════════════════════ */
 function World({ onKingdom }) {
   const t = useT(), l = useLang();
+  const mob = useIsMobile();
   const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   const locs = LOCATIONS[l], kings = KINGDOMS[l], events = EVENTS[l];
   const [selLoc, setSelLoc] = useState(null);
@@ -707,113 +708,47 @@ function World({ onKingdom }) {
   const [hvK, setHvK] = useState(-1);
   const [selEvt, setSelEvt] = useState(null);
   const [hvEvt, setHvEvt] = useState(-1);
-  const [showKings, setShowKings] = useState(false);
+  const [page, setPage] = useState(0);
 
   const centerLoc = locs.find(l => l.center);
   const outerLocs = locs.filter(l => !l.center);
   const locAngles = [0, 60, 120, 180, 240, 300];
 
+  const tabs = [
+    { label:{ ko:"9왕국", en:"Kingdoms", ja:"九王国" }[l], icon:"👑" },
+    { label:{ ko:"섬안내", en:"Island", ja:"島案内" }[l], icon:"🏝" },
+    { label:{ ko:"이벤트", en:"Events", ja:"イベント" }[l], icon:"🎭" },
+  ];
+
   return (
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg)" }}>
-      <div style={{ padding:"clamp(48px,6vw,64px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
+      {/* 헤더 + 탭 */}
+      <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.worldS} main={t.worldT}/>
-      </div>
-      <div style={{ flex:1, overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px", maxWidth:"760px", margin:"0 auto", width:"100%" }} className="iscroll">
-
-        {/* ── 섬 지역: 방사형 카드 ── */}
-        <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(8px,1.5vw,14px)", fontWeight:300 }}>{t.worldDesc}</p>
-        <div style={{ position:"relative", width:"clamp(280px,60vw,380px)", aspectRatio:"1/1", margin:"0 auto clamp(12px,2vw,20px)" }}>
-          {centerLoc && (
-            <button onClick={() => setSelLoc(selLoc===0?null:0)} onMouseEnter={() => setHvLoc(0)} onMouseLeave={() => setHvLoc(-1)}
-              style={{ position:"absolute", top:"50%", left:"50%", transform:`translate(-50%,-50%) ${hvLoc===0?"scale(1.08)":"scale(1)"}`, width:"clamp(80px,20vw,105px)", height:"clamp(80px,20vw,105px)", borderRadius:"50%", border:selLoc===0?"2px solid var(--gold)":"2px solid var(--brd)", background:selLoc===0?"rgba(200,168,78,0.12)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"3px", transition:"all 0.3s", boxShadow:selLoc===0?"0 0 24px rgba(200,168,78,0.3)":"0 2px 12px rgba(0,0,0,0.06)", zIndex:5, padding:0 }}>
-              <span style={{ fontSize:"clamp(24px,5.5vw,32px)" }}>{centerLoc.ic}</span>
-              <span style={{ fontSize:"clamp(9px,1.4vw,12px)", color:selLoc===0?"var(--gold)":"var(--tx)", fontWeight:600 }}>{centerLoc.n}</span>
+        {/* 탭 바 */}
+        <div style={{ display:"flex", justifyContent:"center", gap:mob?"6px":"10px", marginTop:mob?"-8px":"-12px", marginBottom:mob?"8px":"12px" }}>
+          {tabs.map((tab, i) => (
+            <button key={i} onClick={() => setPage(i)}
+              style={{ padding:mob?"6px 14px":"8px 20px", background:page===i?"rgba(200,168,78,0.12)":"transparent", border:page===i?"1.5px solid var(--gold)":"1.5px solid var(--brd)", borderRadius:"20px", cursor:"pointer", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.3s" }}>
+              <span style={{ fontSize:mob?"11px":"13px" }}>{tab.icon}</span>
+              <span style={{ fontFamily:"var(--fd)", fontSize:mob?"12px":"14px", fontWeight:page===i?700:500, color:page===i?"var(--gold)":"var(--tx2)", letterSpacing:"1px" }}>{tab.label}</span>
             </button>
-          )}
-          <svg viewBox="0 0 400 400" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:1 }}>
-            {outerLocs.map((_, i) => { const rad = (locAngles[i] - 90) * Math.PI / 180; return <line key={i} x1="200" y1="200" x2={200 + 140 * Math.cos(rad)} y2={200 + 140 * Math.sin(rad)} stroke="var(--gold)" strokeWidth="0.5" opacity="0.15"/>; })}
-          </svg>
-          {outerLocs.map((loc, i) => {
-            const rad = (locAngles[i] - 90) * Math.PI / 180; const r = 38;
-            const cx = 50 + r * Math.cos(rad), cy = 50 + r * Math.sin(rad);
-            const idx = i + 1; const active = selLoc === idx;
-            return (
-              <button key={i} onClick={() => setSelLoc(active?null:idx)} onMouseEnter={() => setHvLoc(idx)} onMouseLeave={() => setHvLoc(-1)}
-                style={{ position:"absolute", left:`${cx}%`, top:`${cy}%`, transform:`translate(-50%,-50%) ${hvLoc===idx?"scale(1.1)":"scale(1)"}`, width:"clamp(60px,15vw,78px)", height:"clamp(60px,15vw,78px)", borderRadius:"50%", border:active?"2px solid var(--gold)":"1.5px solid var(--brd)", background:active?"rgba(200,168,78,0.1)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"2px", transition:"all 0.3s", boxShadow:active?"0 0 16px rgba(200,168,78,0.25)":"0 2px 8px rgba(0,0,0,0.05)", zIndex:3, padding:0 }}>
-                <span style={{ fontSize:"clamp(16px,3.5vw,22px)" }}>{loc.ic}</span>
-                <span style={{ fontSize:"clamp(8px,1.2vw,11px)", color:active?"var(--gold)":"var(--tx2)", fontWeight:500, lineHeight:1.2 }}>{loc.n}</span>
-              </button>
-            );
-          })}
+          ))}
         </div>
-        {selLoc !== null && (
-          <div style={{ maxWidth:"340px", margin:"-4px auto clamp(16px,3vw,24px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", animation:"fadeUp 0.3s ease" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"4px" }}>
-              <span style={{ fontSize:"16px" }}>{locs[selLoc].ic}</span>
-              <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
-            </div>
-            <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
-          </div>
-        )}
-
-        {/* ── 구분선 ── */}
-        <div style={{ width:"40px", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:"clamp(16px,3vw,24px) auto" }}/>
-
-        {/* ── 국가 개요 버튼 ── */}
-        <div style={{ textAlign:"center", marginBottom:"clamp(20px,4vw,32px)" }}>
-          <button onClick={() => setShowKings(true)} onMouseEnter={e => e.target.style.background="rgba(200,168,78,0.08)"} onMouseLeave={e => e.target.style.background="transparent"}
-            style={{ padding:"clamp(10px,1.8vw,14px) clamp(24px,4vw,36px)", background:"transparent", border:"1.5px solid var(--gold)", borderRadius:"28px", cursor:"pointer", transition:"all 0.3s", display:"inline-flex", alignItems:"center", gap:"8px" }}>
-            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,2vw,16px)", fontWeight:600, color:"var(--gold)", letterSpacing:"2px" }}>{t.kingdoms}</span>
-            <span style={{ fontSize:"12px", color:"var(--gold)" }}>▶</span>
-          </button>
-        </div>
-
-        {/* ── 구분선 ── */}
-        <div style={{ width:"40px", height:"1px", background:"linear-gradient(90deg,transparent,var(--gold),transparent)", margin:"0 auto clamp(20px,4vw,32px)" }}/>
-
-        {/* ── 이벤트: 카드형 아코디언 ── */}
-        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", textAlign:"center", marginBottom:"12px", fontWeight:600 }}>{t.evtS}</div>
-        <h3 style={{ fontFamily:hf, fontSize:"clamp(18px,3vw,24px)", fontWeight:700, textAlign:"center", color:"var(--midnight)", marginBottom:"clamp(16px,3vw,24px)" }}>{t.evtT}</h3>
-        <div style={{ display:"flex", flexDirection:"column", gap:"clamp(8px,1.5vw,12px)", maxWidth:"520px", margin:"0 auto" }}>
-          {events.map((ev, i) => {
-            const isOpen = selEvt === i;
-            return (
-              <div key={i} onClick={() => setSelEvt(isOpen ? null : i)} onMouseEnter={() => setHvEvt(i)} onMouseLeave={() => setHvEvt(-1)}
-                style={{ background: isOpen ? "rgba(200,168,78,0.1)" : "var(--bgc)", border: isOpen ? "1.5px solid var(--gold)" : hvEvt===i ? "1.5px solid rgba(200,168,78,0.5)" : "1.5px solid var(--brd)", borderRadius:"14px", padding:"clamp(14px,2.5vw,20px)", cursor:"pointer", transition:"all 0.3s" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
-                  <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
-                  <div style={{ flex:1 }}>
-                    <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
-                    {isOpen && (
-                      <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
-                    )}
-                  </div>
-                  <div style={{ fontSize:"12px", color:"var(--gold)", opacity:isOpen?1:0.4, transition:"all 0.3s", transform:isOpen?"rotate(90deg)":"rotate(0)", flexShrink:0 }}>▶</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
       </div>
 
-      {/* 9왕국 개요 모달 */}
-      {showKings && (
-        <div onClick={() => setShowKings(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(12,26,46,0.8)", backdropFilter:"blur(8px)", display:"flex", alignItems:"center", justifyContent:"center", animation:"fadeIn 0.3s ease", padding:"clamp(12px,3vw,20px)" }}>
-          <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"640px", maxHeight:"85vh", background:"var(--bg)", borderRadius:"16px", overflow:"hidden", animation:"fadeUp 0.4s ease", display:"flex", flexDirection:"column" }}>
-            <div style={{ padding:"clamp(20px,3vw,28px) clamp(20px,3vw,28px) 0", flexShrink:0, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-              <div>
-                <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", fontWeight:600 }}>{t.kingdomsS}</div>
-                <h3 style={{ fontFamily:hf, fontSize:"clamp(20px,3.5vw,28px)", fontWeight:700, color:"var(--midnight)", marginTop:"4px" }}>{t.kingdoms}</h3>
-              </div>
-              <button onClick={() => setShowKings(false)} style={{ background:"rgba(0,0,0,0.05)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
-            </div>
-            <div style={{ flex:1, overflowY:"auto", padding:"clamp(16px,2vw,24px)" }} className="iscroll">
+      {/* 슬라이드 컨테이너 */}
+      <div style={{ flex:1, overflow:"hidden", position:"relative" }}>
+        <div style={{ display:"flex", width:"300%", height:"100%", transform:`translateX(-${page * 33.333}%)`, transition:"transform 0.5s cubic-bezier(.4,0,.2,1)" }}>
+
+          {/* ── 페이지 1: 9왕국 ── */}
+          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
+            <div style={{ maxWidth:"640px", margin:"0 auto" }}>
               <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"clamp(8px,1.5vw,14px)" }}>
                 {kings.map((k, i) => (
-                  <div key={i} onClick={() => { setShowKings(false); onKingdom(k); }} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
+                  <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
                     style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
-                    <div style={{ width:"100%", aspectRatio:"1/1", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
+                    <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
                       {k.img
                         ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
                         : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -823,16 +758,99 @@ function World({ onKingdom }) {
                       <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
                     </div>
                     <div style={{ padding:"clamp(8px,1.5vw,12px)" }}>
-                      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.6vw,14px)", fontWeight:700, color:"var(--midnight)", marginBottom:"2px", lineHeight:1.3 }}>{k.n}</div>
-                      <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.4 }}>{k.d}</p>
+                      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.8vw,15px)", fontWeight:700, color:"var(--gold)", marginBottom:"3px", lineHeight:1.3 }}>{k.n}</div>
+                      <p style={{ fontSize:"clamp(10px,1.4vw,12px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.5 }}>{k.d}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
+          {/* ── 페이지 2: 섬안내 ── */}
+          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
+            <div style={{ maxWidth:"760px", margin:"0 auto" }}>
+              <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(8px,1.5vw,14px)", fontWeight:300 }}>{t.worldDesc}</p>
+              <div style={{ position:"relative", width:"clamp(280px,60vw,380px)", aspectRatio:"1/1", margin:"0 auto clamp(12px,2vw,20px)" }}>
+                {centerLoc && (
+                  <button onClick={() => setSelLoc(selLoc===0?null:0)} onMouseEnter={() => setHvLoc(0)} onMouseLeave={() => setHvLoc(-1)}
+                    style={{ position:"absolute", top:"50%", left:"50%", transform:`translate(-50%,-50%) ${hvLoc===0?"scale(1.08)":"scale(1)"}`, width:"clamp(80px,20vw,105px)", height:"clamp(80px,20vw,105px)", borderRadius:"50%", border:selLoc===0?"2px solid var(--gold)":"2px solid var(--brd)", background:selLoc===0?"rgba(200,168,78,0.12)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"3px", transition:"all 0.3s", boxShadow:selLoc===0?"0 0 24px rgba(200,168,78,0.3)":"0 2px 12px rgba(0,0,0,0.06)", zIndex:5, padding:0 }}>
+                    <span style={{ fontSize:"clamp(24px,5.5vw,32px)" }}>{centerLoc.ic}</span>
+                    <span style={{ fontSize:"clamp(9px,1.4vw,12px)", color:selLoc===0?"var(--gold)":"var(--tx)", fontWeight:600 }}>{centerLoc.n}</span>
+                  </button>
+                )}
+                <svg viewBox="0 0 400 400" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:1 }}>
+                  {outerLocs.map((_, i) => { const rad = (locAngles[i] - 90) * Math.PI / 180; return <line key={i} x1="200" y1="200" x2={200 + 140 * Math.cos(rad)} y2={200 + 140 * Math.sin(rad)} stroke="var(--gold)" strokeWidth="0.5" opacity="0.15"/>; })}
+                </svg>
+                {outerLocs.map((loc, i) => {
+                  const rad = (locAngles[i] - 90) * Math.PI / 180; const r = 38;
+                  const cx = 50 + r * Math.cos(rad), cy = 50 + r * Math.sin(rad);
+                  const idx = i + 1; const active = selLoc === idx;
+                  return (
+                    <button key={i} onClick={() => setSelLoc(active?null:idx)} onMouseEnter={() => setHvLoc(idx)} onMouseLeave={() => setHvLoc(-1)}
+                      style={{ position:"absolute", left:`${cx}%`, top:`${cy}%`, transform:`translate(-50%,-50%) ${hvLoc===idx?"scale(1.1)":"scale(1)"}`, width:"clamp(60px,15vw,78px)", height:"clamp(60px,15vw,78px)", borderRadius:"50%", border:active?"2px solid var(--gold)":"1.5px solid var(--brd)", background:active?"rgba(200,168,78,0.1)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"2px", transition:"all 0.3s", boxShadow:active?"0 0 16px rgba(200,168,78,0.25)":"0 2px 8px rgba(0,0,0,0.05)", zIndex:3, padding:0 }}>
+                      <span style={{ fontSize:"clamp(16px,3.5vw,22px)" }}>{loc.ic}</span>
+                      <span style={{ fontSize:"clamp(8px,1.2vw,11px)", color:active?"var(--gold)":"var(--tx2)", fontWeight:500, lineHeight:1.2 }}>{loc.n}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              {selLoc !== null && (
+                <div style={{ maxWidth:"340px", margin:"-4px auto 0", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", animation:"fadeUp 0.3s ease" }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"4px" }}>
+                    <span style={{ fontSize:"16px" }}>{locs[selLoc].ic}</span>
+                    <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
+                  </div>
+                  <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ── 페이지 3: 이벤트 ── */}
+          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
+            <div style={{ maxWidth:"520px", margin:"0 auto" }}>
+              <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(12px,2vw,20px)", fontWeight:300 }}>{t.evtTap}</p>
+              <div style={{ display:"flex", flexDirection:"column", gap:"clamp(8px,1.5vw,12px)" }}>
+                {events.map((ev, i) => {
+                  const isOpen = selEvt === i;
+                  return (
+                    <div key={i} onClick={() => setSelEvt(isOpen ? null : i)} onMouseEnter={() => setHvEvt(i)} onMouseLeave={() => setHvEvt(-1)}
+                      style={{ background: isOpen ? "rgba(200,168,78,0.1)" : "var(--bgc)", border: isOpen ? "1.5px solid var(--gold)" : hvEvt===i ? "1.5px solid rgba(200,168,78,0.5)" : "1.5px solid var(--brd)", borderRadius:"14px", padding:"clamp(14px,2.5vw,20px)", cursor:"pointer", transition:"all 0.3s" }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
+                        <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
+                        <div style={{ flex:1 }}>
+                          <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
+                          {isOpen && (
+                            <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
+                          )}
+                        </div>
+                        <div style={{ fontSize:"12px", color:"var(--gold)", opacity:isOpen?1:0.4, transition:"all 0.3s", transform:isOpen?"rotate(90deg)":"rotate(0)", flexShrink:0 }}>▶</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
         </div>
-      )}
+
+        {/* 좌우 화살표 */}
+        {page > 0 && (
+          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"4px":"12px", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
+        )}
+        {page < 2 && (
+          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"4px":"12px", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
+        )}
+      </div>
+
+      {/* 페이지 인디케이터 */}
+      <div style={{ display:"flex", justifyContent:"center", gap:"8px", padding:"10px 0", flexShrink:0 }}>
+        {[0,1,2].map(i => (
+          <div key={i} onClick={() => setPage(i)} style={{ width:page===i?"18px":"6px", height:"6px", borderRadius:"3px", background:page===i?"var(--gold)":"var(--brd)", cursor:"pointer", transition:"all 0.3s" }}/>
+        ))}
+      </div>
     </div>
   );
 }
