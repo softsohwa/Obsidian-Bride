@@ -522,33 +522,37 @@ function CharModal({ c, onClose }) {
           }
         </div>
       </> : <>
-        {/* PC: 좌측 이미지, 우측 이름+정보 박스 */}
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:"clamp(40px,6vh,80px)", left:"clamp(80px,12vw,180px)", height:"clamp(450px,82vh,780px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
-          {imgSrc
-            ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
-            : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <span style={{ fontFamily:"var(--fd)", fontSize:"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
-              </div>
-          }
-        </div>
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", right:"clamp(80px,12vw,180px)", top:"50%", transform:"translateY(-50%)", zIndex:8, maxWidth:"clamp(300px,35vw,440px)", animation:"fadeUp 0.6s ease 0.1s both" }}>
-          <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(40px,7vw,72px)", fontWeight:900, color:c.color, lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
-          <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px" }}/>
-          {c.mystery
-            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
-            : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)", maxHeight:"clamp(240px,35vh,340px)", overflowY:"auto" }} className="iscroll">
-                <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
-                <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
-                  {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
-                    <div key={i} style={{ flex:"1 1 120px" }}>
-                      <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                      <p style={{ fontSize:"clamp(15px,1.8vw,17px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
-                    </div>
-                  ))}
+        {/* PC: 중앙 기준 flex — 이미지 좌, 정보 우 */}
+        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", gap:"clamp(24px,3vw,48px)", padding:"0 clamp(40px,5vw,80px)", zIndex:5 }}>
+          {/* 이미지 */}
+          <div style={{ height:"clamp(420px,75vh,700px)", flexShrink:0, animation:"fadeUp 0.5s ease" }}>
+            {imgSrc
+              ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
+              : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <span style={{ fontFamily:"var(--fd)", fontSize:"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
                 </div>
-                <p style={{ fontSize:"clamp(15px,1.8vw,17px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"12px" }}>{c.intro}</p>
-              </div>
-          }
+            }
+          </div>
+          {/* 이름 + 정보 */}
+          <div style={{ maxWidth:"clamp(280px,35vw,420px)", flexShrink:1, animation:"fadeUp 0.6s ease 0.1s both" }}>
+            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,6vw,64px)", fontWeight:900, color:c.color, lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
+            <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px" }}/>
+            {c.mystery
+              ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
+              : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)", maxHeight:"clamp(220px,32vh,320px)", overflowY:"auto" }} className="iscroll">
+                  <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
+                  <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
+                    {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
+                      <div key={i} style={{ flex:"1 1 120px" }}>
+                        <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                        <p style={{ fontSize:"clamp(15px,1.8vw,17px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ fontSize:"clamp(15px,1.8vw,17px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"12px" }}>{c.intro}</p>
+                </div>
+            }
+          </div>
         </div>
       </>}
     </div>
