@@ -492,7 +492,7 @@ function CharModal({ c, onClose }) {
 
       {mob ? <>
         {/* 모바일: 세로 배치 — 이미지 위, 이름+정보 아래 */}
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", top:"clamp(40px,8vh,60px)", left:"50%", transform:"translateX(-50%)", height:"clamp(220px,38vh,320px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
+        <div style={{ position:"absolute", top:"clamp(40px,8vh,60px)", left:"50%", transform:"translateX(-50%)", height:"clamp(220px,38vh,320px)", zIndex:5, animation:"fadeUp 0.5s ease" }}>
           {imgSrc
             ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
             : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -500,7 +500,7 @@ function CharModal({ c, onClose }) {
               </div>
           }
         </div>
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px" }}>
+        <div style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px" }}>
           <div style={{ textAlign:"center", marginBottom:"12px", animation:"fadeUp 0.6s ease 0.1s both" }}>
             <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:c.color, letterSpacing:"1px" }}>{enName}</div>
             <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto" }}/>
@@ -523,7 +523,7 @@ function CharModal({ c, onClose }) {
         </div>
       </> : <>
         {/* PC: 중앙 기준 flex — 이미지 좌, 정보 우 */}
-        <div onClick={e => e.stopPropagation()} style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", gap:"clamp(24px,3vw,48px)", padding:"0 clamp(40px,5vw,80px)", zIndex:5 }}>
+        <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", gap:"clamp(24px,3vw,48px)", padding:"0 clamp(40px,5vw,80px)", zIndex:5 }}>
           {/* 이미지 */}
           <div style={{ height:"clamp(420px,75vh,700px)", flexShrink:0, animation:"fadeUp 0.5s ease" }}>
             {imgSrc
@@ -626,8 +626,8 @@ function Chars({ onOpen }) {
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(4px,1vw,10px) clamp(12px,3vw,16px) 40px", gap:"0" }} className="iscroll">
 
         {/* 블루 아울 — 1열 위, 이미지+2줄 텍스트 */}
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:mob?"6px":"10px", width:mob?"clamp(300px,85vw,400px)":"clamp(580px,80vw,820px)", margin:mob?"0 auto 4px":"0 auto 8px" }}>
-          <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)", marginBottom:"1px" }}/>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:mob?"clamp(300px,85vw,400px)":"clamp(580px,80vw,820px)", margin:mob?"0 auto 4px":"0 auto 8px" }}>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)" }}/>
           <div
             onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
@@ -645,7 +645,7 @@ function Chars({ onOpen }) {
             <span style={{ fontFamily:"var(--fd)", fontSize:nSize, color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
             <span style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
           </div>
-          <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)", marginBottom:"1px" }}/>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
         </div>
 
         {/* 출연자 1열 (4명) */}
