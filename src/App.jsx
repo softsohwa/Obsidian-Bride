@@ -289,7 +289,7 @@ function STitle({ sub, main }) {
     <div style={{ textAlign:"center", marginBottom:"clamp(12px,2vw,20px)" }}>
       <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"3px", fontWeight:600 }}>{sub}</div>
       <h2 style={{ fontFamily:hf, fontSize:"clamp(20px,4vw,36px)", fontWeight:700, lineHeight:1.3, color:"var(--gold)" }}>{main}</h2>
-      <div style={{ width:"36px", height:"1px", margin:"3px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
+      <div style={{ width:"36px", height:"1px", margin:"6px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
     </div>
   );
 }
@@ -625,15 +625,14 @@ function Chars({ onOpen }) {
       </div>
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(4px,1vw,10px) clamp(12px,3vw,16px) 40px", gap:"0" }} className="iscroll">
 
-        {/* 블루 아울 — 1열 위, 가로 배치 */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:mob?"6px":"10px", width:mob?"clamp(300px,85vw,400px)":"clamp(580px,80vw,820px)", margin:mob?"0 auto 6px":"0 auto 10px" }}>
-          <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)" }}/>
-          <span style={{ fontFamily:"var(--fd)", fontSize:nSize, color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, flexShrink:0, textTransform:"uppercase" }}>MC</span>
+        {/* 블루 아울 — 1열 위, 이미지+2줄 텍스트 */}
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:mob?"6px":"10px", width:mob?"clamp(300px,85vw,400px)":"clamp(580px,80vw,820px)", margin:mob?"0 auto 4px":"0 auto 8px" }}>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,#3A8BBF50)", marginBottom:"1px" }}/>
           <div
             onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
             style={{
-              width:mob?"clamp(32px,9vw,42px)":"clamp(44px,7vw,56px)", aspectRatio:"1/1", cursor:"pointer", flexShrink:0,
+              width:mob?"clamp(28px,8vw,38px)":"clamp(38px,6vw,48px)", aspectRatio:"3/4", cursor:"pointer", flexShrink:0,
               filter: boHovered
                 ? "drop-shadow(0 4px 10px rgba(108,190,235,0.4))"
                 : boRevealed ? "drop-shadow(0 2px 6px rgba(108,190,235,0.2))" : "drop-shadow(0 1px 4px rgba(0,0,0,0.2))",
@@ -642,8 +641,11 @@ function Chars({ onOpen }) {
             }}>
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
           </div>
-          <span style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:"#3A8BBF", flexShrink:0, textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
-          <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start", flexShrink:0, lineHeight:1.3 }}>
+            <span style={{ fontFamily:"var(--fd)", fontSize:nSize, color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
+            <span style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
+          </div>
+          <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)", marginBottom:"1px" }}/>
         </div>
 
         {/* 출연자 1열 (4명) */}
@@ -674,9 +676,9 @@ function KingdomModal({ k, onClose }) {
       <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"400px", background:"var(--bgc)", border:`2px solid ${k.color}44`, borderRadius:"16px", overflow:"hidden", position:"relative", animation:"fadeUp 0.4s ease" }}>
         <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"14px", background:"rgba(255,255,255,0.7)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", zIndex:10, width:"28px", height:"28px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
         {/* Kingdom image */}
-        <div style={{ width:"100%", aspectRatio:"16/9", overflow:"hidden", borderBottom:"1px solid var(--brd)" }}>
+        <div style={{ width:"100%", aspectRatio:"16/9", overflow:"hidden", borderBottom:"1px solid var(--brd)", padding:"clamp(12px,3vw,20px) clamp(12px,3vw,20px) 0" }}>
           {k.img
-            ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+            ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
             : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}20,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 <span style={{ fontFamily:"var(--fd)", fontSize:"36px", fontWeight:700, color:`${k.color}30` }}>{k.n[0]}</span>
               </div>
@@ -756,7 +758,7 @@ function World({ onKingdom }) {
                     style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
                     <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
                       {k.img
-                        ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+                        ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
                         : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                             <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,5vw,36px)", fontWeight:700, color:`${k.color}25` }}>{k.n[0]}</span>
                           </div>
