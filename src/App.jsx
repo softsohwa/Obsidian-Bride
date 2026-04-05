@@ -765,34 +765,38 @@ function World({ onKingdom }) {
       <div style={{ flex:1, overflow:"hidden", position:"relative" }}>
         <div style={{ display:"flex", width:"300%", height:"100%", transform:`translateX(-${page * 33.333}%)`, transition:"transform 0.5s cubic-bezier(.4,0,.2,1)" }}>
 
-          {/* ── 페이지 1: 9왕국 — 아치 카드 ── */}
+          {/* ── 페이지 1: 9왕국 — 아치 카드 (SVG foreignObject) ── */}
           <div style={{ width:"33.333%", height:"100%", display:"flex", alignItems:"flex-start", justifyContent:"center", padding:"clamp(4px,1vw,8px) clamp(8px,1.5vw,12px) 8px", overflow:"hidden" }}>
             <div style={{ display:"grid", gridTemplateColumns:`repeat(3,clamp(100px,17vw,140px))`, gap:"clamp(12px,1.8vw,18px)", justifyContent:"center" }}>
               {kings.map((k, i) => (
                 <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
                   style={{ position:"relative", overflow:"visible", cursor:"pointer", transition:"transform 0.3s, filter 0.3s", transform:hvK===i?"translateY(-5px)":"translateY(0)", filter:hvK===i?"drop-shadow(0 6px 16px rgba(200,168,78,0.35))":"none" }}>
-                  {/* 카드 본체 — overflow:hidden으로 내용물 클리핑 */}
-                  <div style={{ width:"100%", aspectRatio:"3/4", overflow:"hidden", position:"relative" }}>
+                  <svg viewBox="-8 -18 116 156" style={{ width:"100%", height:"auto", overflow:"visible", display:"block" }}>
                     {/* 금색 아치 돔 */}
-                    <div style={{ position:"absolute", top:0, left:0, right:0, height:"11%", background:"var(--gold)", opacity:0.15, clipPath:"ellipse(55% 100% at 50% 100%)" }}/>
-                    {/* 이미지 — 카드의 11%~77% */}
-                    <div style={{ position:"absolute", top:"11%", left:0, right:0, height:"66%", overflow:"hidden" }}>
-                      <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
-                    </div>
-                    {/* 이름 영역 — 카드의 77%~100% */}
-                    <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"23%", background:"var(--bgc)", display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 clamp(5px,1vw,8px)" }}>
-                      <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
-                        <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, boxShadow:`0 0 3px ${k.color}50`, flexShrink:0 }}/>
-                        <span style={{ fontFamily:"var(--fk)", fontSize:"clamp(9px,1.4vw,12px)", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                    <path d="M0,18 Q0,1 50,-2 Q100,1 100,18 Z" fill="var(--gold)" opacity="0.15"/>
+                    {/* 이름 배경 */}
+                    <rect x="0" y="93" width="100" height="37" fill="var(--bgc)"/>
+                    {/* 이미지 */}
+                    <foreignObject x="0" y="18" width="100" height="75">
+                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ width:"100%", height:"100%", overflow:"hidden" }}>
+                        <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
                       </div>
-                      <div style={{ fontFamily:"var(--fk)", fontSize:"clamp(7px,1.1vw,10px)", color:"var(--tx2)", fontWeight:300, marginLeft:"8px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.d}</div>
-                    </div>
-                  </div>
-                  {/* SVG 장식 — 카드 본체 바깥, 돌출 허용 */}
-                  <svg viewBox="-8 -18 116 156" preserveAspectRatio="none" style={{ position:"absolute", top:"-13.5%", left:"-5.7%", width:"111.4%", height:"117%", pointerEvents:"none", zIndex:2, overflow:"visible" }}>
+                    </foreignObject>
+                    {/* 이름 + 설명 */}
+                    <foreignObject x="5" y="95" width="90" height="33">
+                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"KotraDoYak, sans-serif" }}>
+                        <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
+                          <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, flexShrink:0 }}/>
+                          <span style={{ fontSize:"11px", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                        </div>
+                        <div style={{ fontSize:"9px", color:"var(--tx2)", fontWeight:300, marginLeft:"8px" }}>{k.d}</div>
+                      </div>
+                    </foreignObject>
+                    {/* 메인 아치+사각 프레임 */}
                     <path d="M0,130 L0,18 Q0,1 50,-2 Q100,1 100,18 L100,130 Z" fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.5"/>
                     <path d="M-3,132 L-3,22 Q-3,-1 50,-5 Q103,-1 103,22 L103,132" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.18"/>
                     <path d="M-2,20 Q-2,0 50,-4 Q102,0 102,20" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    {/* 상단 타로 장식 */}
                     <path d="M50,-3 L53,-8 L50,-13 L47,-8 Z" fill="var(--gold)" opacity="0.2"/>
                     <path d="M50,-3 L53,-8 L50,-13 L47,-8 Z" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.5"/>
                     <path d="M50,-5 L51.5,-8 L50,-11 L48.5,-8 Z" fill="var(--gold)" opacity="0.3"/>
@@ -805,6 +809,7 @@ function World({ onKingdom }) {
                     <circle cx="50" cy="-18" r="1" fill="var(--gold)" opacity="0.18"/>
                     <path d="M46,-4 L44,-6" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
                     <path d="M54,-4 L56,-6" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
+                    {/* 하단 다이아몬드 */}
                     <path d="M0,130 L-4,125 L0,120 L4,125 Z" fill="var(--gold)" opacity="0.18"/>
                     <path d="M0,130 L-4,125 L0,120 L4,125 Z" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.45"/>
                     <path d="M100,130 L96,125 L100,120 L104,125 Z" fill="var(--gold)" opacity="0.18"/>
@@ -819,7 +824,7 @@ function World({ onKingdom }) {
                     <circle cx="103" cy="75" r="0.8" fill="var(--gold)" opacity="0.15"/>
                     <path d="M44,130 L50,135 L56,130" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
                     <circle cx="50" cy="135" r="1" fill="var(--gold)" opacity="0.15"/>
-                    <line x1="8" y1="100" x2="92" y2="100" stroke="var(--gold)" strokeWidth="0.8" opacity="0.12"/>
+                    <line x1="8" y1="93" x2="92" y2="93" stroke="var(--gold)" strokeWidth="0.8" opacity="0.12"/>
                   </svg>
                 </div>
               ))}
