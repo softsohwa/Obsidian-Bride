@@ -567,11 +567,10 @@ function Chars({ onOpen }) {
   const mob = useIsMobile();
   const allChars = CHARS[l];
   const enChars = CHARS.en;
-  const [revealed, setRevealed] = useState(new Set());
   const [hv, setHv] = useState(-1);
   const blueOwl = { ko:"블루 아울", en:"Blue Owl", ja:"ブルーアウル" };
 
-  const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); s.add(idx); return s; }); };
+  const reveal = (idx) => { setHv(idx); };
   const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
   const cM = mob ? "clamp(-25px,-6vw,-36px)" : "clamp(-66px,-14vw,-94px)";
   const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
@@ -580,7 +579,7 @@ function Chars({ onOpen }) {
   const boW = mob ? "clamp(60px,16vw,80px)" : "clamp(120px,20vw,160px)";
 
   const boImg = "/images/chars/bo_pp.webp";
-  const boRevealed = revealed.has(99);
+  const boRevealed = hv === 99;
   const boHovered = hv === 99;
   const row1 = allChars.slice(0, 4);
   const row2 = allChars.slice(4, 8);
@@ -589,8 +588,8 @@ function Chars({ onOpen }) {
   const cardColor = (c) => CARD_COLORS[c.color] || c.color;
 
   const renderChar = (c, idx) => {
-    const isRevealed = revealed.has(idx);
     const isHovered = hv === idx;
+    const isRevealed = isHovered;
     const enName = enChars[idx] ? enChars[idx].gem : "???";
     return (
       <div key={idx}
@@ -635,7 +634,7 @@ function Chars({ onOpen }) {
             onMouseEnter={() => reveal(99)} onMouseLeave={() => setHv(-1)}
             onClick={() => { reveal(99); onOpen({ gem:blueOwl[l], per:{ ko:"보석함 파티 진행 MC",en:"Jewel Box Party MC",ja:"宝石箱パーティー MC" }[l], tone:"—", goal:"—", intro:{ ko:"귀여운 부엉이 홀로그램. 호감도 투표 관리, 이벤트 생성, 보석함 실황 전국 방영, 정보 안내를 담당한다.", en:"A cute owl hologram managing votes, events, broadcasting, and information.", ja:"可愛いフクロウのホログラム。投票管理、イベント生成、実況放映、情報案内を担当する。" }[l], color:"#6CBEEB", gemBg:"radial-gradient(circle at 40% 35%,#9dd5f5,#6CBEEB,#3a8bbf)", img:boImg, modalImg:boImg }); }}
             style={{
-              width:mob?"clamp(28px,8vw,38px)":"clamp(38px,6vw,48px)", aspectRatio:"3/4", cursor:"pointer", flexShrink:0,
+              width:mob?"clamp(40px,11vw,52px)":"clamp(50px,8vw,64px)", aspectRatio:"3/4", cursor:"pointer", flexShrink:0,
               filter: boHovered
                 ? "drop-shadow(0 4px 10px rgba(108,190,235,0.4))"
                 : boRevealed ? "drop-shadow(0 2px 6px rgba(108,190,235,0.2))" : "drop-shadow(0 1px 4px rgba(0,0,0,0.2))",
@@ -645,8 +644,8 @@ function Chars({ onOpen }) {
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
           </div>
           <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start", flexShrink:0, lineHeight:1.3 }}>
-            <span style={{ fontFamily:"var(--fd)", fontSize:nSize, color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
-            <span style={{ fontFamily:"var(--fd)", fontSize:nSize, fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
+            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(11px,3vw,14px)":"clamp(14px,2vw,19px)", color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
+            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(11px,3vw,14px)":"clamp(14px,2vw,19px)", fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
           </div>
           <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
         </div>
@@ -679,9 +678,9 @@ function KingdomModal({ k, onClose }) {
       <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"400px", background:"var(--bgc)", border:`2px solid ${k.color}44`, borderRadius:"16px", overflow:"hidden", position:"relative", animation:"fadeUp 0.4s ease" }}>
         <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"14px", background:"rgba(255,255,255,0.7)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", zIndex:10, width:"28px", height:"28px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
         {/* Kingdom image */}
-        <div style={{ width:"100%", aspectRatio:"16/9", overflow:"hidden", borderBottom:"1px solid var(--brd)", padding:"clamp(12px,3vw,20px) clamp(12px,3vw,20px) 0" }}>
+        <div style={{ width:"100%", aspectRatio:"16/9", overflow:"hidden", borderBottom:"1px solid var(--brd)" }}>
           {k.img
-            ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
+            ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
             : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}20,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 <span style={{ fontFamily:"var(--fd)", fontSize:"36px", fontWeight:700, color:`${k.color}30` }}>{k.n[0]}</span>
               </div>
@@ -773,7 +772,7 @@ function World({ onKingdom }) {
                     style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
                     <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
                       {k.img
-                        ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
+                        ? <img src={k.img} alt={k.n} style={{ width:"120%", height:"auto", marginLeft:"-10%", display:"block" }}/>
                         : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                             <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,5vw,36px)", fontWeight:700, color:`${k.color}25` }}>{k.n[0]}</span>
                           </div>
@@ -792,30 +791,30 @@ function World({ onKingdom }) {
 
           {/* ── 페이지 2: 섬안내 — 구절판 레이아웃 ── */}
           <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 24px", display:"flex", flexDirection:"column", alignItems:"center" }} className="iscroll">
-            <div style={{ position:"relative", width:"clamp(320px,70vw,440px)", aspectRatio:"1/1", margin:"0 auto", flexShrink:0 }}>
+            <div style={{ position:"relative", width:"clamp(320px,70vw,440px)", aspectRatio:"1/1", margin:"0 auto", flexShrink:0, overflow:"hidden" }}>
               {/* 배경 이미지 (클릭 시) */}
               {bgLoc !== null && (
-                <img src={locs[bgLoc].img} alt="" style={{ position:"absolute", inset:"-15%", width:"130%", height:"130%", objectFit:"cover", opacity:0.5, pointerEvents:"none", zIndex:0, maskImage:"radial-gradient(circle at center,rgba(0,0,0,0.7) 30%,rgba(0,0,0,0.3) 55%,transparent 72%)", WebkitMaskImage:"radial-gradient(circle at center,rgba(0,0,0,0.7) 30%,rgba(0,0,0,0.3) 55%,transparent 72%)" }}/>
+                <img src={locs[bgLoc].img} alt="" style={{ position:"absolute", inset:"-15%", width:"130%", height:"130%", objectFit:"cover", opacity:0.5, pointerEvents:"none", zIndex:0, maskImage:"radial-gradient(circle at center,rgba(0,0,0,0.65) 25%,rgba(0,0,0,0.3) 50%,transparent 68%)", WebkitMaskImage:"radial-gradient(circle at center,rgba(0,0,0,0.65) 25%,rgba(0,0,0,0.3) 50%,transparent 68%)" }}/>
               )}
               {/* 장식 SVG */}
               <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:2, filter:bgLoc!==null?"drop-shadow(0 0 1px #F5ECD0) drop-shadow(0 0 3px rgba(232,216,146,0.6)) drop-shadow(0 0 7px rgba(200,168,78,0.4))":"none", transition:"filter 0.5s" }}>
                 {/* 외곽 프레임 */}
-                <path d={octoP(RO+3)} fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.3"/>
-                {[0,1,2,3,4,5,6,7].map(i=>{const a1=rd(vaF(i)),a2=rd(vaF(i+1)),ma=rd(faF(i));const x1=CX+(RO+3)*Math.sin(a1),y1=CY-(RO+3)*Math.cos(a1),x2=CX+(RO+3)*Math.sin(a2),y2=CY-(RO+3)*Math.cos(a2);const bx=CX+(RO+7)*Math.sin(ma),by=CY-(RO+7)*Math.cos(ma);return <g key={i}><path d={`M${x1},${y1} Q${bx},${by} ${x2},${y2}`} fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.3"/><circle cx={bx} cy={by} r="0.6" fill="#E8D892" opacity="0.25"/><circle cx={bx} cy={by} r="1.2" fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.22"/></g>;})}
-                <path d={octoP(RO)} fill="none" stroke="#E8D892" strokeWidth="0.7" opacity="0.55"/>
-                <path d={octoP(RO+1.5)} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.35"/>
+                <path d={octoP(RO+3)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.15" opacity="0.3"/>
+                {[0,1,2,3,4,5,6,7].map(i=>{const a1=rd(vaF(i)),a2=rd(vaF(i+1)),ma=rd(faF(i));const x1=CX+(RO+3)*Math.sin(a1),y1=CY-(RO+3)*Math.cos(a1),x2=CX+(RO+3)*Math.sin(a2),y2=CY-(RO+3)*Math.cos(a2);const bx=CX+(RO+7)*Math.sin(ma),by=CY-(RO+7)*Math.cos(ma);return <g key={i}><path d={`M${x1},${y1} Q${bx},${by} ${x2},${y2}`} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.2" opacity="0.3"/><circle cx={bx} cy={by} r="0.6" fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.25"/><circle cx={bx} cy={by} r="1.2" fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.15" opacity="0.22"/></g>;})}
+                <path d={octoP(RO)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.7" opacity="0.55"/>
+                <path d={octoP(RO+1.5)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.3" opacity="0.35"/>
                 {/* 꼭짓점 장식 */}
-                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ar=rd(a),x=CX+(RO+1.5)*Math.sin(ar),y=CY-(RO+1.5)*Math.cos(ar);return <g key={i}><path d={diaP(x,y,1.6,2.8)} fill="#E8D892" opacity="0.15" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,1.6,2.8)} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.55" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,0.8,1.4)} fill="#E8D892" opacity="0.25" transform={`rotate(${a},${x},${y})`}/>{[-1,1].map(si=><circle key={si} cx={x+Math.cos(ar)*si*2.2} cy={y+Math.sin(ar)*si*2.2} r="1" fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.35"/>)}</g>;})}
+                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ar=rd(a),x=CX+(RO+1.5)*Math.sin(ar),y=CY-(RO+1.5)*Math.cos(ar);return <g key={i}><path d={diaP(x,y,1.6,2.8)} fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.15" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,1.6,2.8)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.3" opacity="0.55" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,0.8,1.4)} fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.25" transform={`rotate(${a},${x},${y})`}/>{[-1,1].map(si=><circle key={si} cx={x+Math.cos(ar)*si*2.2} cy={y+Math.sin(ar)*si*2.2} r="1" fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.2" opacity="0.35"/>)}</g>;})}
                 {/* 분리선 + 다이아 장식 */}
-                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ix=vxF(RI,a),iy=vyF(RI,a),ox=vxF(RO,a),oy=vyF(RO,a),mx=(ix+ox)/2,my=(iy+oy)/2;return <g key={i}><line x1={ix} y1={iy} x2={ox} y2={oy} stroke="#E8D892" strokeWidth="0.4" opacity="0.4"/><path d={diaP(mx,my,1,1.6)} fill="#E8D892" opacity="0.15" transform={`rotate(${a},${mx},${my})`}/><path d={diaP(mx,my,1,1.6)} fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.4" transform={`rotate(${a},${mx},${my})`}/></g>;})}
+                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ix=vxF(RI,a),iy=vyF(RI,a),ox=vxF(RO,a),oy=vyF(RO,a),mx=(ix+ox)/2,my=(iy+oy)/2;return <g key={i}><line x1={ix} y1={iy} x2={ox} y2={oy} stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.4" opacity="0.4"/><path d={diaP(mx,my,1,1.6)} fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.15" transform={`rotate(${a},${mx},${my})`}/><path d={diaP(mx,my,1,1.6)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.2" opacity="0.4" transform={`rotate(${a},${mx},${my})`}/></g>;})}
                 {/* 내부 팔각형 + 만다라 */}
-                <path d={octoP(RI)} fill="none" stroke="#E8D892" strokeWidth="0.7" opacity="0.55"/>
-                <path d={octoP(RI-1.2)} fill="none" stroke="#E8D892" strokeWidth="0.25" opacity="0.35"/>
-                {(()=>{let st="";for(let i=0;i<8;i++){const a=rd(i*45),ar=rd(i*45+22.5);st+=(i?"L":"M")+(CX+RI*0.78*Math.sin(a))+","+(CY-RI*0.78*Math.cos(a))+" L"+(CX+RI*0.42*Math.sin(ar))+","+(CY-RI*0.42*Math.cos(ar))+" ";}return <path d={st+"Z"} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.35"/>;})()}
-                <circle cx={CX} cy={CY} r={RI*0.58} fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.25"/>
-                <circle cx={CX} cy={CY} r={RI*0.29} fill="none" stroke="#E8D892" strokeWidth="0.25" opacity="0.35"/>
-                <circle cx={CX} cy={CY} r={RI*0.13} fill="#E8D892" opacity="0.2"/>
-                <circle cx={CX} cy={CY} r={RI*0.06} fill="#E8D892" opacity="0.35"/>
+                <path d={octoP(RI)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.7" opacity="0.55"/>
+                <path d={octoP(RI-1.2)} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.25" opacity="0.35"/>
+                {(()=>{let st="";for(let i=0;i<8;i++){const a=rd(i*45),ar=rd(i*45+22.5);st+=(i?"L":"M")+(CX+RI*0.78*Math.sin(a))+","+(CY-RI*0.78*Math.cos(a))+" L"+(CX+RI*0.42*Math.sin(ar))+","+(CY-RI*0.42*Math.cos(ar))+" ";}return <path d={st+"Z"} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.3" opacity="0.35"/>;})()}
+                <circle cx={CX} cy={CY} r={RI*0.58} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.15" opacity="0.25"/>
+                <circle cx={CX} cy={CY} r={RI*0.29} fill="none" stroke={bgLoc!==null?"#FFFFFF":"#E8D892"} strokeWidth="0.25" opacity="0.35"/>
+                <circle cx={CX} cy={CY} r={RI*0.13} fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.2"/>
+                <circle cx={CX} cy={CY} r={RI*0.06} fill={bgLoc!==null?"#FFFFFF":"#E8D892"} opacity="0.35"/>
               </svg>
               {/* 8개 사다리꼴 인터랙션 영역 */}
               {locs.map((loc, i) => {
