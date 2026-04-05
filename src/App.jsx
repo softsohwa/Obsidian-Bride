@@ -572,7 +572,7 @@ function Chars({ onOpen }) {
   const [hv, setHv] = useState(-1);
   const blueOwl = { ko:"블루 아울", en:"Blue Owl", ja:"ブルーアウル" };
 
-  const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); if(s.has(idx)) s.delete(idx); else s.add(idx); return s; }); };
+  const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); s.add(idx); return s; }); };
   const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
   const cM = mob ? "clamp(-25px,-6vw,-36px)" : "clamp(-66px,-14vw,-94px)";
   const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
@@ -680,7 +680,7 @@ function KingdomModal({ k, onClose }) {
       <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"400px", background:"var(--bgc)", border:`2px solid ${k.color}44`, borderRadius:"16px", overflow:"hidden", position:"relative", animation:"fadeUp 0.4s ease" }}>
         <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"14px", background:"rgba(255,255,255,0.7)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", zIndex:10, width:"28px", height:"28px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
         {/* Kingdom image */}
-        <div style={{ width:"100%", aspectRatio:"16/9", overflow:"hidden", borderBottom:"1px solid var(--brd)", padding:"clamp(8px,2vw,14px) 0 0", display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", display:"flex", alignItems:"center", justifyContent:"center" }}>
           {k.img
             ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
             : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}20,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -792,12 +792,14 @@ function World({ onKingdom }) {
           </div>
 
           {/* ── 페이지 2: 섬안내 — 구절판 레이아웃 ── */}
-          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 24px", display:"flex", flexDirection:"column", alignItems:"center" }} className="iscroll">
-            <div style={{ position:"relative", width:"clamp(320px,70vw,440px)", aspectRatio:"1/1", margin:"0 auto", flexShrink:0, overflow:"hidden" }}>
-              {/* 배경 이미지 (클릭 시) */}
-              {bgLoc !== null && (
-                <img src={locs[bgLoc].img} alt="" style={{ position:"absolute", inset:"-15%", width:"130%", height:"130%", objectFit:"cover", opacity:0.6, pointerEvents:"none", zIndex:0, maskImage:"radial-gradient(circle at center,rgba(0,0,0,0.65) 25%,rgba(0,0,0,0.3) 50%,transparent 68%)", WebkitMaskImage:"radial-gradient(circle at center,rgba(0,0,0,0.65) 25%,rgba(0,0,0,0.3) 50%,transparent 68%)" }}/>
-              )}
+          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 24px", display:"flex", flexDirection:"column", alignItems:"center", position:"relative" }} className="iscroll">
+            {/* 배경 이미지 (클릭 시) — 페이지 전체에 깔림 */}
+            {bgLoc !== null && (
+              <div style={{ position:"absolute", inset:0, zIndex:0, overflow:"hidden", pointerEvents:"none" }}>
+                <img src={locs[bgLoc].img} alt="" style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:"120%", height:"auto", minHeight:"100%", objectFit:"cover", opacity:0.6, maskImage:"radial-gradient(ellipse 70% 50% at center,rgba(0,0,0,0.7) 20%,rgba(0,0,0,0.3) 60%,transparent 90%)", WebkitMaskImage:"radial-gradient(ellipse 70% 50% at center,rgba(0,0,0,0.7) 20%,rgba(0,0,0,0.3) 60%,transparent 90%)" }}/>
+              </div>
+            )}
+            <div style={{ position:"relative", width:"clamp(320px,70vw,440px)", aspectRatio:"1/1", margin:"0 auto", flexShrink:0, overflow:"hidden", zIndex:1 }}>
               {/* 장식 SVG */}
               <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:2, filter:bgLoc!==null?"drop-shadow(0 0 1px #F5ECD0) drop-shadow(0 0 3px rgba(232,216,146,0.6)) drop-shadow(0 0 7px rgba(200,168,78,0.4))":"none", transition:"filter 0.5s" }}>
                 {/* 외곽 프레임 */}
@@ -841,7 +843,7 @@ function World({ onKingdom }) {
               })}
             </div>
             {/* 하단 설명 박스 */}
-            <div style={{ maxWidth:"clamp(300px,65vw,380px)", width:"100%", marginTop:"clamp(8px,1.5vw,14px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px" }}>
+            <div style={{ maxWidth:"clamp(300px,65vw,380px)", width:"100%", marginTop:"clamp(8px,1.5vw,14px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", position:"relative", zIndex:1 }}>
               {selLoc !== null ? (<>
                 <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"6px" }}>
                   <div style={{ width:"10px", height:"10px", borderRadius:"50%", background:locs[selLoc].c, boxShadow:`0 0 8px ${locs[selLoc].c}60` }}/>
