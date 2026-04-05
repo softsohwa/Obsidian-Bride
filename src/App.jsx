@@ -182,31 +182,34 @@ const EVENTS = {
    ═══════════════════════════════════════════ */
 const LOCATIONS = {
   ko:[
-    { n:"중앙홀", d:"보석함 파티의 중심. 호감도 투표와 공식 발표가 이루어지는 곳.", ic:"🏛", center:true },
-    { n:"숙소", d:"남녀 구분 공용 휴게실과 개인 침실. 휴식과 비밀 대화의 공간.", ic:"🏠" },
-    { n:"식당", d:"모든 참가자가 함께 식사하는 공간. 요리 이벤트의 무대.", ic:"🍽" },
-    { n:"댄스홀", d:"화려한 무도회가 열리는 공간. 커플의 첫 만남이 시작되기도.", ic:"💃" },
-    { n:"정원", d:"산책과 밀담을 위한 아름다운 정원. 비밀 고백의 명소.", ic:"🌹" },
-    { n:"해변", d:"섬을 둘러싼 백사장. 게임 이벤트와 데이트 장소.", ic:"🏖" },
-    { n:"연무장", d:"무예 훈련과 게임 이벤트가 벌어지는 투기장.", ic:"⚔" },
+    { n:"중앙홀", d:"보석함 파티의 중심. 호감도 투표와 공식 발표가 이루어지는 곳.", img:"/images/locations/T.webp", c:"#C8A84E" },
+    { n:"정원", d:"산책과 밀담을 위한 아름다운 정원. 비밀 고백의 명소.", img:"/images/locations/G.webp", c:"#FF8070" },
+    { n:"숙소", d:"남녀 구분 공용 휴게실과 개인 침실. 휴식과 비밀 대화의 공간.", img:"/images/locations/A.webp", c:"#8BC47C" },
+    { n:"연무장", d:"무예 훈련과 게임 이벤트가 벌어지는 투기장.", img:"/images/locations/V.webp", c:"#A8B4C0" },
+    { n:"지하편집실", d:"보석함 실황 전국 방영을 위한 비밀 편집실.", img:"/images/locations/E.webp", c:"#4A6AE0" },
+    { n:"해변", d:"섬을 둘러싼 백사장. 게임 이벤트와 데이트 장소.", img:"/images/locations/S.webp", c:"#6CBEEB" },
+    { n:"댄스홀", d:"화려한 무도회가 열리는 공간. 커플의 첫 만남이 시작되기도.", img:"/images/locations/D.webp", c:"#D0B8E8" },
+    { n:"식당", d:"모든 참가자가 함께 식사하는 공간. 요리 이벤트의 무대.", img:"/images/locations/R.webp", c:"#E0A050" },
   ],
   en:[
-    { n:"Central Hall", d:"The heart of the Jewel Box party. Affinity votes and official announcements.", ic:"🏛", center:true },
-    { n:"Dormitory", d:"Gender-separated lounges and private rooms. A space for rest and secret conversations.", ic:"🏠" },
-    { n:"Dining Hall", d:"Where all participants dine together. Stage for cooking events.", ic:"🍽" },
-    { n:"Dance Hall", d:"Where grand balls take place. First encounters between couples begin here.", ic:"💃" },
-    { n:"Garden", d:"Beautiful gardens for strolls and whispers. A famous spot for secret confessions.", ic:"🌹" },
-    { n:"Beach", d:"White sand surrounding the island. Game events and date location.", ic:"🏖" },
-    { n:"Arena", d:"An arena for martial training and game events.", ic:"⚔" },
+    { n:"Central Hall", d:"The heart of the Jewel Box party. Affinity votes and official announcements.", img:"/images/locations/T.webp", c:"#C8A84E" },
+    { n:"Garden", d:"Beautiful gardens for strolls and whispers. A famous spot for secret confessions.", img:"/images/locations/G.webp", c:"#FF8070" },
+    { n:"Dormitory", d:"Gender-separated lounges and private rooms. A space for rest and secret conversations.", img:"/images/locations/A.webp", c:"#8BC47C" },
+    { n:"Arena", d:"An arena for martial training and game events.", img:"/images/locations/V.webp", c:"#A8B4C0" },
+    { n:"Editing Room", d:"A secret editing room for nationwide broadcast of the Jewel Box.", img:"/images/locations/E.webp", c:"#4A6AE0" },
+    { n:"Beach", d:"White sand surrounding the island. Game events and date location.", img:"/images/locations/S.webp", c:"#6CBEEB" },
+    { n:"Dance Hall", d:"Where grand balls take place. First encounters between couples begin here.", img:"/images/locations/D.webp", c:"#D0B8E8" },
+    { n:"Dining Hall", d:"Where all participants dine together. Stage for cooking events.", img:"/images/locations/R.webp", c:"#E0A050" },
   ],
   ja:[
-    { n:"中央ホール", d:"宝石箱パーティーの中心。好感度投票と公式発表の場。", ic:"🏛", center:true },
-    { n:"宿舎", d:"男女別共用ラウンジと個室。休息と秘密の会話の空間。", ic:"🏠" },
-    { n:"食堂", d:"全参加者が共に食事をする場所。料理イベントの舞台。", ic:"🍽" },
-    { n:"ダンスホール", d:"華やかな舞踏会が開かれる空間。カップルの出会いが始まる場所。", ic:"💃" },
-    { n:"庭園", d:"散歩と密談のための美しい庭園。秘密の告白の名所。", ic:"🌹" },
-    { n:"ビーチ", d:"島を囲む白い砂浜。ゲームイベントとデートスポット。", ic:"🏖" },
-    { n:"演武場", d:"武芸の訓練とゲームイベントが行われる闘技場。", ic:"⚔" },
+    { n:"中央ホール", d:"宝石箱パーティーの中心。好感度投票と公式発表の場。", img:"/images/locations/T.webp", c:"#C8A84E" },
+    { n:"庭園", d:"散歩と密談のための美しい庭園。秘密の告白の名所。", img:"/images/locations/G.webp", c:"#FF8070" },
+    { n:"宿舎", d:"男女別共用ラウンジと個室。休息と秘密の会話の空間。", img:"/images/locations/A.webp", c:"#8BC47C" },
+    { n:"演武場", d:"武芸の訓練とゲームイベントが行われる闘技場。", img:"/images/locations/V.webp", c:"#A8B4C0" },
+    { n:"地下編集室", d:"宝石箱実況の全国放映のための秘密編集室。", img:"/images/locations/E.webp", c:"#4A6AE0" },
+    { n:"ビーチ", d:"島を囲む白い砂浜。ゲームイベントとデートスポット。", img:"/images/locations/S.webp", c:"#6CBEEB" },
+    { n:"ダンスホール", d:"華やかな舞踏会が開かれる空間。カップルの出会いが始まる場所。", img:"/images/locations/D.webp", c:"#D0B8E8" },
+    { n:"食堂", d:"全参加者が共に食事をする場所。料理イベントの舞台。", img:"/images/locations/R.webp", c:"#E0A050" },
   ],
 };
 
@@ -706,15 +709,27 @@ function World({ onKingdom }) {
   const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   const locs = LOCATIONS[l], kings = KINGDOMS[l], events = EVENTS[l];
   const [selLoc, setSelLoc] = useState(null);
+  const [bgLoc, setBgLoc] = useState(null);
   const [hvLoc, setHvLoc] = useState(-1);
   const [hvK, setHvK] = useState(-1);
   const [selEvt, setSelEvt] = useState(null);
   const [hvEvt, setHvEvt] = useState(-1);
   const [page, setPage] = useState(0);
 
-  const centerLoc = locs.find(l => l.center);
-  const outerLocs = locs.filter(l => !l.center);
-  const locAngles = [0, 60, 120, 180, 240, 300];
+  /* 구절판 geometry */
+  const CX=50,CY=50,RO=40,RI=13;
+  const rd=d=>d*Math.PI/180;
+  const vxF=(r,a)=>CX+r*Math.sin(rd(a));
+  const vyF=(r,a)=>CY-r*Math.cos(rd(a));
+  const vaF=i=>i*45-22.5;
+  const faF=i=>i*45;
+  const octoP=(r,rot=-22.5)=>{let p="";for(let i=0;i<8;i++){const a=rd(i*45+rot);p+=(i?"L":"M")+(CX+r*Math.sin(a))+","+(CY-r*Math.cos(a))+" ";}return p+"Z";};
+  const diaP=(x,y,rx,ry)=>`M${x},${y-ry} L${x+rx},${y} L${x},${y+ry} L${x-rx},${y} Z`;
+  const trapClipPct=(i)=>{const a1=vaF(i),a2=vaF(i+1);return[[vxF(RI,a1),vyF(RI,a1)],[vxF(RO,a1),vyF(RO,a1)],[vxF(RO,a2),vyF(RO,a2)],[vxF(RI,a2),vyF(RI,a2)]].map(p=>`${p[0]}% ${p[1]}%`).join(",");};
+  const trapD=i=>{const a1=vaF(i),a2=vaF(i+1);return`M${vxF(RI,a1)},${vyF(RI,a1)} L${vxF(RO,a1)},${vyF(RO,a1)} L${vxF(RO,a2)},${vyF(RO,a2)} L${vxF(RI,a2)},${vyF(RI,a2)} Z`;};
+  const cOfF=i=>{const mr=(RO+RI)/2,a=faF(i);return[vxF(mr,a),vyF(mr,a)];};
+  const trapBB=i=>{const a1=vaF(i),a2=vaF(i+1);const pts=[[vxF(RI,a1),vyF(RI,a1)],[vxF(RO,a1),vyF(RO,a1)],[vxF(RO,a2),vyF(RO,a2)],[vxF(RI,a2),vyF(RI,a2)]];let mnX=999,mnY=999,mxX=-999,mxY=-999;pts.forEach(p=>{mnX=Math.min(mnX,p[0]);mnY=Math.min(mnY,p[1]);mxX=Math.max(mxX,p[0]);mxY=Math.max(mxY,p[1]);});return{x:mnX,y:mnY,w:mxX-mnX,h:mxY-mnY};};
+  const pickLoc=i=>{setSelLoc(i);setBgLoc(i);};
 
   const tabs = [
     { label:{ ko:"9왕국", en:"Kingdoms", ja:"九王国" }[l], icon:"👑" },
@@ -775,47 +790,68 @@ function World({ onKingdom }) {
             </div>
           </div>
 
-          {/* ── 페이지 2: 섬안내 ── */}
-          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
-            <div style={{ maxWidth:"760px", margin:"0 auto" }}>
-              <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginBottom:"clamp(8px,1.5vw,14px)", fontWeight:300 }}>{t.worldDesc}</p>
-              <div style={{ position:"relative", width:"clamp(280px,60vw,380px)", aspectRatio:"1/1", margin:"0 auto clamp(12px,2vw,20px)" }}>
-                {centerLoc && (
-                  <button onClick={() => setSelLoc(selLoc===0?null:0)} onMouseEnter={() => setHvLoc(0)} onMouseLeave={() => setHvLoc(-1)}
-                    style={{ position:"absolute", top:"50%", left:"50%", transform:`translate(-50%,-50%) ${hvLoc===0?"scale(1.08)":"scale(1)"}`, width:"clamp(80px,20vw,105px)", height:"clamp(80px,20vw,105px)", borderRadius:"50%", border:selLoc===0?"2px solid var(--gold)":"2px solid var(--brd)", background:selLoc===0?"rgba(200,168,78,0.12)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"3px", transition:"all 0.3s", boxShadow:selLoc===0?"0 0 24px rgba(200,168,78,0.3)":"0 2px 12px rgba(0,0,0,0.06)", zIndex:5, padding:0 }}>
-                    <span style={{ fontSize:"clamp(24px,5.5vw,32px)" }}>{centerLoc.ic}</span>
-                    <span style={{ fontSize:"clamp(9px,1.4vw,12px)", color:selLoc===0?"var(--gold)":"var(--tx)", fontWeight:600 }}>{centerLoc.n}</span>
-                  </button>
-                )}
-                <svg viewBox="0 0 400 400" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:1 }}>
-                  {outerLocs.map((_, i) => { const rad = (locAngles[i] - 90) * Math.PI / 180; return <line key={i} x1="200" y1="200" x2={200 + 140 * Math.cos(rad)} y2={200 + 140 * Math.sin(rad)} stroke="var(--gold)" strokeWidth="0.5" opacity="0.15"/>; })}
-                </svg>
-                {outerLocs.map((loc, i) => {
-                  const rad = (locAngles[i] - 90) * Math.PI / 180; const r = 38;
-                  const cx = 50 + r * Math.cos(rad), cy = 50 + r * Math.sin(rad);
-                  const idx = i + 1; const active = selLoc === idx;
-                  return (
-                    <button key={i} onClick={() => setSelLoc(active?null:idx)} onMouseEnter={() => setHvLoc(idx)} onMouseLeave={() => setHvLoc(-1)}
-                      style={{ position:"absolute", left:`${cx}%`, top:`${cy}%`, transform:`translate(-50%,-50%) ${hvLoc===idx?"scale(1.1)":"scale(1)"}`, width:"clamp(60px,15vw,78px)", height:"clamp(60px,15vw,78px)", borderRadius:"50%", border:active?"2px solid var(--gold)":"1.5px solid var(--brd)", background:active?"rgba(200,168,78,0.1)":"var(--bgc)", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"2px", transition:"all 0.3s", boxShadow:active?"0 0 16px rgba(200,168,78,0.25)":"0 2px 8px rgba(0,0,0,0.05)", zIndex:3, padding:0 }}>
-                      <span style={{ fontSize:"clamp(16px,3.5vw,22px)" }}>{loc.ic}</span>
-                      <span style={{ fontSize:"clamp(8px,1.2vw,11px)", color:active?"var(--gold)":"var(--tx2)", fontWeight:500, lineHeight:1.2 }}>{loc.n}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              <div style={{ maxWidth:"340px", margin:"-4px auto 0", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px", animation:selLoc!==null?"fadeUp 0.3s ease":"none" }}>
-                {selLoc !== null ? (<>
-                  <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"4px" }}>
-                    <span style={{ fontSize:"16px" }}>{locs[selLoc].ic}</span>
-                    <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
+          {/* ── 페이지 2: 섬안내 — 구절판 레이아웃 ── */}
+          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 24px", display:"flex", flexDirection:"column", alignItems:"center" }} className="iscroll">
+            <div style={{ position:"relative", width:"clamp(320px,70vw,440px)", aspectRatio:"1/1", margin:"0 auto", flexShrink:0 }}>
+              {/* 배경 이미지 (클릭 시) */}
+              {bgLoc !== null && (
+                <img src={locs[bgLoc].img} alt="" style={{ position:"absolute", inset:"-15%", width:"130%", height:"130%", objectFit:"cover", opacity:0.5, pointerEvents:"none", zIndex:0, maskImage:"radial-gradient(circle at center,rgba(0,0,0,0.7) 30%,rgba(0,0,0,0.3) 55%,transparent 72%)", WebkitMaskImage:"radial-gradient(circle at center,rgba(0,0,0,0.7) 30%,rgba(0,0,0,0.3) 55%,transparent 72%)" }}/>
+              )}
+              {/* 장식 SVG */}
+              <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:2, filter:bgLoc!==null?"drop-shadow(0 0 1px #F5ECD0) drop-shadow(0 0 3px rgba(232,216,146,0.6)) drop-shadow(0 0 7px rgba(200,168,78,0.4))":"none", transition:"filter 0.5s" }}>
+                {/* 외곽 프레임 */}
+                <path d={octoP(RO+3)} fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.3"/>
+                {[0,1,2,3,4,5,6,7].map(i=>{const a1=rd(vaF(i)),a2=rd(vaF(i+1)),ma=rd(faF(i));const x1=CX+(RO+3)*Math.sin(a1),y1=CY-(RO+3)*Math.cos(a1),x2=CX+(RO+3)*Math.sin(a2),y2=CY-(RO+3)*Math.cos(a2);const bx=CX+(RO+7)*Math.sin(ma),by=CY-(RO+7)*Math.cos(ma);return <g key={i}><path d={`M${x1},${y1} Q${bx},${by} ${x2},${y2}`} fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.3"/><circle cx={bx} cy={by} r="0.6" fill="#E8D892" opacity="0.25"/><circle cx={bx} cy={by} r="1.2" fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.22"/></g>;})}
+                <path d={octoP(RO)} fill="none" stroke="#E8D892" strokeWidth="0.7" opacity="0.55"/>
+                <path d={octoP(RO+1.5)} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.35"/>
+                {/* 꼭짓점 장식 */}
+                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ar=rd(a),x=CX+(RO+1.5)*Math.sin(ar),y=CY-(RO+1.5)*Math.cos(ar);return <g key={i}><path d={diaP(x,y,1.6,2.8)} fill="#E8D892" opacity="0.15" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,1.6,2.8)} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.55" transform={`rotate(${a},${x},${y})`}/><path d={diaP(x,y,0.8,1.4)} fill="#E8D892" opacity="0.25" transform={`rotate(${a},${x},${y})`}/>{[-1,1].map(si=><circle key={si} cx={x+Math.cos(ar)*si*2.2} cy={y+Math.sin(ar)*si*2.2} r="1" fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.35"/>)}</g>;})}
+                {/* 분리선 + 다이아 장식 */}
+                {[0,1,2,3,4,5,6,7].map(i=>{const a=vaF(i),ix=vxF(RI,a),iy=vyF(RI,a),ox=vxF(RO,a),oy=vyF(RO,a),mx=(ix+ox)/2,my=(iy+oy)/2;return <g key={i}><line x1={ix} y1={iy} x2={ox} y2={oy} stroke="#E8D892" strokeWidth="0.4" opacity="0.4"/><path d={diaP(mx,my,1,1.6)} fill="#E8D892" opacity="0.15" transform={`rotate(${a},${mx},${my})`}/><path d={diaP(mx,my,1,1.6)} fill="none" stroke="#E8D892" strokeWidth="0.2" opacity="0.4" transform={`rotate(${a},${mx},${my})`}/></g>;})}
+                {/* 내부 팔각형 + 만다라 */}
+                <path d={octoP(RI)} fill="none" stroke="#E8D892" strokeWidth="0.7" opacity="0.55"/>
+                <path d={octoP(RI-1.2)} fill="none" stroke="#E8D892" strokeWidth="0.25" opacity="0.35"/>
+                {(()=>{let st="";for(let i=0;i<8;i++){const a=rd(i*45),ar=rd(i*45+22.5);st+=(i?"L":"M")+(CX+RI*0.78*Math.sin(a))+","+(CY-RI*0.78*Math.cos(a))+" L"+(CX+RI*0.42*Math.sin(ar))+","+(CY-RI*0.42*Math.cos(ar))+" ";}return <path d={st+"Z"} fill="none" stroke="#E8D892" strokeWidth="0.3" opacity="0.35"/>;})()}
+                <circle cx={CX} cy={CY} r={RI*0.58} fill="none" stroke="#E8D892" strokeWidth="0.15" opacity="0.25"/>
+                <circle cx={CX} cy={CY} r={RI*0.29} fill="none" stroke="#E8D892" strokeWidth="0.25" opacity="0.35"/>
+                <circle cx={CX} cy={CY} r={RI*0.13} fill="#E8D892" opacity="0.2"/>
+                <circle cx={CX} cy={CY} r={RI*0.06} fill="#E8D892" opacity="0.35"/>
+              </svg>
+              {/* 8개 사다리꼴 인터랙션 영역 */}
+              {locs.map((loc, i) => {
+                const ctr = cOfF(i);
+                const bb = trapBB(i);
+                const pad = 0.8;
+                return (
+                  <div key={i} onClick={() => pickLoc(i)} onMouseEnter={() => setHvLoc(i)} onMouseLeave={() => setHvLoc(-1)}
+                    style={{ position:"absolute", inset:0, cursor:"pointer", clipPath:`polygon(${trapClipPct(i)})`, transition:"transform 0.35s cubic-bezier(.34,1.56,.64,1), filter 0.3s", transform:hvLoc===i?"scale(1.05)":"scale(1)", zIndex:hvLoc===i?10:3, filter:hvLoc===i?"drop-shadow(0 0 16px rgba(200,168,78,0.5))":"none" }}>
+                    {/* 호버 이미지 — 사다리꼴 꽉 채움 */}
+                    <div style={{ position:"absolute", left:`${bb.x-pad}%`, top:`${bb.y-pad}%`, width:`${bb.w+pad*2}%`, height:`${bb.h+pad*2}%`, overflow:"hidden", opacity:hvLoc===i?1:0, transition:"opacity 0.4s" }}>
+                      <img src={loc.img} alt={loc.n} style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+                    </div>
+                    {/* 호버 테두리 */}
+                    <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", opacity:hvLoc===i?1:0, transition:"opacity 0.3s" }}>
+                      <path d={trapD(i)} fill="none" stroke={loc.c} strokeWidth="0.7" opacity="0.7"/>
+                    </svg>
+                    {/* 텍스트 */}
+                    <div style={{ position:"absolute", left:`${ctr[0]}%`, top:`${ctr[1]}%`, transform:"translate(-50%,-50%)", fontFamily:"var(--fk)", fontSize:"clamp(13px,2.5vw,17px)", fontWeight:400, color:bgLoc!==null?"#F5ECD0":"var(--gold)", textAlign:"center", lineHeight:1.25, pointerEvents:"none", whiteSpace:"nowrap", opacity:hvLoc===i?0:1, transition:"opacity 0.3s, color 0.5s, text-shadow 0.5s", textShadow:bgLoc!==null?"0 0 4px #E8D892, 0 0 10px rgba(200,168,78,0.7), 0 0 20px rgba(200,168,78,0.3)":"none" }}>{loc.n}</div>
                   </div>
-                  <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
-                </>) : (
-                  <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--txd)", textAlign:"center", fontWeight:300, fontStyle:"italic" }}>{
-                    { ko:"장소를 클릭하세요.", en:"Click a location.", ja:"場所をクリックしてください。" }[l]
-                  }</p>
-                )}
-              </div>
+                );
+              })}
+            </div>
+            {/* 하단 설명 박스 */}
+            <div style={{ maxWidth:"clamp(300px,65vw,380px)", width:"100%", marginTop:"clamp(8px,1.5vw,14px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px", padding:"12px 16px" }}>
+              {selLoc !== null ? (<>
+                <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"6px" }}>
+                  <div style={{ width:"10px", height:"10px", borderRadius:"50%", background:locs[selLoc].c, boxShadow:`0 0 8px ${locs[selLoc].c}60` }}/>
+                  <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
+                </div>
+                <p style={{ fontSize:"clamp(13px,2vw,15px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
+              </>) : (
+                <p style={{ fontSize:"clamp(13px,2vw,15px)", color:"var(--txd)", textAlign:"center", fontWeight:300, fontStyle:"italic" }}>{
+                  { ko:"장소를 클릭하세요.", en:"Click a location.", ja:"場所をクリックしてください。" }[l]
+                }</p>
+              )}
             </div>
           </div>
 
