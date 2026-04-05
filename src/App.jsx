@@ -770,22 +770,25 @@ function World({ onKingdom }) {
             <div style={{ display:"grid", gridTemplateColumns:`repeat(3,clamp(100px,17vw,140px))`, gap:"clamp(12px,1.8vw,18px)", justifyContent:"center" }}>
               {kings.map((k, i) => (
                 <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
-                  style={{ position:"relative", aspectRatio:"3/4", overflow:"visible", cursor:"pointer", transition:"transform 0.3s, filter 0.3s", transform:hvK===i?"translateY(-5px)":"translateY(0)", filter:hvK===i?"drop-shadow(0 6px 16px rgba(200,168,78,0.35))":"none" }}>
-                  {/* 금색 아치 돔 */}
-                  <div style={{ position:"absolute", top:0, left:0, right:0, height:"11%", background:"var(--gold)", opacity:0.15, clipPath:"ellipse(55% 100% at 50% 100%)" }}/>
-                  {/* 이미지 — 카드의 11%~77% */}
-                  <div style={{ position:"absolute", top:"11%", left:0, right:0, height:"66%", overflow:"hidden" }}>
-                    <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
-                  </div>
-                  {/* 이름 영역 — 카드의 77%~100% */}
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"23%", background:"var(--bgc)", display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 clamp(5px,1vw,8px)" }}>
-                    <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
-                      <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, boxShadow:`0 0 3px ${k.color}50`, flexShrink:0 }}/>
-                      <span style={{ fontFamily:"var(--fk)", fontSize:"clamp(9px,1.4vw,12px)", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                  style={{ position:"relative", overflow:"visible", cursor:"pointer", transition:"transform 0.3s, filter 0.3s", transform:hvK===i?"translateY(-5px)":"translateY(0)", filter:hvK===i?"drop-shadow(0 6px 16px rgba(200,168,78,0.35))":"none" }}>
+                  {/* 카드 본체 — overflow:hidden으로 내용물 클리핑 */}
+                  <div style={{ width:"100%", aspectRatio:"3/4", overflow:"hidden", position:"relative" }}>
+                    {/* 금색 아치 돔 */}
+                    <div style={{ position:"absolute", top:0, left:0, right:0, height:"11%", background:"var(--gold)", opacity:0.15, clipPath:"ellipse(55% 100% at 50% 100%)" }}/>
+                    {/* 이미지 — 카드의 11%~77% */}
+                    <div style={{ position:"absolute", top:"11%", left:0, right:0, height:"66%", overflow:"hidden" }}>
+                      <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
                     </div>
-                    <div style={{ fontFamily:"var(--fk)", fontSize:"clamp(7px,1.1vw,10px)", color:"var(--tx2)", fontWeight:300, marginLeft:"8px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.d}</div>
+                    {/* 이름 영역 — 카드의 77%~100% */}
+                    <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"23%", background:"var(--bgc)", display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 clamp(5px,1vw,8px)" }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
+                        <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, boxShadow:`0 0 3px ${k.color}50`, flexShrink:0 }}/>
+                        <span style={{ fontFamily:"var(--fk)", fontSize:"clamp(9px,1.4vw,12px)", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                      </div>
+                      <div style={{ fontFamily:"var(--fk)", fontSize:"clamp(7px,1.1vw,10px)", color:"var(--tx2)", fontWeight:300, marginLeft:"8px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.d}</div>
+                    </div>
                   </div>
-                  {/* SVG 장식 — 카드 바깥 돌출 허용 */}
+                  {/* SVG 장식 — 카드 본체 바깥, 돌출 허용 */}
                   <svg viewBox="-8 -18 116 156" preserveAspectRatio="none" style={{ position:"absolute", top:"-13.5%", left:"-5.7%", width:"111.4%", height:"117%", pointerEvents:"none", zIndex:2, overflow:"visible" }}>
                     <path d="M0,130 L0,18 Q0,1 50,-2 Q100,1 100,18 L100,130 Z" fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.5"/>
                     <path d="M-3,132 L-3,22 Q-3,-1 50,-5 Q103,-1 103,22 L103,132" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.18"/>
