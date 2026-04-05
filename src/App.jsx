@@ -824,7 +824,7 @@ function World({ onKingdom }) {
                 const bb = trapBB(i);
                 const pad = 0.8;
                 return (
-                  <div key={i} onClick={() => pickLoc(i)} onMouseEnter={() => setHvLoc(i)} onMouseLeave={() => setHvLoc(-1)}
+                  <div key={i} onClick={() => pickLoc(i)} onMouseEnter={() => { setHvLoc(i); if(bgLoc!==null) setBgLoc(i); }} onMouseLeave={() => setHvLoc(-1)}
                     style={{ position:"absolute", inset:0, cursor:"pointer", clipPath:`polygon(${trapClipPct(i)})`, transition:"transform 0.35s cubic-bezier(.34,1.56,.64,1), filter 0.3s", transform:hvLoc===i?"scale(1.05)":"scale(1)", zIndex:hvLoc===i?10:3, filter:hvLoc===i?"drop-shadow(0 0 16px rgba(200,168,78,0.5))":"none" }}>
                     {/* 호버 이미지 — 사다리꼴 꽉 채움 */}
                     <div style={{ position:"absolute", left:`${bb.x-pad}%`, top:`${bb.y-pad}%`, width:`${bb.w+pad*2}%`, height:`${bb.h+pad*2}%`, overflow:"hidden", opacity:hvLoc===i?1:0, transition:"opacity 0.4s" }}>
