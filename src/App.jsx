@@ -765,29 +765,68 @@ function World({ onKingdom }) {
       <div style={{ flex:1, overflow:"hidden", position:"relative" }}>
         <div style={{ display:"flex", width:"300%", height:"100%", transform:`translateX(-${page * 33.333}%)`, transition:"transform 0.5s cubic-bezier(.4,0,.2,1)" }}>
 
-          {/* ── 페이지 1: 9왕국 ── */}
-          <div style={{ width:"33.333%", height:"100%", overflowY:"auto", padding:"0 clamp(12px,3vw,16px) 44px" }} className="iscroll">
-            <div style={{ maxWidth:"640px", margin:"0 auto" }}>
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"clamp(8px,1.5vw,14px)" }}>
-                {kings.map((k, i) => (
-                  <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
-                    style={{ cursor:"pointer", background:"var(--bgc)", border:hvK===i?`1.5px solid ${k.color}`:"1.5px solid var(--brd)", borderRadius:"12px", overflow:"hidden", transition:"all 0.3s", transform:hvK===i?"translateY(-4px)":"translateY(0)", boxShadow:hvK===i?"0 8px 24px rgba(0,0,0,0.08)":"0 2px 8px rgba(0,0,0,0.03)" }}>
-                    <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", position:"relative" }}>
-                      {k.img
-                        ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
-                        : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}18,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                            <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,5vw,36px)", fontWeight:700, color:`${k.color}25` }}>{k.n[0]}</span>
-                          </div>
-                      }
-                      <div style={{ position:"absolute", bottom:"4px", left:"4px", width:"8px", height:"8px", borderRadius:"50%", background:k.color, boxShadow:`0 0 6px ${k.color}50` }}/>
+          {/* ── 페이지 1: 9왕국 — 아치 카드 ── */}
+          <div style={{ width:"33.333%", height:"100%", display:"flex", alignItems:"flex-start", justifyContent:"center", padding:"clamp(4px,1vw,8px) clamp(8px,1.5vw,12px) 8px", overflow:"hidden" }}>
+            <div style={{ display:"grid", gridTemplateColumns:`repeat(3,clamp(100px,17vw,140px))`, gap:"clamp(12px,1.8vw,18px)", justifyContent:"center" }}>
+              {kings.map((k, i) => (
+                <div key={i} onClick={() => onKingdom(k)} onMouseEnter={() => setHvK(i)} onMouseLeave={() => setHvK(-1)}
+                  style={{ position:"relative", overflow:"visible", cursor:"pointer", transition:"transform 0.3s, filter 0.3s", transform:hvK===i?"translateY(-5px)":"translateY(0)", filter:hvK===i?"drop-shadow(0 6px 16px rgba(200,168,78,0.35))":"none" }}>
+                  <svg viewBox="-8 -18 116 156" style={{ position:"absolute", inset:"-18px -8px -0px -8px", width:"calc(100% + 16px)", height:"calc(100% + 18px)", pointerEvents:"none", zIndex:2, overflow:"visible" }}>
+                    {/* 금색 아치 돔 */}
+                    <path d="M0,18 Q0,1 50,-2 Q100,1 100,18 Z" fill="var(--gold)" opacity="0.15"/>
+                    {/* 메인 프레임 */}
+                    <path d="M0,130 L0,18 Q0,1 50,-2 Q100,1 100,18 L100,130 Z" fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.5"/>
+                    {/* 외곽 에코 */}
+                    <path d="M-3,132 L-3,22 Q-3,-1 50,-5 Q103,-1 103,22 L103,132" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.18"/>
+                    <path d="M-2,20 Q-2,0 50,-4 Q102,0 102,20" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    {/* 상단 타로 장식 */}
+                    <path d="M50,-3 L53,-8 L50,-13 L47,-8 Z" fill="var(--gold)" opacity="0.2"/>
+                    <path d="M50,-3 L53,-8 L50,-13 L47,-8 Z" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.5"/>
+                    <path d="M50,-5 L51.5,-8 L50,-11 L48.5,-8 Z" fill="var(--gold)" opacity="0.3"/>
+                    <circle cx="50" cy="-8" r="5.5" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    <line x1="44" y1="-8" x2="40" y2="-8" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    <line x1="56" y1="-8" x2="60" y2="-8" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    <line x1="50" y1="-14" x2="50" y2="-17" stroke="var(--gold)" strokeWidth="0.8" opacity="0.25"/>
+                    <circle cx="39" cy="-8" r="1" fill="var(--gold)" opacity="0.18"/>
+                    <circle cx="61" cy="-8" r="1" fill="var(--gold)" opacity="0.18"/>
+                    <circle cx="50" cy="-18" r="1" fill="var(--gold)" opacity="0.18"/>
+                    <path d="M46,-4 L44,-6" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
+                    <path d="M54,-4 L56,-6" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
+                    {/* 하단 다이아몬드 */}
+                    <path d="M0,130 L-4,125 L0,120 L4,125 Z" fill="var(--gold)" opacity="0.18"/>
+                    <path d="M0,130 L-4,125 L0,120 L4,125 Z" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.45"/>
+                    <path d="M100,130 L96,125 L100,120 L104,125 Z" fill="var(--gold)" opacity="0.18"/>
+                    <path d="M100,130 L96,125 L100,120 L104,125 Z" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.45"/>
+                    {/* 어깨 다이아몬드 */}
+                    <path d="M2,24 L-1,20 L2,16 L5,20 Z" fill="var(--gold)" opacity="0.1"/>
+                    <path d="M2,24 L-1,20 L2,16 L5,20 Z" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.3"/>
+                    <path d="M98,24 L95,20 L98,16 L101,20 Z" fill="var(--gold)" opacity="0.1"/>
+                    <path d="M98,24 L95,20 L98,16 L101,20 Z" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.3"/>
+                    {/* 측면 + 하단 장식 */}
+                    <circle cx="-3" cy="75" r="1.8" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.22"/>
+                    <circle cx="-3" cy="75" r="0.8" fill="var(--gold)" opacity="0.15"/>
+                    <circle cx="103" cy="75" r="1.8" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.22"/>
+                    <circle cx="103" cy="75" r="0.8" fill="var(--gold)" opacity="0.15"/>
+                    <path d="M44,130 L50,135 L56,130" fill="none" stroke="var(--gold)" strokeWidth="0.8" opacity="0.2"/>
+                    <circle cx="50" cy="135" r="1" fill="var(--gold)" opacity="0.15"/>
+                    <line x1="8" y1="95" x2="92" y2="95" stroke="var(--gold)" strokeWidth="0.8" opacity="0.12"/>
+                  </svg>
+                  {/* 카드 본체 */}
+                  <div style={{ width:"100%", overflow:"hidden", display:"flex", flexDirection:"column" }}>
+                    <div style={{ width:"100%", height:"clamp(10px,2vw,14px)", background:"var(--gold)", opacity:0.12, flexShrink:0 }}/>
+                    <div style={{ width:"100%", overflow:"hidden", flexShrink:0 }}>
+                      <img src={k.img} alt={k.n} style={{ width:"100%", display:"block" }}/>
                     </div>
-                    <div style={{ padding:"clamp(6px,1vw,10px) clamp(8px,1.5vw,12px)" }}>
-                      <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.7vw,15px)", fontWeight:700, color:"var(--gold)" }}>{k.n}</span>
-                      <span style={{ fontSize:"clamp(10px,1.3vw,12px)", color:"var(--tx2)", fontWeight:300, marginLeft:"6px" }}>{k.d}</span>
+                    <div style={{ padding:"clamp(3px,0.6vw,5px) clamp(5px,1vw,8px) clamp(4px,0.7vw,6px)", background:"var(--bgc)" }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
+                        <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, boxShadow:`0 0 3px ${k.color}50`, flexShrink:0 }}/>
+                        <span style={{ fontFamily:"var(--fk)", fontSize:"clamp(9px,1.4vw,12px)", fontWeight:700, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                      </div>
+                      <div style={{ fontFamily:"var(--fk)", fontSize:"clamp(7px,1.1vw,10px)", color:"var(--tx2)", fontWeight:400, marginLeft:"8px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.d}</div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
 
