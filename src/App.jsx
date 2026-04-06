@@ -221,7 +221,7 @@ const LOCATIONS = {
    ═══════════════════════════════════════════ */
 const KINGDOMS = {
   ko:[
-    { n:"엘 페디움", d:"마법 절대주의 제국", detail:"인어 학살로 마력을 탈취해 대륙을 통일한 제국. 대반역 진압 중 황족 멸절 위기에 처했다.", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
+    { n:"엘 페디움", d:"마법 절대주의", detail:"인어 학살로 마력을 탈취해 대륙을 통일한 제국. 대반역 진압 중 황족 멸절 위기에 처했다.", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
     { n:"살파도르", d:"사막의 무도 강국", detail:"대륙 최강의 검술과 용병을 보유한 사막 국가. 대반역 시 가장 치열하게 저항했다.", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"세레", d:"신권 통치 교황령", detail:"왕족의 신성력을 교황이 착취하는 나라. 성녀와 사제를 신전에 감금한다.", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"데메테리아", d:"풍요의 대지", detail:"최대 농축산지이나 제국에 식량을 수탈당한다. 기회주의적 생존 전략으로 전환.", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
@@ -232,7 +232,7 @@ const KINGDOMS = {
     { n:"오르테라", d:"마석의 나라", detail:"마법석 채굴지이자 대반역 주도국. 진압 후 국토가 수몰되고 왕족이 노예화되었다.", color:"#2A2A2A", img:"/images/kingdoms/ortera.webp" },
   ],
   en:[
-    { n:"El Pedium", d:"Empire of absolute magic", detail:"An empire that unified the continent by slaughtering merfolk and seizing their magic. Nearly lost its royal line suppressing the Great Rebellion.", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
+    { n:"El Pedium", d:"Absolute magic", detail:"An empire that unified the continent by slaughtering merfolk and seizing their magic. Nearly lost its royal line suppressing the Great Rebellion.", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
     { n:"Salpador", d:"Desert martial powerhouse", detail:"A desert nation boasting the continent's finest swordsmanship and mercenaries. Fought most fiercely during the Great Rebellion.", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"Sere", d:"Theocratic papal state", detail:"A nation where the Pope exploits the royals' sacred power. Saints and priests are imprisoned in temples.", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"Demeteria", d:"Land of abundance", detail:"The largest agricultural region, but its food is plundered by the Empire. Has shifted to opportunistic survival.", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
@@ -243,7 +243,7 @@ const KINGDOMS = {
     { n:"Ortera", d:"Land of magic stones", detail:"A magic-stone mining nation that led the Great Rebellion. After suppression, its lands were submerged and royals enslaved.", color:"#2A2A2A", img:"/images/kingdoms/ortera.webp" },
   ],
   ja:[
-    { n:"エル・ペディウム", d:"魔法絶対主義帝国", detail:"人魚を虐殺し魔力を奪い大陸を統一した帝国。大反逆の鎮圧中に皇族が滅亡の危機に。", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
+    { n:"エル・ペディウム", d:"魔法絶対主義", detail:"人魚を虐殺し魔力を奪い大陸を統一した帝国。大反逆の鎮圧中に皇族が滅亡の危機に。", color:"#C8A84E", img:"/images/kingdoms/elpedium.webp" },
     { n:"サルパドール", d:"砂漠の武道強国", detail:"大陸最強の剣術と傭兵を擁する砂漠の国。大反逆で最も激しく抵抗した。", color:"#E0A050", img:"/images/kingdoms/salpador.webp" },
     { n:"セレ", d:"神権統治教皇領", detail:"王族の神聖力を教皇が搾取する国。聖女や司祭を神殿に監禁する。", color:"#D0B8E8", img:"/images/kingdoms/sere.webp" },
     { n:"デメテリア", d:"豊穣の大地", detail:"最大の農畜産地だが帝国に食料を収奪される。機会主義的な生存戦略に転換。", color:"#8BC47C", img:"/images/kingdoms/demeteria.webp" },
