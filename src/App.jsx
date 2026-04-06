@@ -68,8 +68,7 @@ const T = {
     fm:"자유 모드", fmd:"챕터 제약 없이 자유롭게 보석함을 탐험한다.",
     c1:"!요약", c1d:"현재까지의 호감도·이벤트·관계를 키워드로 정리",
     c2:"!챕터", c2d:"현재 챕터 진행도와 다음 챕터 조건을 확인",
-    c3:"!지도", c3d:"보석함 섬 지역과 9왕국 정보를 출력",
-    c4:"!디버그", c4d:"이미지 출력 오류를 점검하고 수정·재출력",
+    c3:"!디버그", c3d:"이미지 출력 오류를 점검하고 수정·재출력",
     ctaT:"당신은 어떤 보석인가요?", ctaB:"입장하기", ctaN:"URL 추후 연결 예정",
     credit:"흑요석의 신부",
     per:"성격", tone:"말투", goal:"목표",
@@ -86,8 +85,7 @@ const T = {
     fm:"Free Mode", fmd:"Explore the Jewel Box freely with no chapter restrictions.",
     c1:"!summary", c1d:"Summarize affinity, events, and relationships so far",
     c2:"!chapter", c2d:"Check current chapter progress and next chapter conditions",
-    c3:"!map", c3d:"Display Jewel Box island locations and Nine Kingdoms info",
-    c4:"!debug", c4d:"Fix image output errors",
+    c3:"!debug", c3d:"Fix image output errors",
     ctaT:"What gem are you?", ctaB:"Enter", ctaN:"URL coming soon",
     credit:"The Obsidian Bride",
     per:"Personality", tone:"Tone", goal:"Goal",
@@ -104,8 +102,7 @@ const T = {
     fm:"フリーモード", fmd:"チャプター制限なく自由に宝石箱を探索する。",
     c1:"!あらすじ", c1d:"現在までの好感度・イベント・関係をキーワードで整理",
     c2:"!チャプター", c2d:"現在のチャプター進行度と次の条件を確認",
-    c3:"!マップ", c3d:"宝石箱の島の施設と九王国の情報を表示",
-    c4:"!デバッグ", c4d:"画像出力エラーの修正",
+    c3:"!デバッグ", c3d:"画像出力エラーの修正",
     ctaT:"あなたはどんな宝石ですか？", ctaB:"入場する", ctaN:"URLは後日追加予定",
     credit:"黒曜石の花嫁",
     per:"性格", tone:"口調", goal:"目標",
@@ -155,25 +152,25 @@ const CHARS = {
    ═══════════════════════════════════════════ */
 const EVENTS = {
   ko:[
-    { n:"호감도 투표", ic:"💌", d:"매일 밤 카드에 메시지를 적어 호감 상대에게 전달. 마법진으로 실시간 전송, 즉시 결과 발표. 1인당 1표." },
-    { n:"게임", ic:"⚔️", d:"승리자 1인이 원하는 이성 2명을 데이트 상대로 지목. 해상 검술시합, 기마사격, 해저 탐색 등 다양한 경기." },
-    { n:"진실의 만남", ic:"💎", d:"쌍방향 호감 커플 탄생 시, 섬 외부 극한 환경으로 순간이동. 설원·사막·해저에서 생존 미션 수행." },
-    { n:"쇼핑 데이트", ic:"🛍️", d:"마법으로 랜덤 짝을 이뤄 9왕국으로 쇼핑 데이트. 원하는 상대에게 줄 선물을 파트너와 함께 선택." },
-    { n:"최종선택", ic:"💍", d:"사랑하는 상대에게 각국의 보물로 청혼. 수락 시 공식 커플이 되어 한쪽 모국의 독립을 되찾을 수 있다." },
+    { n:"호감도 투표", ic:"💌", d:"매일 밤 카드에 메시지를 적어 호감 상대에게 전달하세요. 메시지는 마법진을 통해 실시간 전송되며 1인당 1표가 배정됩니다." },
+    { n:"게임", ic:"⚔️", d:"다양한 종류의 게임을 진행하며 승리자 1인은 원하는 이성 2명을 데이트 상대로 지목할 수 있습니다." },
+    { n:"진실의 만남", ic:"💎", d:"'호감도 투표'에서 쌍방향 호감 커플 탄생 시, 섬 외부 환경으로 이동하여 생존 미션을 수행하게 됩니다." },
+    { n:"쇼핑 데이트", ic:"🛍️", d:"마법으로 지정된 랜덤한 파트너와 함께 오붓한 쇼핑 시간을 가질 수 있습니다. 선물의 주인은... 어쩌면 지금 함께하고 있는 상대가 아닐 수도?" },
+    { n:"최종 선택", ic:"💍", d:"마음에 둔 상대에게 청혼할 수 있는 기회의 시간. 그러나 신중하세요. 모국의 독립은 오직 단 한 사람만이 얻을 수 있습니다." },
   ],
   en:[
-    { n:"Affinity Vote", ic:"💌", d:"Each night, write a message on a card and deliver it to your crush. Transmitted instantly via magic circle. One vote per person." },
-    { n:"Games", ic:"⚔️", d:"The winner nominates 2 people of the opposite sex for a date. Sea duels, mounted archery, undersea exploration, and more." },
-    { n:"Moment of Truth", ic:"💎", d:"When mutual affinity is confirmed, the couple teleports to extreme environments outside the island for survival missions." },
-    { n:"Shopping Date", ic:"🛍️", d:"Randomly paired via magic for a shopping date across the nine kingdoms. Choose a gift for your crush with your partner." },
-    { n:"Final Choice", ic:"💍", d:"Propose to your beloved with a national treasure. If accepted, the couple earns independence for one homeland." },
+    { n:"Affinity Vote", ic:"💌", d:"Each night, write a message on a card and deliver it to your crush. Messages are transmitted in real time via magic circle, with one vote per person." },
+    { n:"Games", ic:"⚔️", d:"Compete in a variety of games. The winner gets to choose two people of the opposite sex as their date partners." },
+    { n:"Moment of Truth", ic:"💎", d:"When a mutual match is confirmed through the Affinity Vote, the couple is transported to an environment outside the island for a survival mission." },
+    { n:"Shopping Date", ic:"🛍️", d:"Enjoy a cozy shopping trip with a randomly assigned partner chosen by magic. But the gift's recipient might not be the person you're shopping with..." },
+    { n:"Final Choice", ic:"💍", d:"A chance to propose to the one you've been keeping in your heart. But choose wisely — only one person can win their homeland's independence." },
   ],
   ja:[
-    { n:"好感度投票", ic:"💌", d:"毎晩カードにメッセージを書いて好きな相手に送る。魔法陣でリアルタイム送信、即座に結果発表。一人一票。" },
-    { n:"ゲーム", ic:"⚔️", d:"勝者1人が異性2人をデート相手に指名。海上剣術試合、騎馬射撃、海底探索など多様な競技。" },
-    { n:"真実の出会い", ic:"💎", d:"双方向の好感カップル誕生時、島外の極限環境へ瞬間移動。雪原・砂漠・海底でサバイバルミッション。" },
-    { n:"ショッピングデート", ic:"🛍️", d:"魔法でランダムペアを組み九王国へショッピングデート。好きな相手へのプレゼントをパートナーと一緒に選ぶ。" },
-    { n:"最終選択", ic:"💍", d:"愛する相手に各国の宝物でプロポーズ。受諾されれば公式カップルとなり、一方の祖国の独立を取り戻せる。" },
+    { n:"好感度投票", ic:"💌", d:"毎晩カードにメッセージを書いて、気になる相手に届けましょう。メッセージは魔法陣を通じてリアルタイムで送信され、一人一票が割り当てられます。" },
+    { n:"ゲーム", ic:"⚔️", d:"さまざまなゲームに挑戦し、勝者1人は好きな異性2人をデート相手に指名できます。" },
+    { n:"真実の出会い", ic:"💎", d:"「好感度投票」で相互好感カップルが誕生した場合、島の外の環境へ移動し、サバイバルミッションに挑みます。" },
+    { n:"ショッピングデート", ic:"🛍️", d:"魔法で指定されたランダムなパートナーと一緒に、のんびりショッピングを楽しめます。プレゼントの相手は…もしかしたら、今一緒にいる人ではないかも？" },
+    { n:"最終選択", ic:"💍", d:"想いを寄せる相手にプロポーズできるチャンスの時間。しかし慎重に。祖国の独立を手にできるのは、たった一人だけです。" },
   ],
 };
 
@@ -514,7 +511,7 @@ function CharModal({ c, onClose }) {
             : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"14px", animation:"fadeUp 0.6s ease 0.2s both" }}>
                 <div style={{ fontSize:"13px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
                 <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"8px" }}>
-                  {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
+                  {[{ label:t.per, v:c.per },{ label:t.goal, v:c.goal }].map((x,i) => (
                     <div key={i} style={{ flex:"1 1 100%" }}>
                       <span style={{ fontSize:"10px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
                       <p style={{ fontSize:"14px", color:"rgba(232,224,208,0.9)", lineHeight:1.6, fontWeight:400, marginTop:"2px" }}>{x.v}</p>
@@ -546,7 +543,7 @@ function CharModal({ c, onClose }) {
               : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)" }}>
                   <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
                   <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
-                    {[{ label:t.per, v:c.per },{ label:t.tone, v:c.tone },{ label:t.goal, v:c.goal }].map((x,i) => (
+                    {[{ label:t.per, v:c.per },{ label:t.goal, v:c.goal }].map((x,i) => (
                       <div key={i} style={{ flex:"1 1 120px" }}>
                         <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
                         <p style={{ fontSize:"clamp(15px,1.8vw,17px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
@@ -747,14 +744,21 @@ function World({ onKingdom }) {
         <div style={{ display:"flex", justifyContent:"center", gap:mob?"4px":"6px", marginTop:mob?"-4px":"-8px", marginBottom:mob?"8px":"12px" }}>
           {tabs.map((tab, i) => {
             const act = page === i;
-            const bc = act ? "var(--gold)" : "rgba(200,168,78,0.35)";
             return (
               <button key={i} onClick={() => setPage(i)}
-                style={{ position:"relative", padding:mob?"6px 14px":"8px 22px", paddingTop:mob?"12px":"14px", background:act?"rgba(200,168,78,0.1)":"transparent", border:"none", borderBottom:`2px solid ${bc}`, borderLeft:`2px solid ${bc}`, borderRight:`2px solid ${bc}`, borderRadius:0, cursor:"pointer", transition:"all 0.3s" }}>
-                <svg style={{ position:"absolute", top:0, left:"-2px", width:"calc(100% + 4px)", height:"8px" }} viewBox="0 0 120 8" preserveAspectRatio="none">
-                  <path d={`M0,8 L0,2 L10,2 L10,8 L20,8 L20,2 L30,2 L30,8 L40,8 L40,2 L50,2 L50,8 L60,8 L60,2 L70,2 L70,8 L80,8 L80,2 L90,2 L90,8 L100,8 L100,2 L110,2 L110,8 L120,8`} fill="none" stroke={act?"var(--gold)":"rgba(200,168,78,0.35)"} strokeWidth="1.5" vectorEffect="non-scaling-stroke"/>
+                style={{ position:"relative", padding:mob?"10px 20px":"12px 28px", background:"transparent", border:"none", cursor:"pointer", transition:"all 0.3s" }}>
+                <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", overflow:"visible" }} viewBox="0 0 100 40" preserveAspectRatio="none">
+                  {/* 메인 프레임 — 상단 아치 */}
+                  <path d="M8,38 L8,12 Q8,2 50,2 Q92,2 92,12 L92,38 Z" fill={act?"rgba(200,168,78,0.08)":"transparent"} stroke={act?"var(--gold)":"rgba(200,168,78,0.3)"} strokeWidth={act?"1.2":"0.8"} vectorEffect="non-scaling-stroke"/>
+                  {/* 이중 아치 라인 */}
+                  <path d="M12,12 Q12,5 50,5 Q88,5 88,12" fill="none" stroke={act?"var(--gold)":"rgba(200,168,78,0.2)"} strokeWidth="0.5" vectorEffect="non-scaling-stroke"/>
+                  {/* 좌우 끝점 장식 */}
+                  <circle cx="8" cy="38" r="1.5" fill={act?"var(--gold)":"rgba(200,168,78,0.2)"} stroke={act?"var(--gold)":"rgba(200,168,78,0.3)"} strokeWidth="0.5" vectorEffect="non-scaling-stroke"/>
+                  <circle cx="92" cy="38" r="1.5" fill={act?"var(--gold)":"rgba(200,168,78,0.2)"} stroke={act?"var(--gold)":"rgba(200,168,78,0.3)"} strokeWidth="0.5" vectorEffect="non-scaling-stroke"/>
+                  {/* 하단 라인 */}
+                  <line x1="10" y1="38" x2="90" y2="38" stroke={act?"var(--gold)":"rgba(200,168,78,0.25)"} strokeWidth="0.6" vectorEffect="non-scaling-stroke"/>
                 </svg>
-                <span style={{ fontFamily:"var(--fk)", fontSize:mob?"12px":"14px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px" }}>{tab.label}</span>
+                <span style={{ position:"relative", zIndex:2, fontFamily:"var(--fk)", fontSize:mob?"12px":"14px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px", transition:"color 0.3s" }}>{tab.label}</span>
               </button>
             );
           })}
@@ -902,18 +906,53 @@ function World({ onKingdom }) {
               <div style={{ display:"flex", flexDirection:"column", gap:"clamp(8px,1.5vw,12px)" }}>
                 {events.map((ev, i) => {
                   const isOpen = selEvt === i;
+                  const hovered = hvEvt === i;
+                  const borderC = isOpen ? "var(--gold)" : hovered ? "rgba(200,168,78,0.6)" : "rgba(200,168,78,0.35)";
+                  const bgC = isOpen ? "rgba(30,58,92,0.95)" : "var(--midnight)";
+                  const cut = "14px";
+                  const gemClip = `polygon(${cut} 0%, calc(100% - ${cut}) 0%, 100% ${cut}, 100% calc(100% - ${cut}), calc(100% - ${cut}) 100%, ${cut} 100%, 0% calc(100% - ${cut}), 0% ${cut})`;
+                  const constellations = [
+                    /* 💌 하트형 — 위로 모이는 삼각 */
+                    { pts:[[50,8],[22,28],[78,28],[10,55],[42,50],[58,50],[90,55],[50,72]], lines:[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6],[4,5],[3,7],[6,7],[4,7],[5,7]] },
+                    /* ⚔️ X자 교차 */
+                    { pts:[[15,12],[85,12],[50,40],[15,68],[85,68],[30,28],[70,28],[30,52],[70,52]], lines:[[0,5],[5,2],[2,6],[6,1],[0,7],[7,2],[2,8],[8,1],[3,7],[7,8],[8,4],[3,4]] },
+                    /* 💎 다이아몬드 결정 */
+                    { pts:[[50,5],[25,30],[75,30],[50,55],[12,50],[88,50],[35,72],[65,72]], lines:[[0,1],[0,2],[1,3],[2,3],[1,4],[2,5],[4,6],[5,7],[3,6],[3,7],[6,7]] },
+                    /* 🛍️ 물결 흐름 */
+                    { pts:[[8,20],[28,12],[52,22],[78,10],[92,28],[68,45],[38,40],[18,55],[48,65],[75,58]], lines:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[5,9],[2,6],[1,6]] },
+                    /* 💍 왕관 */
+                    { pts:[[50,8],[20,25],[80,25],[10,55],[90,55],[30,45],[70,45],[50,38],[35,68],[65,68]], lines:[[0,7],[7,5],[7,6],[5,1],[6,2],[1,3],[2,4],[5,6],[3,8],[4,9],[8,9],[1,5],[2,6]] },
+                  ];
+                  const c = constellations[i] || constellations[0];
                   return (
                     <div key={i} onClick={() => setSelEvt(isOpen ? null : i)} onMouseEnter={() => setHvEvt(i)} onMouseLeave={() => setHvEvt(-1)}
-                      style={{ background: isOpen ? "rgba(200,168,78,0.1)" : "var(--bgc)", border: isOpen ? "1.5px solid var(--gold)" : hvEvt===i ? "1.5px solid rgba(200,168,78,0.5)" : "1.5px solid var(--brd)", borderRadius:"14px", padding:"clamp(14px,2.5vw,20px)", cursor:"pointer", transition:"all 0.3s" }}>
-                      <div style={{ display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
-                        <div style={{ width:"clamp(36px,8vw,48px)", height:"clamp(36px,8vw,48px)", borderRadius:"50%", background: isOpen ? "rgba(200,168,78,0.15)" : "rgba(200,168,78,0.06)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, border:"1px solid var(--brd)" }}>{ev.ic}</div>
-                        <div style={{ flex:1 }}>
-                          <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--gold)" : "var(--midnight)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
-                          {isOpen && (
-                            <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
-                          )}
+                      style={{ position:"relative", cursor:"pointer", transition:"all 0.3s", filter: isOpen ? "drop-shadow(0 2px 16px rgba(232,216,146,0.12))" : "none" }}>
+                      <div style={{ clipPath:gemClip, background:borderC, padding:"1.5px", transition:"background 0.3s" }}>
+                        <div style={{ clipPath:gemClip, background:bgC, padding:"clamp(16px,2.5vw,22px) clamp(20px,3vw,28px)", transition:"background 0.3s", position:"relative", overflow:"hidden" }}>
+                          {/* 별자리 패턴 — 고정 크기, 우측 배치 */}
+                          <svg viewBox="0 0 100 80" style={{ position:"absolute", top:"50%", right:"clamp(8px,2vw,20px)", transform:"translateY(-50%)", width:"clamp(140px,40vw,220px)", height:"auto", pointerEvents:"none", opacity: isOpen ? 0.55 : 0.3, transition:"opacity 0.4s" }}>
+                            {c.lines.map(([a,b],li) => c.pts[a]&&c.pts[b] ? <line key={`l${li}`} x1={c.pts[a][0]} y1={c.pts[a][1]} x2={c.pts[b][0]} y2={c.pts[b][1]} stroke="#E8D892" strokeWidth="0.4" opacity="0.5"/> : null)}
+                            {c.pts.map(([x,y],pi) => (
+                              <g key={`p${pi}`}>
+                                <circle cx={x} cy={y} r="2" fill="#E8D892" opacity="0.08"/>
+                                <circle cx={x} cy={y} r={pi%3===0?"1.3":"0.8"} fill="#F2ECE0" opacity={pi%2===0?"0.9":"0.6"}/>
+                              </g>
+                            ))}
+                          </svg>
+                          {/* 콘텐츠 */}
+                          <div style={{ position:"relative", zIndex:2, display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
+                            <div style={{ width:"clamp(36px,8vw,46px)", height:"clamp(36px,8vw,46px)", clipPath:"polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)", background: isOpen ? "rgba(232,216,146,0.12)" : "rgba(232,216,146,0.05)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, transition:"all 0.3s" }}>{ev.ic}</div>
+                            <div style={{ flex:1 }}>
+                              <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--goldl)" : "var(--bgc)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
+                              {isOpen && (
+                                <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"rgba(232,224,208,0.7)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
+                              )}
+                            </div>
+                            <svg width="14" height="14" viewBox="0 0 14 14" style={{ flexShrink:0, opacity:isOpen?1:0.35, transition:"all 0.3s", transform:isOpen?"rotate(45deg)":"rotate(0)" }}>
+                              <path d="M7,1 L10,5.5 L7,10 L4,5.5 Z" fill="var(--goldl)"/>
+                            </svg>
+                          </div>
                         </div>
-                        <div style={{ fontSize:"12px", color:"var(--gold)", opacity:isOpen?1:0.4, transition:"all 0.3s", transform:isOpen?"rotate(90deg)":"rotate(0)", flexShrink:0 }}>▶</div>
                       </div>
                     </div>
                   );
@@ -966,7 +1005,7 @@ function System() {
         </div>
         <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.6vw,15px)", letterSpacing:"4px", color:"var(--gold)", textAlign:"center", marginBottom:"16px", fontWeight:600 }}>{t.cmdL}</div>
         <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
-          {[{ c:t.c1, d:t.c1d },{ c:t.c2, d:t.c2d },{ c:t.c3, d:t.c3d },{ c:t.c4, d:t.c4d }].map((x,i) => (
+          {[{ c:t.c1, d:t.c1d },{ c:t.c2, d:t.c2d },{ c:t.c3, d:t.c3d }].map((x,i) => (
             <div key={i} style={{ display:"flex", gap:"clamp(8px,2vw,14px)", alignItems:"baseline", padding:"12px clamp(12px,2vw,16px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"8px", flexWrap:"wrap" }}>
               <code style={{ fontFamily:"var(--fk)", fontSize:"clamp(13px,1.6vw,15px)", color:"var(--gold)", fontWeight:400, background:"rgba(200,168,78,0.08)", padding:"3px 8px", borderRadius:"4px", flexShrink:0 }}>{x.c}</code>
               <span style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.6 }}>{x.d}</span>
