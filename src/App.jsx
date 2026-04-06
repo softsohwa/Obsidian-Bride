@@ -10,9 +10,15 @@ document.head.appendChild(fl);
 const css = document.createElement("style");
 css.textContent = `
 @font-face {
-  font-family: 'HeirofLightBold';
+  font-family: 'HeirofLight';
+  src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Yoondesign/HeirofLightRegular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HeirofLight';
   src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Yoondesign/HeirofLightBold.woff') format('woff');
-  font-weight: bold;
+  font-weight: 700;
   font-display: swap;
 }
 @font-face {
@@ -35,7 +41,7 @@ css.textContent = `
   --blue:#6CBEEB; --blued:#3A8BBF;
   --brd:rgba(200,168,78,0.2);
   --fd:'Playfair Display','Noto Serif KR','Shippori Mincho',serif;
-  --fk:'HeirofLightBold','Noto Serif KR',serif;
+  --fk:'HeirofLight','Noto Serif KR',serif;
   --fs:'Playlist Script',cursive;
   --fb:'ChosunIlboMyungjo','Noto Sans KR','Noto Sans JP',sans-serif;
 }
@@ -312,7 +318,7 @@ function TitleSVG({ dark = false }) {
       <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="52" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
         OBSIDIAN BRIDE
       </text>
-      <text x="300" y="100" textAnchor="middle" fontFamily="'HeirofLightBold','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
+      <text x="300" y="100" textAnchor="middle" fontFamily="'HeirofLight','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
         흑요석의 신부
       </text>
     </svg>
@@ -794,7 +800,7 @@ function World({ onKingdom }) {
                     </foreignObject>
                     {/* 이름 + 설명 */}
                     <foreignObject x="5" y="95" width="90" height="33">
-                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"HeirofLightBold, sans-serif" }}>
+                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"HeirofLight, sans-serif" }}>
                         <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
                           <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, flexShrink:0 }}/>
                           <span style={{ fontSize:"11px", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
