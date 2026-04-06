@@ -293,8 +293,8 @@ function STitle({ sub, main }) {
   const hf = l === "ko" ? "var(--fk)" : "var(--fd)";
   return (
     <div style={{ textAlign:"center", marginBottom:"clamp(12px,2vw,20px)" }}>
-      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(11px,1.5vw,13px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"3px", fontWeight:600 }}>{sub}</div>
-      <h2 style={{ fontFamily:hf, fontSize:"clamp(20px,4vw,36px)", fontWeight:700, lineHeight:1.3, color:"var(--gold)" }}>{main}</h2>
+      <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.5vw,15px)", letterSpacing:"6px", color:"var(--gold)", marginBottom:"3px", fontWeight:600 }}>{sub}</div>
+      <h2 style={{ fontFamily:hf, fontSize:"clamp(22px,4vw,38px)", fontWeight:700, lineHeight:1.3, color:"var(--gold)" }}>{main}</h2>
       <div style={{ width:"36px", height:"1px", margin:"6px auto 0", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
     </div>
   );
@@ -309,10 +309,10 @@ function TitleSVG({ dark = false }) {
           <stop offset="0%" stopColor="#C8A84E"/><stop offset="50%" stopColor="#E8D892"/><stop offset="100%" stopColor="#8B6914"/>
         </linearGradient>
       </defs>
-      <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="52" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
+      <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="54" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
         OBSIDIAN BRIDE
       </text>
-      <text x="300" y="100" textAnchor="middle" fontFamily="'KotraDoYak','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
+      <text x="300" y="100" textAnchor="middle" fontFamily="'KotraDoYak','Noto Serif KR',serif" fontSize="24" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
         흑요석의 신부
       </text>
     </svg>
@@ -394,12 +394,12 @@ function LangSelect({ onPick, onStartBGM }) {
         {/* 언어 선택 버튼 — 선택 후 아래로 내려가며 페이드 */}
         <div onMouseEnter={() => setLangHover(true)} onMouseLeave={() => setLangHover(false)}
           style={{ opacity:picked?0:show?1:0, transform:picked?"translateY(20px)":"translateY(0)", transition:"all 0.5s ease" }}>
-          <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(10px,1.3vw,12px)", color:"var(--gold)", marginBottom:"clamp(16px,3vw,24px)", fontWeight:600, letterSpacing:"5px", textAlign:"center" }}>SELECT LANGUAGE</p>
+          <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(12px,1.3vw,14px)", color:"var(--gold)", marginBottom:"clamp(16px,3vw,24px)", fontWeight:600, letterSpacing:"5px", textAlign:"center" }}>SELECT LANGUAGE</p>
           <div style={{ display:"flex", gap:"clamp(8px,2vw,16px)", animation:show?"langFade 0.6s ease 0.4s both":"none" }}>
             {items.map((x,i) => (
               <button key={x.c} onClick={() => pick(x.c)} onMouseEnter={() => setHv(i)} onMouseLeave={() => setHv(-1)}
                 style={{ padding:"clamp(10px,1.8vw,14px) clamp(18px,3vw,28px)", background:hv===i?"rgba(200,168,78,0.06)":"transparent", border:hv===i?"1px solid var(--gold)":"1px solid rgba(200,168,78,0.2)", cursor:"pointer", transition:"all 0.4s", color:hv===i?"var(--gold)":"var(--goldl)" }}>
-                <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2vw,18px)", fontWeight:600, letterSpacing:"2px" }}>{x.label}</span>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(16px,2vw,20px)", fontWeight:600, letterSpacing:"2px" }}>{x.label}</span>
               </button>
             ))}
           </div>
@@ -426,9 +426,9 @@ function BGMPlayer({ audioRef }) {
 
   return (
     <div style={{ position:"fixed", bottom:"clamp(12px,2vw,20px)", left:"clamp(12px,2vw,20px)", zIndex:900, display:"flex", alignItems:"center", gap:"8px", padding:"8px clamp(10px,1.5vw,14px)", background:"rgba(232,224,208,0.9)", backdropFilter:"blur(12px)", border:"1px solid var(--brd)", borderRadius:"24px" }}>
-      <button onClick={() => setP(!p)} style={{ background:"none", border:"none", color:"var(--gold)", cursor:"pointer", fontSize:"14px", padding:"2px" }}>{p ? "⏸" : "▶"}</button>
+      <button onClick={() => setP(!p)} style={{ background:"none", border:"none", color:"var(--gold)", cursor:"pointer", fontSize:"16px", padding:"2px" }}>{p ? "⏸" : "▶"}</button>
       <input type="range" min="0" max="1" step="0.05" value={v} onChange={e => setV(+e.target.value)} style={{ width:"48px", accentColor:"var(--gold)", cursor:"pointer", opacity:0.7 }}/>
-      <span style={{ fontSize:"10px", color:"var(--txd)", letterSpacing:"1px" }}>BGM</span>
+      <span style={{ fontSize:"12px", color:"var(--txd)", letterSpacing:"1px" }}>BGM</span>
     </div>
   );
 }
@@ -444,7 +444,7 @@ function GemChain({ cur, total, onGo }) {
         <div key={i} style={{ display:"flex", alignItems:"center" }}>
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"6px", cursor:"pointer" }} onClick={() => onGo(i)}>
             <div style={{ width:cur===i?"16px":"11px", height:cur===i?"16px":"11px", borderRadius:"50%", border:`1.5px solid ${cur===i?"var(--gold)":"var(--goldd)"}`, background:cur===i?"var(--gold)":"transparent", transition:"all 0.4s", boxShadow:cur===i?"0 0 10px rgba(200,168,78,0.4)":"none" }}/>
-            <span style={{ fontSize:"clamp(8px,1vw,10px)", color:cur===i?"var(--gold)":"var(--txd)", letterSpacing:"1px", fontFamily:"var(--fd)", fontWeight:cur===i?600:400, transition:"all 0.3s", whiteSpace:"nowrap" }}>{t.nav[i]}</span>
+            <span style={{ fontSize:"clamp(10px,1vw,12px)", color:cur===i?"var(--gold)":"var(--txd)", letterSpacing:"1px", fontFamily:"var(--fd)", fontWeight:cur===i?600:400, transition:"all 0.3s", whiteSpace:"nowrap" }}>{t.nav[i]}</span>
           </div>
           {i < total - 1 && <div style={{ width:"clamp(12px,2vw,20px)", height:"1px", background:"var(--gold)", opacity:0.2, marginLeft:"clamp(16px,3vw,28px)", marginTop:"-12px" }}/>}
         </div>
@@ -469,7 +469,7 @@ function Hero() {
         <div style={{ width:"1px", height:"44px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 28px" }}/>
         <TitleSVG/>
         <div style={{ width:"clamp(60px,20vw,120px)", height:"1px", margin:"20px auto", background:"linear-gradient(90deg,transparent,var(--gold),transparent)" }}/>
-        <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(14px,2.5vw,20px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l][0]}<br/>{copy[l][1]}</p>
+        <p style={{ fontFamily:"var(--fd)", fontSize:"clamp(16px,2.5vw,22px)", color:"var(--tx2)", lineHeight:1.8, maxWidth:"500px", margin:"0 auto", fontStyle:"italic", fontWeight:400 }}>{copy[l][0]}<br/>{copy[l][1]}</p>
       </div>
     </div>
   );
@@ -495,7 +495,7 @@ function CharModal({ c, onClose }) {
         : "linear-gradient(90deg,rgba(12,26,46,0.4) 0%,rgba(12,26,46,0.1) 30%,rgba(12,26,46,0.5) 55%,rgba(12,26,46,0.85) 100%), linear-gradient(180deg,rgba(12,26,46,0.3) 0%,transparent 40%,rgba(12,26,46,0.6) 100%)" }}/>
 
       {/* 닫기 */}
-      <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"12px", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"18px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
+      <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"12px", background:"rgba(255,255,255,0.1)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:"20px", cursor:"pointer", zIndex:20, width:"36px", height:"36px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(8px)" }}>✕</button>
 
       {mob ? <>
         {/* 모바일: 세로 배치 — 이미지 위, 이름+정보 아래 */}
@@ -503,28 +503,28 @@ function CharModal({ c, onClose }) {
           {imgSrc
             ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
             : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <span style={{ fontFamily:"var(--fd)", fontSize:"48px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"50px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
               </div>
           }
         </div>
         <div style={{ position:"absolute", bottom:0, left:0, right:0, zIndex:10, padding:"0 16px 16px" }}>
           <div style={{ textAlign:"center", marginBottom:"12px", animation:"fadeUp 0.6s ease 0.1s both" }}>
-            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,8vw,40px)", fontWeight:900, color:c.color, letterSpacing:"1px" }}>{enName}</div>
+            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(30px,8vw,42px)", fontWeight:900, color:c.color, letterSpacing:"1px" }}>{enName}</div>
             <div style={{ width:"40px", height:"2px", background:c.color, margin:"8px auto" }}/>
           </div>
           {c.mystery
-            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"14px", letterSpacing:"4px", textAlign:"center", padding:"16px 0" }}>■■■■■■ ■■■ ■■■■</div>
+            ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px", textAlign:"center", padding:"16px 0" }}>■■■■■■ ■■■ ■■■■</div>
             : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"14px", animation:"fadeUp 0.6s ease 0.2s both" }}>
-                <div style={{ fontSize:"13px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
+                <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"8px" }}>{c.gem}</div>
                 <div style={{ display:"flex", gap:"10px", flexWrap:"wrap", marginBottom:"8px" }}>
                   {[{ label:t.per, v:c.per },{ label:t.goal, v:c.goal }].map((x,i) => (
                     <div key={i} style={{ flex:"1 1 100%" }}>
-                      <span style={{ fontSize:"10px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                      <p style={{ fontSize:"14px", color:"rgba(232,224,208,0.9)", lineHeight:1.6, fontWeight:400, marginTop:"2px" }}>{x.v}</p>
+                      <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                      <p style={{ fontSize:"16px", color:"rgba(232,224,208,0.9)", lineHeight:1.6, fontWeight:400, marginTop:"2px" }}>{x.v}</p>
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize:"14px", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"10px" }}>{c.intro}</p>
+                <p style={{ fontSize:"16px", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"10px" }}>{c.intro}</p>
               </div>
           }
         </div>
@@ -536,27 +536,27 @@ function CharModal({ c, onClose }) {
             {imgSrc
               ? <img src={imgSrc} alt={c.gem} style={{ height:"100%", objectFit:"contain", filter:`drop-shadow(0 8px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 40px ${c.color}25)` }}/>
               : <div style={{ height:"100%", aspectRatio:"2/3", background:c.gemBg, borderRadius:"16px", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                  <span style={{ fontFamily:"var(--fd)", fontSize:"80px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
+                  <span style={{ fontFamily:"var(--fd)", fontSize:"82px", fontWeight:700, color:"rgba(255,255,255,0.25)" }}>{c.gem[0]}</span>
                 </div>
             }
           </div>
           {/* 이름 + 정보 */}
           <div style={{ maxWidth:"clamp(280px,35vw,420px)", flexShrink:1, animation:"fadeUp 0.6s ease 0.1s both" }}>
-            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(36px,6vw,64px)", fontWeight:900, color:c.color, lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
+            <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(38px,6vw,66px)", fontWeight:900, color:c.color, lineHeight:1, letterSpacing:"clamp(1px,0.3vw,4px)", textShadow:`0 4px 20px rgba(0,0,0,0.5)` }}>{enName}</div>
             <div style={{ width:"clamp(40px,6vw,60px)", height:"2px", background:c.color, marginTop:"14px", marginBottom:"18px" }}/>
             {c.mystery
-              ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"16px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
+              ? <div style={{ color:"rgba(255,255,255,0.3)", fontSize:"18px", letterSpacing:"4px" }}>■■■■■■ ■■■ ■■■■</div>
               : <div style={{ border:`1.5px solid ${c.color}60`, borderRadius:"12px", padding:"clamp(20px,3vw,30px)" }}>
-                  <div style={{ fontSize:"15px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
+                  <div style={{ fontSize:"17px", color:c.color, fontWeight:700, letterSpacing:"1px", marginBottom:"16px" }}>{c.gem}</div>
                   <div style={{ display:"flex", gap:"clamp(12px,2vw,24px)", flexWrap:"wrap", marginBottom:"16px" }}>
                     {[{ label:t.per, v:c.per },{ label:t.goal, v:c.goal }].map((x,i) => (
                       <div key={i} style={{ flex:"1 1 120px" }}>
-                        <span style={{ fontSize:"12px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
-                        <p style={{ fontSize:"clamp(15px,1.8vw,17px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
+                        <span style={{ fontSize:"14px", color:c.color, letterSpacing:"2px", fontWeight:600 }}>{x.label}</span>
+                        <p style={{ fontSize:"clamp(17px,1.8vw,19px)", color:"var(--bg)", lineHeight:1.7, fontWeight:400, marginTop:"4px" }}>{x.v}</p>
                       </div>
                     ))}
                   </div>
-                  <p style={{ fontSize:"clamp(15px,1.8vw,17px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"12px" }}>{c.intro}</p>
+                  <p style={{ fontSize:"clamp(17px,1.8vw,19px)", lineHeight:1.8, fontWeight:400, fontStyle:"italic", color:"rgba(232,224,208,0.9)", borderTop:`1px solid ${c.color}30`, paddingTop:"12px" }}>{c.intro}</p>
                 </div>
             }
           </div>
@@ -578,7 +578,7 @@ function Chars({ onOpen }) {
   const reveal = (idx) => { setHv(idx); setRevealed(prev => { const s = new Set(prev); s.add(idx); return s; }); };
   const cW = mob ? "clamp(70px,20vw,95px)" : "clamp(160px,28vw,220px)";
   const cM = mob ? "clamp(-25px,-6vw,-36px)" : "clamp(-66px,-14vw,-94px)";
-  const nSize = mob ? "clamp(8px,2.2vw,10px)" : "clamp(11px,1.6vw,15px)";
+  const nSize = mob ? "clamp(10px,2.2vw,12px)" : "clamp(13px,1.6vw,17px)";
   const nBot = mob ? "-7px" : "-9px";
   const hvUp = mob ? "translateY(-10px) scale(1.04)" : "translateY(-20px) scale(1.06)";
   const boW = mob ? "clamp(60px,16vw,80px)" : "clamp(120px,20vw,160px)";
@@ -614,7 +614,7 @@ function Chars({ onOpen }) {
         {c.img
           ? <img src={c.img} alt={c.mystery?"???":c.gem} style={{ width:"100%", height:"100%", objectFit:"contain", transform:"scale(0.9)", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
           : <div style={{ width:"100%", height:"100%", background:c.gemBg, borderRadius:"12px", transform:"scale(0.9)", display:"flex", alignItems:"center", justifyContent:"center", filter: isRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}>
-              <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(28px,6vw,42px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.mystery?"?":c.gem[0]}</span>
+              <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(30px,6vw,44px)", fontWeight:700, color:"rgba(255,255,255,0.4)" }}>{c.mystery?"?":c.gem[0]}</span>
             </div>
         }
         <div style={{ position:"absolute", bottom:nBot, left:"50%", transform:"translateX(-50%)", whiteSpace:"nowrap", opacity: isRevealed ? 1 : 0, transition:"opacity 0.4s", textAlign:"center" }}>
@@ -628,7 +628,7 @@ function Chars({ onOpen }) {
     <div style={{ height:"100%", display:"flex", flexDirection:"column", overflow:"hidden", background:"var(--bg2)" }}>
       <div style={{ padding:"clamp(56px,7vw,76px) clamp(12px,3vw,16px) 0", flexShrink:0 }}>
         <STitle sub={t.charS} main={t.charT}/>
-        <p style={{ fontSize:"clamp(11px,1.4vw,13px)", color:"var(--tx2)", textAlign:"center", marginTop:"-8px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
+        <p style={{ fontSize:"clamp(13px,1.4vw,15px)", color:"var(--tx2)", textAlign:"center", marginTop:"-8px", marginBottom:"clamp(4px,1vw,8px)", fontWeight:300 }}>{t.charTap}</p>
       </div>
       <div style={{ flex:1, overflowY:"auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", padding:"clamp(4px,1vw,10px) clamp(12px,3vw,16px) 40px", gap:"0" }} className="iscroll">
 
@@ -649,8 +649,8 @@ function Chars({ onOpen }) {
             <img src={boImg} alt={blueOwl[l]} style={{ width:"100%", height:"100%", objectFit:"contain", filter: boRevealed ? "grayscale(0) brightness(1)" : "grayscale(1) brightness(0.12) contrast(1.5)", transition:"filter 0.6s ease" }}/>
           </div>
           <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start", flexShrink:0, lineHeight:1.3 }}>
-            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(11px,3vw,14px)":"clamp(14px,2vw,19px)", color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
-            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(11px,3vw,14px)":"clamp(14px,2vw,19px)", fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
+            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(13px,3vw,16px)":"clamp(16px,2vw,21px)", color:"#3A8BBF", letterSpacing:"1px", fontWeight:600, textTransform:"uppercase" }}>MC</span>
+            <span style={{ fontFamily:"var(--fd)", fontSize:mob?"clamp(13px,3vw,16px)":"clamp(16px,2vw,21px)", fontWeight:600, color:"#3A8BBF", textTransform:"uppercase", letterSpacing:"1px" }}>BLUE OWL</span>
           </div>
           <div style={{ flex:1, height:"1px", background:"linear-gradient(270deg,transparent,#3A8BBF50)" }}/>
         </div>
@@ -681,23 +681,23 @@ function KingdomModal({ k, onClose }) {
   return (
     <div onClick={onClose} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(12,26,46,0.75)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"center", animation:"fadeIn 0.3s ease", padding:"clamp(12px,3vw,20px)" }}>
       <div onClick={e => e.stopPropagation()} style={{ width:"100%", maxWidth:"400px", background:"var(--bgc)", border:`2px solid ${k.color}44`, borderRadius:"16px", overflow:"hidden", position:"relative", animation:"fadeUp 0.4s ease" }}>
-        <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"14px", background:"rgba(255,255,255,0.7)", border:"none", color:"var(--tx2)", fontSize:"18px", cursor:"pointer", zIndex:10, width:"28px", height:"28px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
+        <button onClick={onClose} style={{ position:"absolute", top:"12px", right:"14px", background:"rgba(255,255,255,0.7)", border:"none", color:"var(--tx2)", fontSize:"20px", cursor:"pointer", zIndex:10, width:"28px", height:"28px", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center" }}>✕</button>
         {/* Kingdom image */}
         <div style={{ width:"100%", aspectRatio:"4/3", overflow:"hidden", borderBottom:"1px solid var(--brd)", display:"flex", alignItems:"center", justifyContent:"center" }}>
           {k.img
             ? <img src={k.img} alt={k.n} style={{ width:"100%", height:"100%", objectFit:"contain" }}/>
             : <div style={{ width:"100%", height:"100%", background:`linear-gradient(135deg,${k.color}20,var(--bgc))`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <span style={{ fontFamily:"var(--fd)", fontSize:"36px", fontWeight:700, color:`${k.color}30` }}>{k.n[0]}</span>
+                <span style={{ fontFamily:"var(--fd)", fontSize:"38px", fontWeight:700, color:`${k.color}30` }}>{k.n[0]}</span>
               </div>
           }
         </div>
         <div style={{ padding:"clamp(20px,4vw,28px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"12px" }}>
             <div style={{ width:"6px", height:"6px", borderRadius:"50%", background:k.color, boxShadow:`0 0 8px ${k.color}60` }}/>
-            <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(20px,3.5vw,26px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
+            <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(22px,3.5vw,28px)", fontWeight:700, color:"var(--midnight)" }}>{k.n}</h3>
           </div>
-          <div style={{ fontSize:"clamp(11px,1.4vw,13px)", color:k.color, letterSpacing:"1px", fontWeight:600, marginBottom:"12px" }}>{k.d}</div>
-          <p style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{k.detail}</p>
+          <div style={{ fontSize:"clamp(13px,1.4vw,15px)", color:k.color, letterSpacing:"1px", fontWeight:600, marginBottom:"12px" }}>{k.d}</div>
+          <p style={{ fontSize:"clamp(15px,1.6vw,17px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{k.detail}</p>
         </div>
       </div>
     </div>
@@ -764,7 +764,7 @@ function World({ onKingdom }) {
                   {/* 하단 라인 */}
                   <line x1="10" y1="38" x2="90" y2="38" stroke={act?"var(--gold)":"rgba(200,168,78,0.25)"} strokeWidth="0.6" vectorEffect="non-scaling-stroke"/>
                 </svg>
-                <span style={{ position:"relative", zIndex:2, fontFamily:"var(--fk)", fontSize:mob?"12px":"14px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px", transition:"color 0.3s" }}>{tab.label}</span>
+                <span style={{ position:"relative", zIndex:2, fontFamily:"var(--fk)", fontSize:mob?"14px":"16px", fontWeight:400, color:act?"var(--gold)":"var(--tx2)", letterSpacing:"2px", transition:"color 0.3s" }}>{tab.label}</span>
               </button>
             );
           })}
@@ -797,9 +797,9 @@ function World({ onKingdom }) {
                       <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"KotraDoYak, sans-serif" }}>
                         <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
                           <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, flexShrink:0 }}/>
-                          <span style={{ fontSize:"11px", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
+                          <span style={{ fontSize:"13px", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
                         </div>
-                        <div style={{ fontSize:"9px", color:"var(--tx2)", fontWeight:300, marginLeft:"8px" }}>{k.d}</div>
+                        <div style={{ fontSize:"11px", color:"var(--tx2)", fontWeight:300, marginLeft:"8px" }}>{k.d}</div>
                       </div>
                     </foreignObject>
                     {/* 메인 아치+사각 프레임 */}
@@ -885,7 +885,7 @@ function World({ onKingdom }) {
                       <path d={trapD(i)} fill="none" stroke={loc.c} strokeWidth="0.7" opacity="0.7"/>
                     </svg>
                     {/* 텍스트 */}
-                    <div style={{ position:"absolute", left:`${ctr[0]}%`, top:`${ctr[1]}%`, transform:"translate(-50%,-50%)", fontFamily:"var(--fk)", fontSize:"clamp(13px,2.5vw,17px)", fontWeight:400, color:bgLoc!==null?"#F5ECD0":"var(--gold)", textAlign:"center", lineHeight:1.25, pointerEvents:"none", whiteSpace:"nowrap", opacity:hvLoc===i?0:1, transition:"opacity 0.3s, color 0.5s, text-shadow 0.5s", textShadow:bgLoc!==null?"0 0 4px #E8D892, 0 0 10px rgba(200,168,78,0.7), 0 0 20px rgba(200,168,78,0.3)":"none" }}>{loc.n}</div>
+                    <div style={{ position:"absolute", left:`${ctr[0]}%`, top:`${ctr[1]}%`, transform:"translate(-50%,-50%)", fontFamily:"var(--fk)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:400, color:bgLoc!==null?"#F5ECD0":"var(--gold)", textAlign:"center", lineHeight:1.25, pointerEvents:"none", whiteSpace:"nowrap", opacity:hvLoc===i?0:1, transition:"opacity 0.3s, color 0.5s, text-shadow 0.5s", textShadow:bgLoc!==null?"0 0 4px #E8D892, 0 0 10px rgba(200,168,78,0.7), 0 0 20px rgba(200,168,78,0.3)":"none" }}>{loc.n}</div>
                   </div>
                 );
               })}
@@ -895,11 +895,11 @@ function World({ onKingdom }) {
               {selLoc !== null ? (<>
                 <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"6px" }}>
                   <div style={{ width:"10px", height:"10px", borderRadius:"50%", background:locs[selLoc].c, boxShadow:`0 0 8px ${locs[selLoc].c}60` }}/>
-                  <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,17px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
+                  <span style={{ fontFamily:"var(--fd)", fontSize:"clamp(17px,2.5vw,19px)", fontWeight:700, color:"var(--midnight)" }}>{locs[selLoc].n}</span>
                 </div>
-                <p style={{ fontSize:"clamp(13px,2vw,15px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
+                <p style={{ fontSize:"clamp(15px,2vw,17px)", color:"var(--tx2)", lineHeight:1.7, fontWeight:300 }}>{locs[selLoc].d}</p>
               </>) : (
-                <p style={{ fontSize:"clamp(13px,2vw,15px)", color:"var(--txd)", textAlign:"center", fontWeight:300, fontStyle:"italic" }}>{
+                <p style={{ fontSize:"clamp(15px,2vw,17px)", color:"var(--txd)", textAlign:"center", fontWeight:300, fontStyle:"italic" }}>{
                   { ko:"장소를 클릭하세요.", en:"Click a location.", ja:"場所をクリックしてください。" }[l]
                 }</p>
               )}
@@ -947,11 +947,11 @@ function World({ onKingdom }) {
                           </svg>
                           {/* 콘텐츠 */}
                           <div style={{ position:"relative", zIndex:2, display:"flex", alignItems:"center", gap:"clamp(10px,2vw,14px)" }}>
-                            <div style={{ width:"clamp(36px,8vw,46px)", height:"clamp(36px,8vw,46px)", clipPath:"polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)", background: isOpen ? "rgba(232,216,146,0.12)" : "rgba(232,216,146,0.05)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(16px,3vw,22px)", flexShrink:0, transition:"all 0.3s" }}>{ev.ic}</div>
+                            <div style={{ width:"clamp(36px,8vw,46px)", height:"clamp(36px,8vw,46px)", clipPath:"polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)", background: isOpen ? "rgba(232,216,146,0.12)" : "rgba(232,216,146,0.05)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"clamp(18px,3vw,24px)", flexShrink:0, transition:"all 0.3s" }}>{ev.ic}</div>
                             <div style={{ flex:1 }}>
-                              <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,2.5vw,19px)", fontWeight:700, color: isOpen ? "var(--goldl)" : "var(--bgc)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
+                              <h4 style={{ fontFamily:"var(--fd)", fontSize:"clamp(17px,2.5vw,21px)", fontWeight:700, color: isOpen ? "var(--goldl)" : "var(--bgc)", marginBottom:isOpen?"6px":"0", transition:"color 0.3s" }}>{ev.n}</h4>
                               {isOpen && (
-                                <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"rgba(232,224,208,0.7)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
+                                <p style={{ fontSize:"clamp(14px,1.5vw,16px)", color:"rgba(232,224,208,0.7)", lineHeight:1.8, fontWeight:300, animation:"fadeUp 0.3s ease" }}>{ev.d}</p>
                               )}
                             </div>
                             <svg width="14" height="14" viewBox="0 0 14 14" style={{ flexShrink:0, opacity:isOpen?1:0.35, transition:"all 0.3s", transform:isOpen?"rotate(45deg)":"rotate(0)" }}>
@@ -971,10 +971,10 @@ function World({ onKingdom }) {
 
         {/* 좌우 화살표 */}
         {page > 0 && (
-          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>◀</button>
+          <button onClick={() => setPage(page - 1)} style={{ position:"absolute", left:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"16px", transition:"all 0.3s", zIndex:10 }}>◀</button>
         )}
         {page < 2 && (
-          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"14px", transition:"all 0.3s", zIndex:10 }}>▶</button>
+          <button onClick={() => setPage(page + 1)} style={{ position:"absolute", right:mob?"4px":"calc(50% - clamp(200px,38vw,380px))", top:"50%", transform:"translateY(-50%)", width:"32px", height:"32px", borderRadius:"50%", background:"rgba(200,168,78,0.1)", border:"1px solid var(--brd)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", fontSize:"16px", transition:"all 0.3s", zIndex:10 }}>▶</button>
         )}
       </div>
 
@@ -1003,18 +1003,18 @@ function System() {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(min(240px,100%),1fr))", gap:"14px", marginBottom:"clamp(28px,5vw,44px)" }}>
           {[{ l:t.sm, d:t.smd, ic:"📖" },{ l:t.fm, d:t.fmd, ic:"💎" }].map((m,i) => (
             <div key={i} style={{ padding:"clamp(18px,3vw,24px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"12px" }}>
-              <div style={{ fontSize:"24px", marginBottom:"10px" }}>{m.ic}</div>
-              <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(16px,2vw,19px)", fontWeight:700, marginBottom:"8px", color:"var(--midnight)" }}>{m.l}</h3>
-              <p style={{ fontSize:"clamp(12px,1.5vw,14px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{m.d}</p>
+              <div style={{ fontSize:"26px", marginBottom:"10px" }}>{m.ic}</div>
+              <h3 style={{ fontFamily:"var(--fd)", fontSize:"clamp(18px,2vw,21px)", fontWeight:700, marginBottom:"8px", color:"var(--midnight)" }}>{m.l}</h3>
+              <p style={{ fontSize:"clamp(14px,1.5vw,16px)", color:"var(--tx2)", lineHeight:1.8, fontWeight:300 }}>{m.d}</p>
             </div>
           ))}
         </div>
-        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(13px,1.6vw,15px)", letterSpacing:"4px", color:"var(--gold)", textAlign:"center", marginBottom:"16px", fontWeight:600 }}>{t.cmdL}</div>
+        <div style={{ fontFamily:"var(--fd)", fontSize:"clamp(15px,1.6vw,17px)", letterSpacing:"4px", color:"var(--gold)", textAlign:"center", marginBottom:"16px", fontWeight:600 }}>{t.cmdL}</div>
         <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
           {[{ c:t.c1, d:t.c1d },{ c:t.c2, d:t.c2d },{ c:t.c3, d:t.c3d }].map((x,i) => (
             <div key={i} style={{ display:"flex", gap:"clamp(8px,2vw,14px)", alignItems:"baseline", padding:"12px clamp(12px,2vw,16px)", background:"var(--bgc)", border:"1px solid var(--brd)", borderRadius:"8px", flexWrap:"wrap" }}>
-              <code style={{ fontFamily:"var(--fk)", fontSize:"clamp(13px,1.6vw,15px)", color:"var(--gold)", fontWeight:400, background:"rgba(200,168,78,0.08)", padding:"3px 8px", borderRadius:"4px", flexShrink:0 }}>{x.c}</code>
-              <span style={{ fontSize:"clamp(13px,1.6vw,15px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.6 }}>{x.d}</span>
+              <code style={{ fontFamily:"var(--fk)", fontSize:"clamp(15px,1.6vw,17px)", color:"var(--gold)", fontWeight:400, background:"rgba(200,168,78,0.08)", padding:"3px 8px", borderRadius:"4px", flexShrink:0 }}>{x.c}</code>
+              <span style={{ fontSize:"clamp(15px,1.6vw,17px)", color:"var(--tx2)", fontWeight:300, lineHeight:1.6 }}>{x.d}</span>
             </div>
           ))}
         </div>
@@ -1037,12 +1037,12 @@ function CTA() {
       <div style={{ position:"absolute", bottom:0, left:"50%", transform:"translateX(-50%)", width:"min(450px,90vw)", height:"250px", background:"radial-gradient(ellipse at center bottom,rgba(200,168,78,0.08) 0%,transparent 70%)", pointerEvents:"none" }}/>
       <div style={{ position:"relative", zIndex:2, textAlign:"center" }}>
         <div style={{ width:"1px", height:"40px", background:"linear-gradient(180deg,transparent,var(--gold))", margin:"0 auto 28px" }}/>
-        <div style={{ fontFamily:hf, fontSize:"clamp(22px,4vw,38px)", fontWeight:700, color:"var(--midnight)", marginBottom:"clamp(28px,5vw,44px)" }}>{t.ctaT}</div>
+        <div style={{ fontFamily:hf, fontSize:"clamp(24px,4vw,40px)", fontWeight:700, color:"var(--midnight)", marginBottom:"clamp(28px,5vw,44px)" }}>{t.ctaT}</div>
         <button onMouseEnter={() => setHv(true)} onMouseLeave={() => setHv(false)} onClick={() => alert("URL 추후 삽입")}
-          style={{ padding:"clamp(14px,2vw,18px) clamp(40px,8vw,64px)", background:hv?"var(--gold)":"transparent", border:"2px solid var(--gold)", color:hv?"var(--midnight)":"var(--gold)", fontFamily:"var(--fd)", fontSize:"clamp(15px,2vw,18px)", fontWeight:600, letterSpacing:"clamp(2px,0.5vw,4px)", cursor:"pointer", transition:"all 0.4s", borderRadius:"40px" }}>{t.ctaB}</button>
-        <p style={{ fontSize:"clamp(9px,1.2vw,11px)", color:"var(--txd)", marginTop:"20px", letterSpacing:"1px" }}>{t.ctaN}</p>
+          style={{ padding:"clamp(14px,2vw,18px) clamp(40px,8vw,64px)", background:hv?"var(--gold)":"transparent", border:"2px solid var(--gold)", color:hv?"var(--midnight)":"var(--gold)", fontFamily:"var(--fd)", fontSize:"clamp(17px,2vw,20px)", fontWeight:600, letterSpacing:"clamp(2px,0.5vw,4px)", cursor:"pointer", transition:"all 0.4s", borderRadius:"40px" }}>{t.ctaB}</button>
+        <p style={{ fontSize:"clamp(11px,1.2vw,13px)", color:"var(--txd)", marginTop:"20px", letterSpacing:"1px" }}>{t.ctaN}</p>
       </div>
-      <div style={{ position:"absolute", bottom:"20px", width:"100%", textAlign:"center", fontSize:"clamp(9px,1.2vw,11px)", color:"var(--txd)", letterSpacing:"2px" }}>{t.credit}</div>
+      <div style={{ position:"absolute", bottom:"20px", width:"100%", textAlign:"center", fontSize:"clamp(11px,1.2vw,13px)", color:"var(--txd)", letterSpacing:"2px" }}>{t.credit}</div>
     </div>
   );
 }
