@@ -10,8 +10,14 @@ document.head.appendChild(fl);
 const css = document.createElement("style");
 css.textContent = `
 @font-face {
-  font-family: 'KotraDoYak';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRALEAP.woff2') format('woff2');
+  font-family: 'HeirofLightBold';
+  src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Yoondesign/HeirofLightBold.woff') format('woff');
+  font-weight: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ChosunIlboMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
   font-weight: normal;
   font-display: swap;
 }
@@ -29,9 +35,9 @@ css.textContent = `
   --blue:#6CBEEB; --blued:#3A8BBF;
   --brd:rgba(200,168,78,0.2);
   --fd:'Playfair Display','Noto Serif KR','Shippori Mincho',serif;
-  --fk:'KotraDoYak','Noto Serif KR',serif;
+  --fk:'HeirofLightBold','Noto Serif KR',serif;
   --fs:'Playlist Script',cursive;
-  --fb:'Noto Sans KR','Noto Sans JP',sans-serif;
+  --fb:'ChosunIlboMyungjo','Noto Sans KR','Noto Sans JP',sans-serif;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { --vh:100vh; --vh:100dvh; }
@@ -306,7 +312,7 @@ function TitleSVG({ dark = false }) {
       <text x="300" y="60" textAnchor="middle" fontFamily="'Playfair Display',serif" fontSize="52" fontWeight="900" fill={dark?"url(#jtg)":"var(--midnight)"} letterSpacing="6" style={{ animation: dark ? "none" : "glowPulse 4s ease-in-out infinite" }}>
         OBSIDIAN BRIDE
       </text>
-      <text x="300" y="100" textAnchor="middle" fontFamily="'KotraDoYak','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
+      <text x="300" y="100" textAnchor="middle" fontFamily="'HeirofLightBold','Noto Serif KR',serif" fontSize="22" fontWeight="400" fill={dark?"var(--gold)":"var(--txd)"} letterSpacing="8">
         흑요석의 신부
       </text>
     </svg>
@@ -788,7 +794,7 @@ function World({ onKingdom }) {
                     </foreignObject>
                     {/* 이름 + 설명 */}
                     <foreignObject x="5" y="95" width="90" height="33">
-                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"KotraDoYak, sans-serif" }}>
+                      <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily:"HeirofLightBold, sans-serif" }}>
                         <div style={{ display:"flex", alignItems:"center", gap:"3px", marginBottom:"1px" }}>
                           <div style={{ width:"5px", height:"5px", borderRadius:"50%", background:k.color, flexShrink:0 }}/>
                           <span style={{ fontSize:"11px", fontWeight:400, color:"var(--gold)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{k.n}</span>
